@@ -1,0 +1,26 @@
+# macOS specific files
+.DS_Store
+
+# Xcode specific files
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Build products
+build/
+DerivedData/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# Xcode 11+ 
+.swiftpm/xcode/
