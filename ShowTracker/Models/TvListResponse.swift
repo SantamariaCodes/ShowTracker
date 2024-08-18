@@ -6,7 +6,9 @@
 //
 
 
-struct TvShow: Codable {
+import Foundation
+
+struct TvShow: Codable, Identifiable {
     let id: Int
     let title: String
     let overview: String
@@ -16,6 +18,11 @@ struct TvShow: Codable {
         case id, overview
         case title = "name"
         case posterPath = "poster_path"
+    }
+    
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
     }
 }
 
