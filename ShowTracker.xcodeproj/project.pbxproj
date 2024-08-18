@@ -9,13 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
-		9F4C15172C7221DA005C385A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C15162C7221DA005C385A /* MainView.swift */; };
-		9F4C151D2C722626005C385A /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C151C2C722626005C385A /* CarouselView.swift */; };
-		9F4C151F2C72262C005C385A /* CarouselViewChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C151E2C72262C005C385A /* CarouselViewChild.swift */; };
-		9F4C15212C722631005C385A /* CarouselContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C15202C722631005C385A /* CarouselContentView.swift */; };
-		9F4C15252C722651005C385A /* DashboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C15242C722651005C385A /* DashboardRow.swift */; };
 		9F4C152B2C722675005C385A /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C152A2C722675005C385A /* MovieView.swift */; };
-		9F4C152D2C7226C0005C385A /* GridDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C152C2C7226C0005C385A /* GridDisplay.swift */; };
 		9F4C15342C7233A5005C385A /* DashboardRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C15332C7233A5005C385A /* DashboardRowViewModel.swift */; };
 		9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A202C7194A800F919D0 /* TvListResponse.swift */; };
 		9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */; };
@@ -35,6 +29,12 @@
 		9FB3E7D02C7192D50088A993 /* ShowTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7CF2C7192D50088A993 /* ShowTrackerTests.swift */; };
 		9FB3E7DA2C7192D50088A993 /* ShowTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7D92C7192D50088A993 /* ShowTrackerUITests.swift */; };
 		9FB3E7DC2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */; };
+		9FD804DD2C72845E00A939DB /* CarouselViewChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804DC2C72845E00A939DB /* CarouselViewChild.swift */; };
+		9FD804DF2C7284A000A939DB /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804DE2C7284A000A939DB /* CarouselView.swift */; };
+		9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E12C7284CE00A939DB /* CarouselContentView.swift */; };
+		9FD804E42C72850500A939DB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E32C72850500A939DB /* MainView.swift */; };
+		9FD804E62C72853200A939DB /* GridDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplay.swift */; };
+		9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +56,7 @@
 
 /* Begin PBXFileReference section */
 		9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePicker.swift; sourceTree = "<group>"; };
-		9F4C15162C7221DA005C385A /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../../../../../Desktop/MovieTracker/MovieTracker/MainView.swift; sourceTree = "<group>"; };
-		9F4C151C2C722626005C385A /* CarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarouselView.swift; path = ../../../../../../../Desktop/MovieTracker/MovieTracker/Views/Dashboard/DashboardHelpers/Carousel/CarouselView.swift; sourceTree = "<group>"; };
-		9F4C151E2C72262C005C385A /* CarouselViewChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarouselViewChild.swift; path = ../../../../../../../Desktop/MovieTracker/MovieTracker/Views/Dashboard/DashboardHelpers/Carousel/CarouselViewChild.swift; sourceTree = "<group>"; };
-		9F4C15202C722631005C385A /* CarouselContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarouselContentView.swift; path = ../../../../../../../Desktop/MovieTracker/MovieTracker/Views/Dashboard/DashboardHelpers/Carousel/CarouselContentView.swift; sourceTree = "<group>"; };
-		9F4C15242C722651005C385A /* DashboardRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardRow.swift; path = ../../../../../../Desktop/MovieTracker/MovieTracker/Views/Dashboard/DashboardHelpers/DashboardRow.swift; sourceTree = "<group>"; };
 		9F4C152A2C722675005C385A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
-		9F4C152C2C7226C0005C385A /* GridDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridDisplay.swift; path = ../../../../../../Desktop/MovieTracker/MovieTracker/Views/Dashboard/DashboardHelpers/GridDisplay.swift; sourceTree = "<group>"; };
 		9F4C15332C7233A5005C385A /* DashboardRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRowViewModel.swift; sourceTree = "<group>"; };
 		9F851A202C7194A800F919D0 /* TvListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListResponse.swift; sourceTree = "<group>"; };
 		9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailModel.swift; sourceTree = "<group>"; };
@@ -86,6 +80,12 @@
 		9FB3E7D52C7192D50088A993 /* ShowTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB3E7D92C7192D50088A993 /* ShowTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerUITests.swift; sourceTree = "<group>"; };
 		9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FD804DC2C72845E00A939DB /* CarouselViewChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewChild.swift; sourceTree = "<group>"; };
+		9FD804DE2C7284A000A939DB /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		9FD804E12C7284CE00A939DB /* CarouselContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselContentView.swift; sourceTree = "<group>"; };
+		9FD804E32C72850500A939DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9FD804E52C72853200A939DB /* GridDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplay.swift; sourceTree = "<group>"; };
+		9FD804E72C72856200A939DB /* DashboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +124,10 @@
 		9F4C151A2C72260C005C385A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9F4C152C2C7226C0005C385A /* GridDisplay.swift */,
-				9F4C15242C722651005C385A /* DashboardRow.swift */,
+				9FD804E52C72853200A939DB /* GridDisplay.swift */,
 				9F4C152A2C722675005C385A /* MovieView.swift */,
 				9F4C151B2C722614005C385A /* Carousel */,
+				9FD804E72C72856200A939DB /* DashboardRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 		9F4C151B2C722614005C385A /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
-				9F4C151E2C72262C005C385A /* CarouselViewChild.swift */,
-				9F4C15202C722631005C385A /* CarouselContentView.swift */,
-				9F4C151C2C722626005C385A /* CarouselView.swift */,
+				9FD804DC2C72845E00A939DB /* CarouselViewChild.swift */,
+				9FD804DE2C7284A000A939DB /* CarouselView.swift */,
+				9FD804E12C7284CE00A939DB /* CarouselContentView.swift */,
 			);
 			path = Carousel;
 			sourceTree = "<group>";
@@ -197,8 +197,8 @@
 				9F851A322C71952200F919D0 /* TvShowDetailView.swift */,
 				9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */,
 				9F851A342C71952B00F919D0 /* TvShowView.swift */,
-				9F4C15162C7221DA005C385A /* MainView.swift */,
 				9F4C15332C7233A5005C385A /* DashboardRowViewModel.swift */,
+				9FD804E32C72850500A939DB /* MainView.swift */,
 				9FB3E7C12C7192D50088A993 /* Assets.xcassets */,
 				9FB3E7C32C7192D50088A993 /* ShowTracker.entitlements */,
 				9FB3E7C42C7192D50088A993 /* Preview Content */,
@@ -368,26 +368,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB3E7C02C7192D40088A993 /* ContentView.swift in Sources */,
-				9F4C15172C7221DA005C385A /* MainView.swift in Sources */,
+				9FD804DF2C7284A000A939DB /* CarouselView.swift in Sources */,
 				9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */,
 				9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */,
-				9F4C15212C722631005C385A /* CarouselContentView.swift in Sources */,
 				9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */,
 				9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */,
-				9F4C151F2C72262C005C385A /* CarouselViewChild.swift in Sources */,
-				9F4C15252C722651005C385A /* DashboardRow.swift in Sources */,
+				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
 				9F4C15342C7233A5005C385A /* DashboardRowViewModel.swift in Sources */,
-				9F4C151D2C722626005C385A /* CarouselView.swift in Sources */,
 				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
-				9F4C152D2C7226C0005C385A /* GridDisplay.swift in Sources */,
+				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
 				9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */,
+				9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */,
 				9FB3E7BE2C7192D40088A993 /* ShowTrackerApp.swift in Sources */,
 				9F4C152B2C722675005C385A /* MovieView.swift in Sources */,
 				9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */,
 				9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */,
+				9FD804DD2C72845E00A939DB /* CarouselViewChild.swift in Sources */,
 				9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */,
 				9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */,
 				9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */,
+				9FD804E62C72853200A939DB /* GridDisplay.swift in Sources */,
 				9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
