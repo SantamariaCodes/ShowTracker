@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
+		9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A202C7194A800F919D0 /* TvListResponse.swift */; };
+		9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */; };
+		9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A242C7194BA00F919D0 /* NetworkManager.swift */; };
+		9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A262C7194C200F919D0 /* TvShowListTarget.swift */; };
+		9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A282C7194CB00F919D0 /* TvListService.swift */; };
+		9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */; };
+		9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2C2C7194E400F919D0 /* Constants.swift */; };
+		9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */; };
+		9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A302C71951700F919D0 /* TvShowListViewModel.swift */; };
+		9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A322C71952200F919D0 /* TvShowDetailView.swift */; };
+		9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A342C71952B00F919D0 /* TvShowView.swift */; };
 		9FB3E7BE2C7192D40088A993 /* ShowTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */; };
 		9FB3E7C02C7192D40088A993 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7BF2C7192D40088A993 /* ContentView.swift */; };
 		9FB3E7C22C7192D50088A993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FB3E7C12C7192D50088A993 /* Assets.xcassets */; };
@@ -34,6 +46,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F851A202C7194A800F919D0 /* TvListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListResponse.swift; sourceTree = "<group>"; };
+		9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailModel.swift; sourceTree = "<group>"; };
+		9F851A242C7194BA00F919D0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		9F851A262C7194C200F919D0 /* TvShowListTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListTarget.swift; sourceTree = "<group>"; };
+		9F851A282C7194CB00F919D0 /* TvListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListService.swift; sourceTree = "<group>"; };
+		9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Movie&ShowDetailsService.swift"; sourceTree = "<group>"; };
+		9F851A2C2C7194E400F919D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailsViewModel.swift; sourceTree = "<group>"; };
+		9F851A302C71951700F919D0 /* TvShowListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListViewModel.swift; sourceTree = "<group>"; };
+		9F851A322C71952200F919D0 /* TvShowDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailView.swift; sourceTree = "<group>"; };
+		9F851A342C71952B00F919D0 /* TvShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowView.swift; sourceTree = "<group>"; };
 		9FB3E7BA2C7192D40088A993 /* ShowTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerApp.swift; sourceTree = "<group>"; };
 		9FB3E7BF2C7192D40088A993 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4C15152C71B6A3005C385A /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F4C15132C71B6A3005C385A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9FB3E7B12C7192D40088A993 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +110,7 @@
 				9FB3E7CE2C7192D50088A993 /* ShowTrackerTests */,
 				9FB3E7D82C7192D50088A993 /* ShowTrackerUITests */,
 				9FB3E7BB2C7192D40088A993 /* Products */,
+				9F4C15132C71B6A3005C385A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,8 +127,19 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9F851A2C2C7194E400F919D0 /* Constants.swift */,
 				9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */,
+				9F851A202C7194A800F919D0 /* TvListResponse.swift */,
+				9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */,
+				9F851A242C7194BA00F919D0 /* NetworkManager.swift */,
+				9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */,
+				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
 				9FB3E7BF2C7192D40088A993 /* ContentView.swift */,
+				9F851A322C71952200F919D0 /* TvShowDetailView.swift */,
+				9F851A262C7194C200F919D0 /* TvShowListTarget.swift */,
+				9F851A342C71952B00F919D0 /* TvShowView.swift */,
+				9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */,
+				9F851A282C7194CB00F919D0 /* TvListService.swift */,
 				9FB3E7C12C7192D50088A993 /* Assets.xcassets */,
 				9FB3E7C32C7192D50088A993 /* ShowTracker.entitlements */,
 				9FB3E7C42C7192D50088A993 /* Preview Content */,
@@ -145,6 +188,9 @@
 			dependencies = (
 			);
 			name = ShowTracker;
+			packageProductDependencies = (
+				9F4C15142C71B6A3005C385A /* Moya */,
+			);
 			productName = ShowTracker;
 			productReference = 9FB3E7BA2C7192D40088A993 /* ShowTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -218,7 +264,7 @@
 			);
 			mainGroup = 9FB3E7B12C7192D40088A993;
 			packageReferences = (
-				9F851A1F2C71932100F919D0 /* XCRemoteSwiftPackageReference "Moya" */,
+				9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 9FB3E7BB2C7192D40088A993 /* Products */;
 			projectDirPath = "";
@@ -263,7 +309,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB3E7C02C7192D40088A993 /* ContentView.swift in Sources */,
+				9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */,
+				9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */,
+				9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */,
+				9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */,
+				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
+				9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */,
 				9FB3E7BE2C7192D40088A993 /* ShowTrackerApp.swift in Sources */,
+				9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */,
+				9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */,
+				9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */,
+				9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */,
+				9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,7 +492,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -443,7 +500,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wow.ShowTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +529,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -479,7 +537,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wow.ShowTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -614,7 +673,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9F851A1F2C71932100F919D0 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
@@ -623,6 +682,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F4C15142C71B6A3005C385A /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9FB3E7B22C7192D40088A993 /* Project object */;
 }
