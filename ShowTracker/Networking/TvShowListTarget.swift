@@ -1,10 +1,3 @@
-//
-//  TvShowListTarget.swift
-//  MoyaNetworking
-//
-//  Created by Diego Santamaria on 19/2/24.
-//
-
 import Moya
 import Foundation
 
@@ -14,8 +7,22 @@ enum TvShowListTarget: Hashable {
     case onTheAir
     case topRated
     case details(tvShowId: Int)
-
     
+//Custom add to simplify DashboardRow call
+    var title: String {
+        switch self {
+        case .popular:
+            return "Popular"
+        case .airingToday:
+            return "Airing Today"
+        case .onTheAir:
+            return "On The Air"
+        case .topRated:
+            return "Top Rated"
+        case .details:
+            return "Details"
+        }
+    }
 }
 
 extension TvShowListTarget: TargetType {
@@ -29,7 +36,6 @@ extension TvShowListTarget: TargetType {
            case .onTheAir: return "on_the_air"
            case .topRated: return "top_rated"
            case .details(let tvShowId): return "\(tvShowId)"
-
            }
        }
 
@@ -52,4 +58,3 @@ extension TvShowListTarget: TargetType {
     
     var sampleData: Data { return Data() }
 }
-

@@ -124,8 +124,10 @@
 		9F4C151A2C72260C005C385A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */,
 				9FD804E52C72853200A939DB /* GridDisplay.swift */,
 				9F4C152A2C722675005C385A /* MovieView.swift */,
+				9F851A342C71952B00F919D0 /* TvShowView.swift */,
 				9F4C151B2C722614005C385A /* Carousel */,
 				9FD804E72C72856200A939DB /* DashboardRow.swift */,
 			);
@@ -195,8 +197,6 @@
 				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
 				9FB3E7BF2C7192D40088A993 /* ContentView.swift */,
 				9F851A322C71952200F919D0 /* TvShowDetailView.swift */,
-				9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */,
-				9F851A342C71952B00F919D0 /* TvShowView.swift */,
 				9F4C15332C7233A5005C385A /* DashboardRowViewModel.swift */,
 				9FD804E32C72850500A939DB /* MainView.swift */,
 				9FB3E7C12C7192D50088A993 /* Assets.xcassets */,

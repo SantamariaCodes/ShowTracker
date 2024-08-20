@@ -2,19 +2,17 @@ import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
-    @State private var selectedListType: TvShowListTarget = .topRated
+    @State private var selectedListType: TvShowListTarget = .popular
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    CustomGenrePicker(
-                        selectedGenre: $selectedListType,
-                        genres: [.popular, .airingToday, .onTheAir, .topRated]
-                    )
+                    CarouselContentView()
+                    CustomGenrePicker(selectedGenre: $selectedListType)
 
                     VStack(spacing: 20) {
-                        DashboardRow(title: titleFor(selectedListType), tvShows: viewModel.tvShows)
+                        DashboardRow(title: selectedListType.title, tvShows: viewModel.tvShows)
                     }
                     .padding()
                     .preferredColorScheme(.dark)
@@ -27,7 +25,6 @@ struct TvShowView: View {
         .onChange(of: selectedListType) { oldValue, newValue in
             viewModel.loadTvShows(listType: newValue)
         }
-
     }
 }
 

@@ -2,7 +2,8 @@ import SwiftUI
 
 struct CustomGenrePicker: View {
     @Binding var selectedGenre: TvShowListTarget
-    let genres: [TvShowListTarget]
+    
+    let genres: [TvShowListTarget] = [.popular, .airingToday, .onTheAir, .topRated]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -16,7 +17,7 @@ struct CustomGenrePicker: View {
                                 .offset(x: -1) // Adjust the offset as needed
                         }
                         
-                        Text(titleFor(genre))
+                        Text(genre.title)
                             .font(.system(size: 16, weight: selectedGenre == genre ? .bold : .regular))
                             .foregroundColor(selectedGenre == genre ? .primary : .secondary)
                             .padding(.vertical, 8)
@@ -36,19 +37,5 @@ struct CustomGenrePicker: View {
 }
 
 #Preview {
-    CustomGenrePicker(selectedGenre: .constant(.popular), genres: [.popular, .airingToday, .onTheAir, .topRated])
-}
-func titleFor(_ listType: TvShowListTarget) -> String {
-    switch listType {
-    case .popular:
-        return "Popular"
-    case .airingToday:
-        return "Airing Today"
-    case .onTheAir:
-        return "On The Air"
-    case .topRated:
-        return "Top Rated"
-    case .details:
-        return "Details"
-    }
+    CustomGenrePicker(selectedGenre: .constant(.popular))
 }
