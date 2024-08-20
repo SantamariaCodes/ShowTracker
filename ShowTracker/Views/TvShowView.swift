@@ -2,17 +2,24 @@ import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
-    @State private var selectedListType: TvShowListTarget = .popular
+    @State private var selectedGenre: TvShowListTarget?
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    CarouselContentView()
-                    CustomGenrePicker(selectedGenre: $selectedListType)
+                    CustomGenrePicker(selectedGenre: $selectedGenre)
 
                     VStack(spacing: 20) {
-                        DashboardRow(title: selectedListType.title, tvShows: viewModel.tvShows)
+                        if let genre = selectedGenre {
+                            // Display shows for the selected genre
+                            DashboardRow(title: genre.title, tvShows: viewModel.tvShows)
+                        } else {
+                            // Handle "All" by combining results from all genres
+                            ForEach(TvShowListTarget.allCases, id: \.self) { genre in
+                                DashboardRow(title: genre.title, tvShows: viewModel.tvShows)
+                            }
+                        }
                     }
                     .padding()
                     .preferredColorScheme(.dark)
@@ -20,10 +27,19 @@ struct TvShowView: View {
             }
         }
         .onAppear {
-            viewModel.loadTvShows(listType: selectedListType)
+            loadTvShows()
         }
-        .onChange(of: selectedListType) { oldValue, newValue in
-            viewModel.loadTvShows(listType: newValue)
+        .onChange(of: selectedGenre) { oldValue, newValue in
+            loadTvShows()
+        }
+    }
+
+    private func loadTvShows() {
+        if let genre = selectedGenre {
+            viewModel.loadTvShows(listType: genre)
+        } else {
+            // Load or combine data for all genres here
+           // viewModel.loadAllGenres()
         }
     }
 }

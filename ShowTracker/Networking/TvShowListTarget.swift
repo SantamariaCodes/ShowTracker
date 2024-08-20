@@ -1,7 +1,11 @@
 import Moya
 import Foundation
 
-enum TvShowListTarget: Hashable {
+enum TvShowListTarget: Hashable, CaseIterable {
+    static var allCases: [TvShowListTarget] {
+         return [.popular, .airingToday, .onTheAir, .topRated]
+     }
+    
     case popular
     case airingToday
     case onTheAir
