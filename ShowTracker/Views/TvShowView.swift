@@ -1,23 +1,31 @@
+
 import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
-    @State private var selectedGenre: TvShowListTarget?
+    @State private var selectedGenre: TvShowListTarget? = nil
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
+                    CarouselContentView()
                     CustomGenrePicker(selectedGenre: $selectedGenre)
 
                     VStack(spacing: 20) {
                         if let genre = selectedGenre {
-                            // Display shows for the selected genre
-                            DashboardRow(title: genre.title, tvShows: viewModel.tvShows)
+                            if let tvShows = viewModel.genreTvShows[genre] {
+                                DashboardRow(title: genre.title, tvShows: tvShows)
+                            } else {
+                                Text("No data available for \(genre.title)")
+                            }
                         } else {
-                            // Handle "All" by combining results from all genres
                             ForEach(TvShowListTarget.allCases, id: \.self) { genre in
-                                DashboardRow(title: genre.title, tvShows: viewModel.tvShows)
+                                if let tvShows = viewModel.genreTvShows[genre] {
+                                    DashboardRow(title: genre.title, tvShows: tvShows)
+                                } else {
+                                    Text("No data available for \(genre.title)")
+                                }
                             }
                         }
                     }
@@ -25,6 +33,7 @@ struct TvShowView: View {
                     .preferredColorScheme(.dark)
                 }
             }
+            .navigationTitle("ShowSeeker")
         }
         .onAppear {
             loadTvShows()
@@ -38,8 +47,7 @@ struct TvShowView: View {
         if let genre = selectedGenre {
             viewModel.loadTvShows(listType: genre)
         } else {
-            // Load or combine data for all genres here
-           // viewModel.loadAllGenres()
+            viewModel.loadAllGenres()
         }
     }
 }
@@ -49,3 +57,4 @@ struct TvShowsView_Previews: PreviewProvider {
         TvShowView(viewModel: TvShowListViewModel(tvService: TvShowListService(networkManager: NetworkManager<TvShowListTarget>())))
     }
 }
+

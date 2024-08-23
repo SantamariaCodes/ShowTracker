@@ -35,6 +35,7 @@
 		9FD804E42C72850500A939DB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E32C72850500A939DB /* MainView.swift */; };
 		9FD804E62C72853200A939DB /* GridDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplay.swift */; };
 		9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRow.swift */; };
+		9FEDB9762C76308B008AD959 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDB9752C76308B008AD959 /* Example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		9FD804E32C72850500A939DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9FD804E52C72853200A939DB /* GridDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplay.swift; sourceTree = "<group>"; };
 		9FD804E72C72856200A939DB /* DashboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRow.swift; sourceTree = "<group>"; };
+		9FEDB9752C76308B008AD959 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		9FB3E7B12C7192D40088A993 = {
 			isa = PBXGroup;
 			children = (
+				9FEDB9752C76308B008AD959 /* Example.swift */,
 				9FB3E7BC2C7192D40088A993 /* ShowTracker */,
 				9FB3E7CE2C7192D50088A993 /* ShowTrackerTests */,
 				9FB3E7D82C7192D50088A993 /* ShowTrackerUITests */,
@@ -188,13 +191,13 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9FEDB9742C761CD8008AD959 /* ViewModel */,
 				9F4C15302C72271F005C385A /* Models */,
 				9F4C152E2C7226F1005C385A /* Networking */,
 				9F4C151A2C72260C005C385A /* Views */,
 				9F851A2C2C7194E400F919D0 /* Constants.swift */,
 				9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */,
 				9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */,
-				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
 				9FB3E7BF2C7192D40088A993 /* ContentView.swift */,
 				9F851A322C71952200F919D0 /* TvShowDetailView.swift */,
 				9F4C15332C7233A5005C385A /* DashboardRowViewModel.swift */,
@@ -229,6 +232,14 @@
 				9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */,
 			);
 			path = ShowTrackerUITests;
+			sourceTree = "<group>";
+		};
+		9FEDB9742C761CD8008AD959 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,6 +387,7 @@
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
 				9F4C15342C7233A5005C385A /* DashboardRowViewModel.swift in Sources */,
 				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
+				9FEDB9762C76308B008AD959 /* Example.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
 				9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */,
 				9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */,

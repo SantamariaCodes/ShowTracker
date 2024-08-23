@@ -1,5 +1,5 @@
 import SwiftUI
-
+// creat custom modifiers for All and allCases
 struct CustomGenrePicker: View {
     @Binding var selectedGenre: TvShowListTarget?
     
@@ -8,12 +8,11 @@ struct CustomGenrePicker: View {
             HStack(spacing: 10) {
                 // Add "All" as the first option
                 ZStack(alignment: .leading) {
-                    if selectedGenre == nil {
                         Rectangle()
                             .fill(Color.red)
                             .frame(width: 2, height: 18)
                             .offset(x: -1)
-                    }
+         
                     
                     Text("All")
                         .font(.system(size: 16, weight: selectedGenre == nil ? .bold : .regular))
@@ -28,7 +27,6 @@ struct CustomGenrePicker: View {
                         .animation(nil, value: selectedGenre)
                 }
                 
-                // Display the existing genres
                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
                     ZStack(alignment: .leading) {
                         if selectedGenre == genre {
