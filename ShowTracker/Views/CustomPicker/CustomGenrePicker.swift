@@ -17,14 +17,11 @@ struct CustomGenrePicker: View {
                     Text("All")
                         .font(.system(size: 16, weight: selectedGenre == nil ? .bold : .regular))
                         .foregroundColor(selectedGenre == nil ? .primary : .secondary)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(Color.clear)
-                        .cornerRadius(8)
+                        .customPickerStye()
+
                         .onTapGesture {
                             selectedGenre = nil // Set selectedGenre to nil for "All"
                         }
-                        .animation(nil, value: selectedGenre)
                 }
                 
                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
@@ -39,14 +36,10 @@ struct CustomGenrePicker: View {
                         Text(genre.title)
                             .font(.system(size: 16, weight: selectedGenre == genre ? .bold : .regular))
                             .foregroundColor(selectedGenre == genre ? .primary : .secondary)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                            .background(Color.clear)
-                            .cornerRadius(8)
+                            .customPickerStye()
                             .onTapGesture {
                                 selectedGenre = genre
                             }
-                            .animation(nil, value: selectedGenre)
                     }
                 }
             }

@@ -1,9 +1,9 @@
-
 import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
     @State private var selectedGenre: TvShowListTarget? = nil
+    @State private var searchText: String = ""
 
     var body: some View {
         NavigationStack {
@@ -14,14 +14,15 @@ struct TvShowView: View {
 
                     VStack(spacing: 20) {
                         if let genre = selectedGenre {
-                            if let tvShows = viewModel.genreTvShows[genre] {
+                            if let tvShows = viewModel.filteredTvShows(for: genre, with: searchText) {
                                 DashboardRow(title: genre.title, tvShows: tvShows)
                             } else {
                                 Text("No data available for \(genre.title)")
                             }
                         } else {
+                            // Display DashboardRow for each genre
                             ForEach(TvShowListTarget.allCases, id: \.self) { genre in
-                                if let tvShows = viewModel.genreTvShows[genre] {
+                                if let tvShows = viewModel.filteredTvShows(for: genre, with: searchText) {
                                     DashboardRow(title: genre.title, tvShows: tvShows)
                                 } else {
                                     Text("No data available for \(genre.title)")
@@ -34,6 +35,7 @@ struct TvShowView: View {
                 }
             }
             .navigationTitle("ShowSeeker")
+            .searchable(text: $searchText, prompt: "Search for a TV show")
         }
         .onAppear {
             loadTvShows()
@@ -51,6 +53,7 @@ struct TvShowView: View {
         }
     }
 }
+
 
 struct TvShowsView_Previews: PreviewProvider {
     static var previews: some View {

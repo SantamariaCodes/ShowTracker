@@ -48,6 +48,18 @@ class TvShowListViewModel: ObservableObject {
         group.notify(queue: .main) {
         }
     }
+    func filteredTvShows(for genre: TvShowListTarget, with searchText: String) -> [TvShow]? {
+        guard let tvShows = genreTvShows[genre] else {
+            return nil
+        }
+
+        if searchText.isEmpty {
+            return tvShows
+        } else {
+            return tvShows.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+
     
 }
 
