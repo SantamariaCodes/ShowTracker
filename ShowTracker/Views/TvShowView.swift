@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
+    
     @State private var selectedGenre: TvShowListTarget? = nil
     @State private var searchText: String = ""
     
@@ -60,6 +61,11 @@ struct TvShowView: View {
 
 struct TvShowsView_Previews: PreviewProvider {
     static var previews: some View {
-        TvShowView(viewModel: TvShowListViewModel(tvService: TvShowListService(networkManager: NetworkManager<TvShowListTarget>())))
+        let networkManager = NetworkManager<TvShowListTarget>()
+        let tvShowService = TvShowListService(networkManager: networkManager)
+        let subgenreService = SubGenreTypesService(networkManager: networkManager)
+        let viewModel = TvShowListViewModel(tvService: tvShowService, subgenreService: subgenreService)
+        
+        return TvShowView(viewModel: viewModel)
     }
 }

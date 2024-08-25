@@ -12,7 +12,6 @@ struct Constants {
         static let baseUrl = "https://api.themoviedb.org/3/"
         static let users = "users/"
         static let apiKey = "1722fc1c5166dae1d81f050d1172510d"
-        static let genresUrl = "https://api.themoviedb.org/3/genre/tv/list"
         // Add other endpoints or constants here
     }
 }

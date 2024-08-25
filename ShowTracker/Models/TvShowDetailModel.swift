@@ -3,14 +3,13 @@ struct TvShowDetail: Codable {
     let name: String
     let overview: String
     let firstAirDate: String?
-    let genres: [Genre]?
     let numberOfEpisodes: Int?
     let numberOfSeasons: Int?
     let seasons: [Season]?
     let homepage: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, overview, genres, homepage
+        case id, name, overview, homepage
         case firstAirDate = "first_air_date"
         case numberOfEpisodes = "number_of_episodes"
         case numberOfSeasons = "number_of_seasons"
@@ -18,10 +17,7 @@ struct TvShowDetail: Codable {
     }
 }
 
-struct Genre: Codable {
-    let id: Int
-    let name: String
-}
+
 
 struct Season: Codable {
     let id: Int

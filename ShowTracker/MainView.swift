@@ -35,7 +35,8 @@ struct MainView: View {
 
 struct HomeView: View {
     var body: some View {
-        TvShowView(viewModel: TvShowListViewModel.make())
+    SubGenreListTestView()
+   //     TvShowView(viewModel: TvShowListViewModel.make())
     }
 }
 
