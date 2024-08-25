@@ -34,22 +34,25 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
         ZStack {
              RoundedRectangle(cornerRadius: 20)
                  .fill(Color.white)
+                 .frame(width: 120, height: 130)
+
                  .shadow(color: .black, radius: 3)
+            
 
             if let posterURL = tvShow.posterURL {
                 AsyncImage(url: posterURL) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 130)
+                        .frame(width: 120, height: 130)
                         .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 } placeholder: {
-                    ProgressView() // Placeholder while loading
+                    ProgressView()
                 }
             } else {
-                Color.gray // Fallback for missing image
-                    .frame(width: 130, height: 150)
+                Color.gray 
+                    .frame(width: 120, height: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
          }
@@ -58,6 +61,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                 .font(.caption)
                 .lineLimit(1)
         }
+        
     }
     .padding(2)
 }

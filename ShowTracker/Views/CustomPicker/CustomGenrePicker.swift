@@ -8,10 +8,12 @@ struct CustomGenrePicker: View {
             HStack(spacing: 10) {
                 // Add "All" as the first option
                 ZStack(alignment: .leading) {
+                    if selectedGenre == nil {
                         Rectangle()
                             .fill(Color.red)
                             .frame(width: 2, height: 18)
                             .offset(x: -1)
+                    }
          
                     
                     Text("All")

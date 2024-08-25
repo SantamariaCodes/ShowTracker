@@ -46,8 +46,10 @@ class TvShowListViewModel: ObservableObject {
         }
 
         group.notify(queue: .main) {
+            // All genres are loaded
         }
     }
+
     func filteredTvShows(for genre: TvShowListTarget, with searchText: String) -> [TvShow]? {
         guard let tvShows = genreTvShows[genre] else {
             return nil
@@ -60,8 +62,14 @@ class TvShowListViewModel: ObservableObject {
         }
     }
 
+    func filteredTvShows(for searchText: String) -> [TvShow] {
+        // Aggregate all TV shows across all genres and filter based on searchText
+        return genreTvShows.values.flatMap { $0 }.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+    }
+    
     
 }
+
 
 
 
