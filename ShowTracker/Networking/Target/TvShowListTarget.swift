@@ -11,6 +11,7 @@ enum TvShowListTarget: Hashable, CaseIterable {
     case onTheAir
     case topRated
     case details(tvShowId: Int)
+    case retrieveGenreList
     
 //Custom add to simplify DashboardRow call
     var title: String {
@@ -25,7 +26,10 @@ enum TvShowListTarget: Hashable, CaseIterable {
             return "Top Rated"
         case .details:
             return "Details"
+        case .retrieveGenreList:
+            return "list"
         }
+    
     }
 }
 
@@ -40,6 +44,7 @@ extension TvShowListTarget: TargetType {
            case .onTheAir: return "on_the_air"
            case .topRated: return "top_rated"
            case .details(let tvShowId): return "\(tvShowId)"
+           case .retrieveGenreList: return "genre/tv/list"
            }
        }
 
