@@ -5,18 +5,21 @@
 //  Created by Diego Santamaria on 19/2/24.
 
 
+
+
+
 import Foundation
 
 class TvShowListViewModel: ObservableObject {
     @Published var genreTvShows: [TvShowListTarget: [TvShow]] = [:]
-    @Published var subGenres: [SubGenres]?
+    @Published var genres: [Genre]? // Changed from subGenres to genres
     
     private let tvService: TvShowListService
-    private let subgenreService: SubGenreTypesService
+    private let genreService: SubGenreTypesService
     
-    init(tvService: TvShowListService, subgenreService: SubGenreTypesService) {
+    init(tvService: TvShowListService, genreService: SubGenreTypesService) {
         self.tvService = tvService
-        self.subgenreService = subgenreService
+        self.genreService = genreService
     }
     
     func loadTvShows(listType: TvShowListTarget) {
@@ -55,36 +58,34 @@ class TvShowListViewModel: ObservableObject {
         }
     }
     
-    func loadSubGenres() {
-        subgenreService.fetchGenres(listType: .retrieveSubGenreList) { [weak self] result in
+    func loadGenres() {
+        genreService.fetchGenres(listType: .retrieveSubGenreList) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let subGenres):
-                    self?.subGenres = subGenres
+                case .success(let genres):
+                    self?.genres = genres // Changed from subGenres to genres
                 case .failure(let error):
-                    print("Error loading subgenres: \(error)")
+                    print("Error loading genres: \(error)")
                 }
             }
         }
     }
     
-    func tvShowsBySubGenres(for genre: TvShowListTarget) -> [SubGenres: [TvShow]] {
-        var tvShowsBySubGenre: [SubGenres: [TvShow]] = [:]
+    func tvShowsBySubGenres(for genre: TvShowListTarget) -> [Genre: [TvShow]] {
+        var tvShowsBySubGenre: [Genre: [TvShow]] = [:]
         
-        guard let tvShows = genreTvShows[genre], let subGenres = subGenres else {
+        guard let tvShows = genreTvShows[genre], let genres = genres else {
             return tvShowsBySubGenre
         }
         
-        for subGenre in subGenres {
-            // Corrected filtering to check if the TvShow's genreId contains the subGenre id
-            let filteredShows = tvShows.filter { $0.genreId.contains(subGenre.id) }
-            tvShowsBySubGenre[subGenre] = filteredShows
+        for genre in genres {
+            let filteredShows = tvShows.filter { $0.genreId.contains(genre.id) }
+            tvShowsBySubGenre[genre] = filteredShows
         }
         
         return tvShowsBySubGenre
     }
 
-    
     func filteredTvShows(for genre: TvShowListTarget, with searchText: String) -> [TvShow]? {
         guard let tvShows = genreTvShows[genre] else {
             return nil
@@ -106,7 +107,9 @@ extension TvShowListViewModel {
     static func make() -> TvShowListViewModel {
         let tvShowNetworkManager = NetworkManager<TvShowListTarget>()
         let tvShowService = TvShowListService(networkManager: tvShowNetworkManager)
-        let subgenreService = SubGenreTypesService(networkManager: tvShowNetworkManager)
-        return TvShowListViewModel(tvService: tvShowService, subgenreService: subgenreService)
+        let genreService = SubGenreTypesService(networkManager: tvShowNetworkManager)
+        return TvShowListViewModel(tvService: tvShowService, genreService: genreService)
     }
 }
+
+

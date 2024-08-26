@@ -10,7 +10,7 @@ struct SubGenreListTestView: View {
                 .padding()
 
             // Display list of subgenres
-            if let subGenres = viewModel.subGenres, !subGenres.isEmpty {
+            if let subGenres = viewModel.genres, !subGenres.isEmpty {
                 List(subGenres) { subGenre in
                     Text(subGenre.name)
                 }
@@ -21,7 +21,9 @@ struct SubGenreListTestView: View {
             }
         }
         .onAppear {
-            viewModel.loadSubGenres()
+            print("thisline")
+            viewModel.loadGenres()
+            print("otherLine")
         }
         .padding()
     }

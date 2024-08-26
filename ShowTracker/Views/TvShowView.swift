@@ -64,7 +64,7 @@ struct TvShowsView_Previews: PreviewProvider {
         let networkManager = NetworkManager<TvShowListTarget>()
         let tvShowService = TvShowListService(networkManager: networkManager)
         let subgenreService = SubGenreTypesService(networkManager: networkManager)
-        let viewModel = TvShowListViewModel(tvService: tvShowService, subgenreService: subgenreService)
+        let viewModel = TvShowListViewModel(tvService: tvShowService, genreService: subgenreService)
         
         return TvShowView(viewModel: viewModel)
     }

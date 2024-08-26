@@ -5,13 +5,15 @@
 //  Created by Diego Santamaria on 25/8/24.
 //
 // this could be deleted and should
+
 import Foundation
 
-struct Genres: Codable, Identifiable {
+struct Genre: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
-    
 }
-struct listOfGenres: Codable {
-    let results: [Genres]
+
+struct GenreListResponse: Codable {
+    let genres: [Genre]
 }
+
