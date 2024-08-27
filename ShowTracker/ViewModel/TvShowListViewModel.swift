@@ -11,6 +11,7 @@
 import Foundation
 
 class TvShowListViewModel: ObservableObject {
+    // genreTvShow should be refactored into Category or showCategory
     @Published var genreTvShows: [TvShowListTarget: [TvShow]] = [:]
     @Published var genres: [Genre]? // Changed from subGenres to genres
     

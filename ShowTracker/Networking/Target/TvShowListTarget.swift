@@ -3,7 +3,7 @@ import Foundation
 
 enum TvShowListTarget: Hashable, CaseIterable {
     static var allCases: [TvShowListTarget] {
-         return [.popular, .airingToday, .onTheAir, .topRated]
+         return [.popular,.topRated,  .onTheAir ]
      }
     
     case popular

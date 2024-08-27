@@ -2,10 +2,9 @@ import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
-    
     @State private var selectedGenre: TvShowListTarget? = nil
     @State private var searchText: String = ""
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -16,10 +15,14 @@ struct TvShowView: View {
                     if searchText.isEmpty {
                         VStack(spacing: 20) {
                             if let genre = selectedGenre {
-                                if let tvShows = viewModel.filteredTvShows(for: genre, with: searchText) {
-                                    DashboardRow(title: genre.title, tvShows: tvShows)
-                                } else {
-                                    Text("No data available for \(genre.title)")
+                                // Directly use the non-optional dictionary returned by tvShowsBySubGenres(for:)
+                                let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
+                                
+                                ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
+                                    if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
+                                      
+                                        DashboardRow(title: subGenre.name, tvShows: tvShows)
+                                    }
                                 }
                             } else {
                                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
@@ -45,7 +48,7 @@ struct TvShowView: View {
         .onAppear {
             loadTvShows()
         }
-        .onChange(of: selectedGenre) {  oldValue, newValue in
+        .onChange(of: selectedGenre) { oldValue, newValue in
             loadTvShows()
         }
     }
@@ -53,6 +56,7 @@ struct TvShowView: View {
     private func loadTvShows() {
         if let genre = selectedGenre {
             viewModel.loadTvShows(listType: genre)
+            viewModel.loadGenres()
         } else {
             viewModel.loadAllGenres()
         }

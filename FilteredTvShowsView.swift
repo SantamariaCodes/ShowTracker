@@ -2,51 +2,40 @@ import SwiftUI
 
 struct FilteredTvShowsView: View {
     @StateObject private var viewModel = TvShowListViewModel.make()
-    @State private var selectedGenre: Genre?
     
     var body: some View {
-        VStack {
-            Text("Popular TV Shows by Genre")
-                .font(.largeTitle)
-                .padding()
-            
-            // Picker to select subgenre
-            if let genres = viewModel.genres, !genres.isEmpty {
-                Picker("Select Genre", selection: $selectedGenre) {
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Popular TV Shows by Genre")
+                    .font(.largeTitle)
+                    .padding()
+
+                if let genres = viewModel.genres, !genres.isEmpty {
                     ForEach(genres, id: \.self) { genre in
-                        Text(genre.name).tag(genre as Genre?)
-                    }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .padding()
-                
-                // Display filtered TV shows
-                if let selectedGenre = selectedGenre {
-                    if let filteredShows = viewModel.tvShowsBySubGenres(for: .popular)[selectedGenre], !filteredShows.isEmpty {
-                        List(filteredShows) { tvShow in
-                            Text(tvShow.title)
+                        if let filteredShows = viewModel.tvShowsBySubGenres(for: .popular)[genre], !filteredShows.isEmpty {
+                            Text(genre.name)
+                                .font(.headline)
+                                .padding(.top)
+
+                            ForEach(filteredShows, id: \.id) { tvShow in
+                                Text(tvShow.title)
+                                    .padding(.horizontal)
+                            }
                         }
-                    } else {
-                        Text("No TV shows available for \(selectedGenre.name)")
-                            .foregroundColor(.red)
-                            .padding()
                     }
+                    
                 } else {
-                    Text("Select a genre to see TV shows.")
+                    Text("Loading genres...")
                         .foregroundColor(.gray)
                         .padding()
                 }
-            } else {
-                Text("Loading genres...")
-                    .foregroundColor(.gray)
-                    .padding()
             }
+            .onAppear {
+                viewModel.loadGenres()
+                viewModel.loadTvShows(listType: .popular)
+            }
+            .padding()
         }
-        .onAppear {
-            viewModel.loadGenres()
-            viewModel.loadTvShows(listType: .popular)
-        }
-        .padding()
     }
 }
 
