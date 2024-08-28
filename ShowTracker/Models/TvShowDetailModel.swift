@@ -1,3 +1,5 @@
+import Foundation
+
 struct TvShowDetail: Codable {
     let id: Int
     let name: String
@@ -7,6 +9,7 @@ struct TvShowDetail: Codable {
     let numberOfSeasons: Int?
     let seasons: [Season]?
     let homepage: String?
+    let posterPath: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, overview, homepage
@@ -14,7 +17,13 @@ struct TvShowDetail: Codable {
         case numberOfEpisodes = "number_of_episodes"
         case numberOfSeasons = "number_of_seasons"
         case seasons
+        case posterPath = "poster_path"
     }
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+    }
+
 }
 
 

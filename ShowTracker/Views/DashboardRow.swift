@@ -20,7 +20,7 @@ struct DashboardRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(tvShows, id: \.id) { tvShow in
-                        NavigationLink(destination: TvShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
+                        NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
                             tvShowBanner(tvShow: tvShow)
                         }
                         .buttonStyle(PlainButtonStyle())
