@@ -88,9 +88,9 @@ struct CarouselContentView: View {
                                                 .cornerRadius(10)
                                         }
                                     }
-                                    .padding(.leading, 5)
+                                    .padding(.leading, 10)
                                     .padding(.top, 10)
-                                    .padding(.bottom, 5)
+                                    .padding(.bottom, 10)
                                 },
                                 alignment: .leading
                             )
