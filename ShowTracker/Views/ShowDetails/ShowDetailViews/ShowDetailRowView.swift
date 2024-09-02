@@ -18,45 +18,43 @@ struct ShowDetailRowView: View {
     let tvShow: TvShowDetail
     
     var body: some View {
-        HStack {
-            Text(tvShow.name)
-            
-//            Text("4k")
-                .font(.caption)
-            Spacer(minLength: 2)
-            
-            Text("•")
-                .font(.title)
-                .fixedSize()
-                .padding(.horizontal, -6)
-            Spacer(minLength: 2)
-            
-            Text("2h 30m")
-                .font(.caption)
-            Spacer(minLength: 2)
-            Text("•")
-                .font(.title)
-                .fixedSize()
-                .padding(.horizontal, -6)
-            
-            Spacer(minLength: 2)
-            
-            Text("Action")
-                .font(.caption)
-            
-            Spacer(minLength: 2)
-            
-            Text("•")
-                .font(.title)
-                .fixedSize()
-                .padding(.horizontal, -6)
-            
-            Spacer(minLength: 2)
-            
-            Text("2023")
-                .font(.caption)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                if let voteAverage = tvShow.voteAverage {
+                    Text("Vote average: \(String(format: "%.1f", voteAverage))")
+                        .font(.caption)
+                } else {
+                    Text("Vote average: N/A")
+                    
+                }
+                Divider().customSeparatorStyle()
+
+                
+                Text("AirDate \(tvShow.firstAirDate ?? "N/A")" )
+                    .font(.caption)
+                Divider().customSeparatorStyle()
+
+                
+                if let episodeCount = tvShow.numberOfSeasons {
+                    Text("Episodes: \( episodeCount)")
+                        .font(.caption)
+                } else {
+                    Text("Episodes: N/A")
+                    
+                }
+                Divider().customSeparatorStyle()
+
+                
+                if let seasons = tvShow.numberOfSeasons {
+                    Text("Seasons: \( seasons)")
+                        .font(.caption)
+                } else {
+                    Text("Seasons: N/A")
+                    
+                }
+            }
+            .padding(.horizontal)
         }
-        .padding()
     }
     
     

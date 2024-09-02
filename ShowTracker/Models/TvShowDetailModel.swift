@@ -10,6 +10,7 @@ struct TvShowDetail: Codable {
     let seasons: [Season]?
     let homepage: String?
     let posterPath: String?
+    let voteAverage: Double?
 
     enum CodingKeys: String, CodingKey {
         case id, name, overview, homepage
@@ -18,6 +19,7 @@ struct TvShowDetail: Codable {
         case numberOfSeasons = "number_of_seasons"
         case seasons
         case posterPath = "poster_path"
+        case voteAverage = "vote_average"
     }
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }

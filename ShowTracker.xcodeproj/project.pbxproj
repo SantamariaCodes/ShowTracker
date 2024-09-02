@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */; };
+		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
 		9F4C152B2C722675005C385A /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C152A2C722675005C385A /* MovieView.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePicker.swift; sourceTree = "<group>"; };
+		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
 		9F4C152A2C722675005C385A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		9F4FF2DE2C7F4BF9008B00EE /* ShowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailView.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				9F4FF2DE2C7F4BF9008B00EE /* ShowDetailView.swift */,
 				9F4FF2E12C7F4C54008B00EE /* ShowDetailRowView.swift */,
+				9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */,
 			);
 			path = ShowDetailViews;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */,
 				9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */,
 				9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */,
+				9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */,
 				9FD804DD2C72845E00A939DB /* CarouselViewChild.swift in Sources */,
 				9F96C1622C7BC252009E1A85 /* GenreService.swift in Sources */,
 				9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */,

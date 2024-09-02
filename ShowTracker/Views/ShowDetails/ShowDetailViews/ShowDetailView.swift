@@ -15,25 +15,21 @@ struct ShowDetailView: View {
                 ProgressView()
             } else if let tvShowDetail = viewModel.tvShowDetail{
                 VStack(alignment: .leading, spacing: 0) {
-//                    Image(decorative: movie.image)
-//                        .resizable()
-//                        .scaledToFit()
-                    
-//                    ShowDetailRowView(movie: movie)
-//                        .padding()
-                    
-                    
-                    
                     if let posterURL = viewModel.tvShowDetail?.posterURL {
                         AsyncImage(url: posterURL) { image in
                             image
                                 .resizable()
-                                .scaledToFit()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 300, height: 400)
+                                .cornerRadius(10)
+                                .padding(20)
+                                .frame(maxWidth: .infinity)
+                            
                         } placeholder: {
-                            ProgressView() // Placeholder while loading
+                            ProgressView()
                         }
                     } else {
-                        Color.gray // Fallback for missing image
+                        Color.gray
                             .frame(width: 130, height: 150)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
@@ -46,12 +42,14 @@ struct ShowDetailView: View {
                     Group {
                         Text(tvShowDetail.name)
                             .font(.headline)
+                            .padding(.bottom, 10 )
                         Text(tvShowDetail.overview)
                     }
                     .padding(.horizontal)
                     
                     AddToFavoritesButton()
-                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 20)
                     
                 }
             }
@@ -68,16 +66,6 @@ struct ShowDetailView: View {
 }
 
 
-
-struct ShowDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())
-        let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
-        ShowDetailView(viewModel: viewModel)
-    }
-}
-
-
 struct AddToFavoritesButton: View {
     var body: some View {
         Button(action: {
@@ -87,10 +75,17 @@ struct AddToFavoritesButton: View {
             Text("Add to Favorites")
                 .foregroundColor(.white)
                 .padding()
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: 200)
                 .background(Color.red)
                 .cornerRadius(25)
         }
         .padding(.horizontal)
+    }
+}
+struct ShowDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())
+        let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
+        ShowDetailView(viewModel: viewModel)
     }
 }
