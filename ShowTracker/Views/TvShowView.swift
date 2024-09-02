@@ -5,11 +5,16 @@ struct TvShowView: View {
     @State private var selectedGenre: TvShowListTarget? = nil
     @State private var searchText: String = ""
 
+    private var airingTodayShows: [TvShow] {
+        return viewModel.genreTvShows[.airingToday] ?? []
+    }
+
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    CarouselContentView()
+                    CarouselContentView(shows: airingTodayShows)
                     CustomGenrePicker(selectedGenre: $selectedGenre)
                     
                     if searchText.isEmpty {
@@ -58,6 +63,8 @@ struct TvShowView: View {
             viewModel.loadTvShows(listType: genre)
             viewModel.loadGenres()
         } else {
+            viewModel.loadTvShows(listType: .airingToday)
+
             viewModel.loadAllGenres()
         }
     }
