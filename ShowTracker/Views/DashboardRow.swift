@@ -10,6 +10,12 @@ import SwiftUI
 struct DashboardRow: View {
     let title: String
     let tvShows: [TvShow]
+    let listType: TvShowListTarget
+    @ObservedObject var viewModel: TvShowListViewModel
+    @State private var isLoadingMore = false
+
+    // Define the threshold (e.g., 3 items before the end)
+    let threshold = 3
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,13 +25,36 @@ struct DashboardRow: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(tvShows, id: \.id) { tvShow in
+                    ForEach(tvShows.indices, id: \.self) { index in
+                        let tvShow = tvShows[index]
+                        
                         NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
                             tvShowBanner(tvShow: tvShow)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        .onAppear {
+                            // Trigger load more when the user scrolls within the threshold
+                            if index >= tvShows.count - threshold && !isLoadingMore {
+                                loadMoreIfNeeded()
+                            }
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    private func loadMoreIfNeeded() {
+        if !isLoadingMore {
+            isLoadingMore = true
+
+            let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
+            print("Loading page \(currentPage + 1) for \(listType)")
+
+            viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.isLoadingMore = false
             }
         }
     }

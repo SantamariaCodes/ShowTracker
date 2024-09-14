@@ -1,38 +1,48 @@
 import SwiftUI
 
+
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
     @State private var selectedGenre: TvShowListTarget? = nil
     @State private var searchText: String = ""
 
     private var airingTodayShows: [TvShow] {
-        return viewModel.genreTvShows[.airingToday] ?? []
+        return viewModel.genreTvShows[.airingToday(page: 1)] ?? []
     }
 
-    
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 0) {
+                LazyVStack(spacing: 0) {
                     CarouselContentView(shows: airingTodayShows)
                     CustomGenrePicker(selectedGenre: $selectedGenre)
                     
                     if searchText.isEmpty {
-                        VStack(spacing: 20) {
+                        LazyVStack(spacing: 20) {
                             if let genre = selectedGenre {
-                                // Directly use the non-optional dictionary returned by tvShowsBySubGenres(for:)
                                 let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
                                 
                                 ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
                                     if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                                      
-                                        DashboardRow(title: subGenre.name, tvShows: tvShows)
+                                        // Display the row for this genre
+                                        DashboardRow(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
                                     }
                                 }
                             } else {
                                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
                                     if let tvShows = viewModel.filteredTvShows(for: genre, with: searchText) {
-                                        DashboardRow(title: genre.title, tvShows: tvShows)
+                                        DashboardRow(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        
+                                        // Add a button to manually load more shows for this genre
+                                        Button(action: {
+                                            loadMoreShows(for: genre)
+                                        }) {
+                                            Text("Load More \(genre.title) Shows")
+                                                .padding()
+                                                .background(Color.blue)
+                                                .foregroundColor(.white)
+                                                .cornerRadius(10)
+                                        }
                                     } else {
                                         Text("No data available for \(genre.title)")
                                     }
@@ -53,22 +63,28 @@ struct TvShowView: View {
         .onAppear {
             loadTvShows()
         }
-        .onChange(of: selectedGenre) { oldValue, newValue in
+        .onChange(of: selectedGenre) { _, _ in
             loadTvShows()
         }
     }
-    
+
     private func loadTvShows() {
         if let genre = selectedGenre {
             viewModel.loadTvShows(listType: genre)
             viewModel.loadGenres()
         } else {
-            viewModel.loadTvShows(listType: .airingToday)
-
+            viewModel.loadTvShows(listType: .airingToday(page: 1))
             viewModel.loadAllGenres()
         }
     }
+
+    // Function to manually load more shows for a specific genre
+    private func loadMoreShows(for genre: TvShowListTarget) {
+        let currentPage = (viewModel.genreTvShows[genre.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
+        viewModel.loadMoreShows(listType: genre.withUpdatedPage(currentPage + 1))
+    }
 }
+
 
 struct TvShowsView_Previews: PreviewProvider {
     static var previews: some View {

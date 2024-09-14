@@ -4,10 +4,6 @@
 //
 //  Created by Diego Santamaria on 19/2/24.
 
-
-
-
-
 import Foundation
 
 class TvShowListViewModel: ObservableObject {
@@ -35,6 +31,43 @@ class TvShowListViewModel: ObservableObject {
             }
         }
     }
+    
+ 
+    
+    func loadMoreShows(listType: TvShowListTarget) {
+        let key = listType.withUpdatedPage(1) // General key for the list type
+        
+        tvService.fetchListOfTvShows(listType: listType) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let shows):
+                    if var existingShows = self.genreTvShows[key] {
+                        // Append new shows and log it
+                        existingShows += shows
+                        self.genreTvShows[key] = existingShows
+                        print("Appended shows for \(key), total shows: \(existingShows.count)")
+                    } else {
+                        // If no shows exist, add them for the first time
+                        self.genreTvShows[key] = shows
+                        print("First batch of shows for \(key), total shows: \(shows.count)")
+                    }
+
+                    // Debugging: Print the total number of shows after appending
+                    print("Total number of shows for \(key): \(self.genreTvShows[key]?.count ?? 0)")
+                case .failure(let error):
+                    print("Error loading shows: \(error)")
+                }
+            }
+        }
+    }
+
+
+
+
+
+    
+    
+    
 
     func loadAllGenres() {
         let group = DispatchGroup()
