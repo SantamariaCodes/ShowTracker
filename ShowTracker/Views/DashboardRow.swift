@@ -5,11 +5,17 @@
 //  Created by Diego Santamaria on 18/8/24.
 //
 
+
 import SwiftUI
 
 struct DashboardRow: View {
     let title: String
     let tvShows: [TvShow]
+    let listType: TvShowListTarget
+    @ObservedObject var viewModel: TvShowListViewModel
+    @State private var isLoadingMore = false
+    
+    let threshold = 1
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,13 +24,49 @@ struct DashboardRow: View {
                 .fontWeight(.bold)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(tvShows, id: \.id) { tvShow in
+                LazyHStack {
+                    ForEach(tvShows.indices, id: \.self) { index in
+                        let tvShow = tvShows[index]
+                        
                         NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
                             tvShowBanner(tvShow: tvShow)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        .onAppear {
+                            if index >= tvShows.count - threshold && !isLoadingMore {
+                                loadMoreIfNeeded()
+                            }
+                        }
                     }
+                    
+                if isLoadingMore {
+                        ProgressView()
+                            .padding()
+                            .frame(width: 130, height: 150)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            if tvShows.isEmpty {
+                loadMoreIfNeeded()
+            }
+        }
+    }
+//
+    private func loadMoreIfNeeded() {
+        if !isLoadingMore {
+            isLoadingMore = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                //Consider creating a constant for Key widUpdatedPage(1) sounds confusing.Perhaps .withKey or .listTypeKey
+                let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
+                print("Loading page \(currentPage + 1) for \(listType)")
+
+                viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
+                // not sure this enhances the user experience
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.isLoadingMore = false
                 }
             }
         }
@@ -47,10 +89,10 @@ struct DashboardRow: View {
                             .clipped()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     } placeholder: {
-                        ProgressView() // Placeholder while loading
+                        ProgressView()
                     }
                 } else {
-                    Color.gray // Fallback for missing image
+                    Color.gray
                         .frame(width: 130, height: 150)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
