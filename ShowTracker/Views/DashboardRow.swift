@@ -5,6 +5,7 @@
 //  Created by Diego Santamaria on 18/8/24.
 //
 
+
 import SwiftUI
 
 struct DashboardRow: View {
@@ -14,7 +15,6 @@ struct DashboardRow: View {
     @ObservedObject var viewModel: TvShowListViewModel
     @State private var isLoadingMore = false
 
-    // Define the threshold (e.g., 3 items before the end)
     let threshold = 3
 
     var body: some View {
@@ -24,7 +24,7 @@ struct DashboardRow: View {
                 .fontWeight(.bold)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+                LazyHStack {
                     ForEach(tvShows.indices, id: \.self) { index in
                         let tvShow = tvShows[index]
                         
@@ -33,13 +33,23 @@ struct DashboardRow: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         .onAppear {
-                            // Trigger load more when the user scrolls within the threshold
                             if index >= tvShows.count - threshold && !isLoadingMore {
                                 loadMoreIfNeeded()
                             }
                         }
                     }
+                    
+                if isLoadingMore {
+                        ProgressView()
+                            .padding()
+                            .frame(width: 130, height: 150)
+                    }
                 }
+            }
+        }
+        .onAppear {
+            if tvShows.isEmpty {
+                loadMoreIfNeeded()
             }
         }
     }
@@ -48,13 +58,15 @@ struct DashboardRow: View {
         if !isLoadingMore {
             isLoadingMore = true
 
-            let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
-            print("Loading page \(currentPage + 1) for \(listType)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
+                print("Loading page \(currentPage + 1) for \(listType)")
 
-            viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
+                viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.isLoadingMore = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.isLoadingMore = false
+                }
             }
         }
     }
@@ -76,10 +88,10 @@ struct DashboardRow: View {
                             .clipped()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     } placeholder: {
-                        ProgressView() // Placeholder while loading
+                        ProgressView()
                     }
                 } else {
-                    Color.gray // Fallback for missing image
+                    Color.gray
                         .frame(width: 130, height: 150)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
