@@ -14,8 +14,8 @@ struct DashboardRow: View {
     let listType: TvShowListTarget
     @ObservedObject var viewModel: TvShowListViewModel
     @State private var isLoadingMore = false
-
-    let threshold = 3
+    
+    let threshold = 1
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -53,17 +53,18 @@ struct DashboardRow: View {
             }
         }
     }
-
+//
     private func loadMoreIfNeeded() {
         if !isLoadingMore {
             isLoadingMore = true
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                //Consider creating a constant for Key widUpdatedPage(1) sounds confusing.Perhaps .withKey or .listTypeKey
                 let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
                 print("Loading page \(currentPage + 1) for \(listType)")
 
                 viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
-
+                // not sure this enhances the user experience
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.isLoadingMore = false
                 }

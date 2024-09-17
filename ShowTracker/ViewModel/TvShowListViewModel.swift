@@ -112,13 +112,23 @@ class TvShowListViewModel: ObservableObject {
             return tvShowsBySubGenre
         }
         
-        for genre in genres {
+        // Filter out genres, they return with just a couple of shows and dont trigger the dashboardRow call even when lowered treshold. Great feature
+        let excludedGenres = ["War & Politics", "Sci-Fi & Fantasy", "Kids", "Documentary", "Mystery"]
+        let filteredGenres = genres.filter { !excludedGenres.contains($0.name) }
+        
+        for genre in filteredGenres {
             let filteredShows = tvShows.filter { $0.genreId.contains(genre.id) }
             tvShowsBySubGenre[genre] = filteredShows
         }
         
         return tvShowsBySubGenre
     }
+
+    
+    
+    
+    
+    
 
     func filteredTvShows(for genre: TvShowListTarget, with searchText: String) -> [TvShow]? {
         guard let tvShows = genreTvShows[genre] else {
