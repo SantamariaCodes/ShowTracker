@@ -3,17 +3,16 @@ import Foundation
 
 enum TvShowListTarget: Hashable, CaseIterable {
     static var allCases: [TvShowListTarget] {
-         return [.popular,.topRated,  .onTheAir ]
-     }
+        return [.popular(page: 1), .topRated(page: 1), .onTheAir(page: 1)]
+    }
     
-    case popular
-    case airingToday
-    case onTheAir
-    case topRated
+    case popular(page: Int)
+    case airingToday(page: Int)
+    case onTheAir(page: Int)
+    case topRated(page: Int)
     case details(tvShowId: Int)
     case retrieveSubGenreList
     
-//Custom add to simplify DashboardRow call
     var title: String {
         switch self {
         case .popular:
@@ -59,12 +58,39 @@ extension TvShowListTarget: TargetType {
     var method: Moya.Method { return .get }
     
     var task: Task {
-        return .requestParameters(parameters: ["api_key": "\(Constants.API.apiKey)"], encoding: URLEncoding.queryString)
-    }
+         switch self {
+         case .popular(let page),
+              .airingToday(let page),
+              .onTheAir(let page),
+              .topRated(let page):
+             return .requestParameters(parameters: ["api_key": "\(Constants.API.apiKey)", "page": page], encoding: URLEncoding.queryString)
+         case .details, .retrieveSubGenreList:
+             return .requestParameters(parameters: ["api_key": "\(Constants.API.apiKey)"], encoding: URLEncoding.queryString)
+
+         }
+     }
     
     var headers: [String : String]? {
         return ["Content-type": "application/json"]
     }
     
     var sampleData: Data { return Data() }
+}
+
+
+extension TvShowListTarget {
+    func withUpdatedPage(_ page: Int) -> TvShowListTarget {
+        switch self {
+        case .popular:
+            return .popular(page: page)
+        case .airingToday:
+            return .airingToday(page: page)
+        case .onTheAir:
+            return .onTheAir(page: page)
+        case .topRated:
+            return .topRated(page: page)
+        default:
+            return self
+        }
+    }
 }

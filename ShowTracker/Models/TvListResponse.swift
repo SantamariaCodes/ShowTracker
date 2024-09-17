@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TvShow: Codable, Identifiable {
+struct TvShow: Codable, Identifiable, Equatable {
     let id: Int
     let title: String
     let overview: String

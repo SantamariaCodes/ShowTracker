@@ -80,7 +80,7 @@ struct CarouselContentView: View {
                                             .foregroundColor(.white)
                                         
                                         NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: show.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
-                                            Text("Movie Details")
+                                            Text("Show Details")
                                                 .font(.caption)
                                                 .foregroundColor(.white)
                                                 .padding(6)
