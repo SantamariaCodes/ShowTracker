@@ -30,7 +30,9 @@
 		9FA9207C2CA46C1C00F5D60E /* AuthenticationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9207B2CA46C1C00F5D60E /* AuthenticationTarget.swift */; };
 		9FA9207E2CA46CC200F5D60E /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9207D2CA46CC200F5D60E /* AuthenticationService.swift */; };
 		9FA920822CA46F4B00F5D60E /* AuthenticationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA920812CA46F4B00F5D60E /* AuthenticationModels.swift */; };
-		9FA920842CA46FEF00F5D60E /* TestAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA920832CA46FEF00F5D60E /* TestAuthentication.swift */; };
+		9FA920872CA48AE900F5D60E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA920862CA48AE900F5D60E /* AuthViewModel.swift */; };
+		9FA920892CA48B0600F5D60E /* AuhtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA920882CA48B0600F5D60E /* AuhtView.swift */; };
+		9FA9208C2CA5CB4500F5D60E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9208B2CA5CB4500F5D60E /* AppDelegate.swift */; };
 		9FB3E7BE2C7192D40088A993 /* ShowTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */; };
 		9FB3E7C22C7192D50088A993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FB3E7C12C7192D50088A993 /* Assets.xcassets */; };
 		9FB3E7C62C7192D50088A993 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FB3E7C52C7192D50088A993 /* Preview Assets.xcassets */; };
@@ -86,7 +88,10 @@
 		9FA9207B2CA46C1C00F5D60E /* AuthenticationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTarget.swift; sourceTree = "<group>"; };
 		9FA9207D2CA46CC200F5D60E /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		9FA920812CA46F4B00F5D60E /* AuthenticationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModels.swift; sourceTree = "<group>"; };
-		9FA920832CA46FEF00F5D60E /* TestAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthentication.swift; sourceTree = "<group>"; };
+		9FA920862CA48AE900F5D60E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		9FA920882CA48B0600F5D60E /* AuhtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuhtView.swift; sourceTree = "<group>"; };
+		9FA9208A2CA4A27600F5D60E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9FA9208B2CA5CB4500F5D60E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB3E7BA2C7192D40088A993 /* ShowTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerApp.swift; sourceTree = "<group>"; };
 		9FB3E7C12C7192D50088A993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,10 +244,12 @@
 		9FA920852CA47D5C00F5D60E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				9FA920832CA46FEF00F5D60E /* TestAuthentication.swift */,
 				9FA9207B2CA46C1C00F5D60E /* AuthenticationTarget.swift */,
 				9FA9207D2CA46CC200F5D60E /* AuthenticationService.swift */,
 				9FA920812CA46F4B00F5D60E /* AuthenticationModels.swift */,
+				9FA920862CA48AE900F5D60E /* AuthViewModel.swift */,
+				9FA920882CA48B0600F5D60E /* AuhtView.swift */,
+				9FA9208B2CA5CB4500F5D60E /* AppDelegate.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -272,6 +279,7 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9FA9208A2CA4A27600F5D60E /* Info.plist */,
 				9FA920852CA47D5C00F5D60E /* Authentication */,
 				9FA9207A2CA3941700F5D60E /* Login */,
 				9FEDB9742C761CD8008AD959 /* ViewModel */,
@@ -458,10 +466,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA9208C2CA5CB4500F5D60E /* AppDelegate.swift in Sources */,
 				9FD804DF2C7284A000A939DB /* CarouselView.swift in Sources */,
 				9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */,
 				9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */,
 				9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */,
+				9FA920892CA48B0600F5D60E /* AuhtView.swift in Sources */,
 				9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */,
 				9FA920822CA46F4B00F5D60E /* AuthenticationModels.swift in Sources */,
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
@@ -470,13 +480,13 @@
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
+				9FA920872CA48AE900F5D60E /* AuthViewModel.swift in Sources */,
 				9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */,
 				9FA9207C2CA46C1C00F5D60E /* AuthenticationTarget.swift in Sources */,
 				9F4FF2DF2C7F4BF9008B00EE /* ShowDetailView.swift in Sources */,
 				9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */,
 				9FB3E7BE2C7192D40088A993 /* ShowTrackerApp.swift in Sources */,
 				9FA9207E2CA46CC200F5D60E /* AuthenticationService.swift in Sources */,
-				9FA920842CA46FEF00F5D60E /* TestAuthentication.swift in Sources */,
 				9F4C152B2C722675005C385A /* MovieView.swift in Sources */,
 				9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */,
 				9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */,
@@ -650,6 +660,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShowTracker/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShowTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -687,6 +698,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShowTracker/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShowTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

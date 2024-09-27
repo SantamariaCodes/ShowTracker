@@ -15,31 +15,29 @@
 //        }
 //    }
 //}
+
 import SwiftUI
 
 @main
 struct ShowTrackerApp: App {
-    init() {
-        testAuthenticationService()
-    }
-    
     var body: some Scene {
         WindowGroup {
-            Text("Testing Authentication...")
-        }
-    }
+            AuthView()
+                .onOpenURL { url in
+                    // This replaces AppDelegate's `application(_:open:options:)`
+                    print("Returned to app with URL: \(url.absoluteString)")
 
-    func testAuthenticationService() {
-        let networkManager = NetworkManager<AuthenticationTarget>()
-        let authService = AuthenticationService(networkManager: networkManager)
-
-        authService.getRequestToken { result in
-            switch result {
-            case .success(let requestToken):
-                print("Success! Request Token: \(requestToken)")
-            case .failure(let error):
-                print("Failed to get request token: \(error.localizedDescription)")
-            }
+                    // Handle the URL and process the request token
+                    if url.absoluteString.hasPrefix("PortfolioApp://approved") {
+                        print("Request token approved")
+                        // Trigger session creation logic here using the request token
+                        // Example: AuthViewModel().createSession(requestToken: token)
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    print("App became active again")
+                }
         }
     }
 }
+
