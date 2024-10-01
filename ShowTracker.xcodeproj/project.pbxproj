@@ -234,13 +234,6 @@
 			path = Target;
 			sourceTree = "<group>";
 		};
-		9FA9207A2CA3941700F5D60E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		9FA920852CA47D5C00F5D60E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,7 +274,6 @@
 			children = (
 				9FA9208A2CA4A27600F5D60E /* Info.plist */,
 				9FA920852CA47D5C00F5D60E /* Authentication */,
-				9FA9207A2CA3941700F5D60E /* Login */,
 				9FEDB9742C761CD8008AD959 /* ViewModel */,
 				9F4C15302C72271F005C385A /* Models */,
 				9F4C152E2C7226F1005C385A /* Networking */,

@@ -24,15 +24,20 @@ struct ShowTrackerApp: App {
         WindowGroup {
             AuthView()
                 .onOpenURL { url in
-                    // This replaces AppDelegate's `application(_:open:options:)`
-                    print("Returned to app with URL: \(url.absoluteString)")
-
-                    // Handle the URL and process the request token
-                    if url.absoluteString.hasPrefix("PortfolioApp://approved") {
-                        print("Request token approved")
-                        // Trigger session creation logic here using the request token
-                        // Example: AuthViewModel().createSession(requestToken: token)
+//       one liner             url.absoluteString.lowercased().hasSuffix("&approved=true") ? print("token approved") : print("token denied")
+                    
+                    if url.absoluteString.lowercased().hasSuffix("&approved=true") {
+                        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                           let queryItems = components.queryItems {
+                            if let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
+                            
+                                print("Request Token: \(requestToken)")
+                            } else {
+                                print("Request token not found.")
+                            }
+                        }
                     }
+                   
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     print("App became active again")

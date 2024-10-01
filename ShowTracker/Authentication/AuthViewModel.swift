@@ -9,7 +9,7 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     @Published var requestToken: String? = nil
-    @Published var sessionID: String? = nil   // <-- Add sessionID here
+    @Published var sessionID: String? = nil  
     @Published var errorMessage: String? = nil
     
     private let authenticationService: AuthenticationService

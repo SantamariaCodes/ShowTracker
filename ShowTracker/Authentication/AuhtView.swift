@@ -26,10 +26,6 @@ struct AuthView: View {
             }
             
             
-            if viewModel.sessionID != nil {
-                Text("Session Created! ID: \(viewModel.sessionID!)")
-                    .foregroundColor(.green)
-            }
         }
     }
 }
