@@ -38,9 +38,13 @@ class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let sessionID):
+                    print("Session ID created??? it did?: \(sessionID)")   // <-- Print or log the session ID
+
                     self?.sessionID = sessionID   // <-- Store sessionID here
                 case .failure(let error):
                     self?.errorMessage = "Failed to create session: \(error.localizedDescription)"
+                    print("Error creating session: \(error.localizedDescription)")   // <-- Log errors if session creation fails
+
                 }
             }
         }
