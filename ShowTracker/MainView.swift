@@ -42,13 +42,14 @@ struct HomeView: View {
 
 struct FavoritesView: View {
     var body: some View {
-        Text("Favoritesss")
+        
+        UserFavoritesView()
     }
 }
 
 struct ProfileView: View {
     var body: some View {
-        UserDetails()
+        UserDetailsView()
         
     }
 }

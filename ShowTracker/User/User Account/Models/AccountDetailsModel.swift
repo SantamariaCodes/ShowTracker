@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AccountDetails: Codable {
+struct AccountDetailsModel: Codable {
     struct Avatar: Codable {
         struct Gravatar: Codable {
             let hash: String

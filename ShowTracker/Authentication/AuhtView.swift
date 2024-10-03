@@ -13,7 +13,7 @@ struct AuthView: View {
     var body: some View {
         VStack {
             if let requestToken = viewModel.requestToken {
-                Button("Authenticate with TMDB") {
+                Button("Please authenticate or continue as guest") {
                     if let url = URL(string: "https://www.themoviedb.org/authenticate/\(requestToken)?redirect_to=PortfolioApp://approved") {
                         UIApplication.shared.open(url)
                   

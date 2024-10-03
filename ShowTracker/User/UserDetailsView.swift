@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct UserDetails: View {
+struct UserDetailsView: View {
     @StateObject private var viewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
     
     var body: some View {
         if let sessionID = viewModel.sessionID {
-            UserAccountView(sessionID: sessionID)  
+            UserAccountView(sessionID: sessionID)
         } else {
             AuthView()
                 .onOpenURL { url in
@@ -36,6 +36,6 @@ struct UserDetails: View {
 }
 
 #Preview {
-    UserDetails()
+    UserDetailsView()
 }
 

@@ -16,7 +16,6 @@ struct UserAccountView: View {
         VStack {
             if let accountDetails = viewModel.accountDetails {
                 Text("Welcome, \(accountDetails.username)!")
-                Text("Name: \(accountDetails.name)")
           
             } else if let errorMessage = viewModel.errorMessage {
                 Text("Error: \(errorMessage)")

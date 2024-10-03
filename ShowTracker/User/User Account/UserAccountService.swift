@@ -8,21 +8,20 @@
 import Foundation
 
 protocol UserAccountServiceProtocol {
-    //problablemente el result no sea un string sino un objeto que todavia no hemos creado
-    func getAccountDetails(sessionID: String, completion: @escaping (Result<AccountDetails, Error>) -> Void)
+    func getAccountDetails(sessionID: String, completion: @escaping (Result<AccountDetailsModel, Error>) -> Void)
+    func getFavorites(accountID: String, sessionID: String, page: Int, completion: @escaping (Result<FavoritesModel, Error>) -> Void)
 }
 
+
 class UserAccountService: UserAccountServiceProtocol {
-  
-    
     private let networkManager: NetworkManager<UserAccountTarget>
     
     init(networkManager: NetworkManager<UserAccountTarget>) {
         self.networkManager = networkManager
     }
     
-    func getAccountDetails(sessionID: String, completion: @escaping (Result<AccountDetails, any Error>) -> Void) {
-        networkManager.request(target: .getAccountDetails(sessionID: sessionID)) { (result: Result<AccountDetails, Error>) in
+    func getAccountDetails(sessionID: String, completion: @escaping (Result<AccountDetailsModel, any Error>) -> Void) {
+        networkManager.request(target: .getAccountDetails(sessionID: sessionID)) { (result: Result<AccountDetailsModel, Error>) in
             switch result {
             case .success(let accountDetails):
                 completion(.success(accountDetails))
@@ -33,8 +32,24 @@ class UserAccountService: UserAccountServiceProtocol {
 
             }
         }
-
-        
     }
+    
+    
+    func getFavorites(accountID: String, sessionID: String, page: Int, completion: @escaping (Result<FavoritesModel, Error>) -> Void) {
+        networkManager.request(target: .getFavorites(accountID: accountID, sessionID: sessionID, page: page)) { (result: Result<FavoritesModel, Error>) in
+            switch result {
+            case .success(let favoritesModel):
+                completion(.success(favoritesModel))
+                print("Favorites: \(favoritesModel.results)")
+            case .failure(let error):
+                print("Failed to get favorites: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+
+    
+    
+    
     
 }
