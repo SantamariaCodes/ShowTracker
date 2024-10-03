@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// this works
 struct UserDetailsView: View {
     @StateObject private var viewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
     
@@ -21,7 +21,7 @@ struct UserDetailsView: View {
                            let queryItems = components.queryItems {
                             if let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
                                 print("Request Token: \(requestToken)")
-                                viewModel.createSession(requestToken: requestToken) 
+                                viewModel.createSession(requestToken: requestToken)
                             } else {
                                 print("Request token not found.")
                             }

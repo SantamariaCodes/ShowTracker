@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct ShowTrackerApp: App {
+    //testing out sessionManager to store session info, not working at the moment
+    @StateObject var sessionManager = SessionManager()
+
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(sessionManager)
+
         }
     }
 }
