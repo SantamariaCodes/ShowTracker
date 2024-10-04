@@ -10,47 +10,28 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject private var authViewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
+    @StateObject private var userAccountViewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
+
     var body: some View {
         TabView {
-            HomeView()
+            TvShowView(viewModel: TvShowListViewModel.make())
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
 
-            FavoritesView()
-                .tabItem {
+            UserFavoritesView(authViewModel: authViewModel, userAccountViewModel: userAccountViewModel)                .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")
                 }
 
-            ProfileView()
+            UserDetailsView(authViewModel: authViewModel, userAccountViewModel: userAccountViewModel)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
                 }
         }
-    }
-}
-
-struct HomeView: View {
-    var body: some View {
-   // SubGenreListTestView()
-       TvShowView(viewModel: TvShowListViewModel.make())
-    }
-}
-
-struct FavoritesView: View {
-    var body: some View {
-        
-        UserFavoritesView()
-    }
-}
-
-struct ProfileView: View {
-    var body: some View {
-        UserDetailsView()
-        
     }
 }
 

@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct UserAccountView: View {
-    @StateObject private var viewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
+import SwiftUI
 
+struct UserAccountView: View {
+    @ObservedObject var viewModel: UserAccountViewModel
     var sessionID: String
 
     var body: some View {
@@ -17,23 +18,7 @@ struct UserAccountView: View {
             if let accountDetails = viewModel.accountDetails {
                 Text("Welcome, \(accountDetails.username)!")
 
-                if viewModel.favorites.isEmpty {
-                    Text("Loading your favorite shows...")
-                        .onAppear {
-                            let accountID = accountDetails.id
-                            viewModel.getFavorites(accountID: String(accountID), sessionID: sessionID, page: 1)
-                        }
-                } else {
-                    List(viewModel.favorites, id: \.id) { favorite in
-                        VStack(alignment: .leading) {
-                            Text(favorite.name)
-                                .font(.headline)
-                            Text(favorite.overview)
-                                .font(.subheadline)
-                                .lineLimit(2)
-                        }
-                    }
-                }
+            
 
                 if let errorMessage = viewModel.errorMessage {
                     Text("Error: \(errorMessage)")
@@ -52,6 +37,3 @@ struct UserAccountView: View {
     }
 }
 
-#Preview {
-    UserAccountView(sessionID: "your-session-id")
-}

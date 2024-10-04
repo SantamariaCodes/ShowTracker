@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
-// this works
+
 struct UserDetailsView: View {
-    @StateObject private var viewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
-    
+    @ObservedObject var authViewModel: AuthViewModel
+    @ObservedObject var userAccountViewModel: UserAccountViewModel
+
     var body: some View {
-        if let sessionID = viewModel.sessionID {
-            UserAccountView(sessionID: sessionID)
+        if let sessionID = authViewModel.sessionID {
+            UserAccountView(viewModel: userAccountViewModel, sessionID: sessionID)
         } else {
             AuthView()
                 .onOpenURL { url in
@@ -20,10 +21,7 @@ struct UserDetailsView: View {
                         if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                            let queryItems = components.queryItems {
                             if let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
-                                print("Request Token: \(requestToken)")
-                                viewModel.createSession(requestToken: requestToken)
-                            } else {
-                                print("Request token not found.")
+                                authViewModel.createSession(requestToken: requestToken)
                             }
                         }
                     }
@@ -35,7 +33,4 @@ struct UserDetailsView: View {
     }
 }
 
-#Preview {
-    UserDetailsView()
-}
 
