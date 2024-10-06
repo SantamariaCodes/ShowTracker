@@ -32,18 +32,17 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    // Function to create a session after token is approved
     func createSession(requestToken: String) {
         authenticationService.createSession(requestToken: requestToken) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let sessionID):
-                    print("Session ID created??? it did?: \(sessionID)")   // <-- Print or log the session ID
+                    print("Session ID created??? it did?: \(sessionID)")   
 
-                    self?.sessionID = sessionID   // <-- Store sessionID here
+                    self?.sessionID = sessionID
                 case .failure(let error):
                     self?.errorMessage = "Failed to create session: \(error.localizedDescription)"
-                    print("Error creating session: \(error.localizedDescription)")   // <-- Log errors if session creation fails
+                    print("Error creating session: \(error.localizedDescription)")
 
                 }
             }
