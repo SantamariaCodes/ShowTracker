@@ -13,7 +13,14 @@ struct AuthView: View {
 
     var body: some View {
         VStack {
-            if let requestToken = viewModel.requestToken {
+            // Display the error message if it exists
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .transition(.opacity) // Smooth appearance for error messages
+            } else if let requestToken = viewModel.requestToken {
                 Text("Hi! It appears you aren't signed in. We need to redirect you to the TMDB authentication page. If you wish to continue, please click the button below.")
                     .padding()
                     .multilineTextAlignment(.center)
@@ -41,11 +48,6 @@ struct AuthView: View {
                         secondaryButton: .cancel()
                     )
                 }
-
-            } else if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding()
             } else {
                 ProgressView("Fetching request token...")
                     .padding()
