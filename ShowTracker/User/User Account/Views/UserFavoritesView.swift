@@ -26,15 +26,9 @@ struct UserFavoritesView: View {
                             userAccountViewModel.getFavorites(accountID: String(accountID), sessionID: sessionID, page: 1)
                         }
                 } else {
-                    List(userAccountViewModel.favorites, id: \.id) { favorite in
-                        VStack(alignment: .leading) {
-                            Text(favorite.name)
-                                .font(.headline)
-                            Text(favorite.overview)
-                                .font(.subheadline)
-                                .lineLimit(2)
-                        }
-                    }
+                    // Grid display here?
+                    GridDisplay(title: "Favorites", tvShows: convertFavoritesToTvShows(favorites: userAccountViewModel.favorites))
+
                 }
 
                 if let errorMessage = userAccountViewModel.errorMessage {
@@ -48,6 +42,20 @@ struct UserFavoritesView: View {
             }
         }
     }
+    
+    private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
+         return favorites.map { favorite in
+             TvShow(
+                 id: favorite.id,
+                 title: favorite.name,
+                 overview: favorite.overview,
+                 posterPath: favorite.posterPath,
+                 popularity: 0.0, // Replace with actual data if available
+                 genreId: [], // Replace with actual data if available
+                 voteAverage: favorite.voteAverage
+             )
+         }
+     }
 }
 
 #Preview {

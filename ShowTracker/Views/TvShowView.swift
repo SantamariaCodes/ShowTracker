@@ -1,10 +1,10 @@
 import SwiftUI
 
-
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
+    @StateObject var searchViewModel = SearchShowViewModel(searchShowService: SearchShowService(networkManager: NetworkManager<SearchShowTarget>()))
+    
     @State private var selectedGenre: TvShowListTarget? = nil
-    @State private var searchText: String = ""
 
     private var airingTodayShows: [TvShow] {
         return viewModel.genreTvShows[.airingToday(page: 1)] ?? []
@@ -17,7 +17,7 @@ struct TvShowView: View {
                     CarouselContentView(shows: airingTodayShows)
                     CustomGenrePicker(selectedGenre: $selectedGenre)
                     
-                    if searchText.isEmpty {
+                    if searchViewModel.searchText.isEmpty {
                         LazyVStack(spacing: 20) {
                             if let genre = selectedGenre {
                                 let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
@@ -29,7 +29,7 @@ struct TvShowView: View {
                                 }
                             } else {
                                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
-                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: searchText) {
+                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: searchViewModel.searchText) {
                                         DashboardRow(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
                                     } else {
                                         Text("No data available for \(genre.title)")
@@ -40,13 +40,12 @@ struct TvShowView: View {
                         .padding()
                         .preferredColorScheme(.dark)
                     } else {
-                        let filteredShows = viewModel.filteredTvShows(for: searchText)
-                        GridDisplay(title: "Search Results", tvShows: filteredShows)
+                        GridDisplay(title: "Search Results", tvShows: searchViewModel.retrievedShows)
                     }
                 }
             }
             .navigationTitle("ShowSeeker")
-            .searchable(text: $searchText, prompt: "Search for a TV show")
+            .searchable(text: $searchViewModel.searchText, prompt: "Search for a TV show")
         }
         .onAppear {
             loadTvShows()
@@ -66,7 +65,6 @@ struct TvShowView: View {
         }
     }
 }
-
 
 struct TvShowsView_Previews: PreviewProvider {
     static var previews: some View {

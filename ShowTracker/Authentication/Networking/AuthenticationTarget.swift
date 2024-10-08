@@ -15,7 +15,9 @@ enum AuthenticationTarget {
 
 extension AuthenticationTarget: TargetType {
     var baseURL: URL {
+        // Fix safely unwrap
         return URL(string: Constants.API.baseUrl)!
+        
     }
 
     var path: String {

@@ -49,9 +49,12 @@ extension TvShowListTarget: TargetType {
 
     var path: String {
             switch self {
-            case .retrieveSubGenreList: return pathComponent
-            case .details: return "tv/\(pathComponent)"
-            default: return "tv/\(pathComponent)"
+            case .retrieveSubGenreList:
+                return pathComponent
+            case .details: 
+                return "tv/\(pathComponent)"
+            default: 
+                return "tv/\(pathComponent)"
             }
         }
     
