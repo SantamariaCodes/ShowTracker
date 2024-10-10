@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */; };
+		9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */; };
 		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
@@ -78,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePicker.swift; sourceTree = "<group>"; };
+		9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoritesButton.swift; sourceTree = "<group>"; };
 		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
 		9F4C152A2C722675005C385A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
@@ -178,7 +180,7 @@
 		9F4C151A2C72260C005C385A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9F4FF2DD2C7F4BD3008B00EE /* ShowDetails */,
+				9F4FF2E02C7F4C28008B00EE /* ShowDetailViews */,
 				9F2EED842C78B26F00F0F8B0 /* CustomPicker */,
 				9F851A322C71952200F919D0 /* TvShowDetailView.swift */,
 				9FD804E52C72853200A939DB /* GridDisplay.swift */,
@@ -220,20 +222,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9F4FF2DD2C7F4BD3008B00EE /* ShowDetails */ = {
-			isa = PBXGroup;
-			children = (
-				9F4FF2E02C7F4C28008B00EE /* ShowDetailViews */,
-			);
-			path = ShowDetails;
-			sourceTree = "<group>";
-		};
 		9F4FF2E02C7F4C28008B00EE /* ShowDetailViews */ = {
 			isa = PBXGroup;
 			children = (
 				9F4FF2DE2C7F4BF9008B00EE /* ShowDetailView.swift */,
 				9F4FF2E12C7F4C54008B00EE /* ShowDetailRowView.swift */,
 				9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */,
+				9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */,
 			);
 			path = ShowDetailViews;
 			sourceTree = "<group>";
@@ -576,6 +571,7 @@
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
 				9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */,
 				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
+				9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */,
 				9FEDB9762C76308B008AD959 /* Example.swift in Sources */,
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,

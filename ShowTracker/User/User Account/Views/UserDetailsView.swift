@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct UserDetailsView: View {
-    @ObservedObject var authViewModel: AuthViewModel
-    @ObservedObject var userAccountViewModel: UserAccountViewModel
 
+
+    
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var userAccountViewModel: UserAccountViewModel
+    
     @State private var showLoginMessage: Bool = false
     @State private var loginMessage: String = "Successfully Logged In!"
     

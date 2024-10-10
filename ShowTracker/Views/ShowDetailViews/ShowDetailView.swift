@@ -66,22 +66,9 @@ struct ShowDetailView: View {
 }
 
 
-struct AddToFavoritesButton: View {
-    var body: some View {
-        Button(action: {
-            // Action to add to favorites
-            print("Add to Favorites tapped")
-        }) {
-            Text("Add to Favorites")
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: 200)
-                .background(Color.red)
-                .cornerRadius(25)
-        }
-        .padding(.horizontal)
-    }
-}
+
+
+
 struct ShowDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let service = TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())

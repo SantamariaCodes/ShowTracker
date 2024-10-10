@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct UserFavoritesView: View {
-    @ObservedObject var authViewModel: AuthViewModel
-    @ObservedObject var userAccountViewModel: UserAccountViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var userAccountViewModel: UserAccountViewModel
 
     var body: some View {
         VStack {
@@ -26,41 +26,38 @@ struct UserFavoritesView: View {
                             userAccountViewModel.getFavorites(accountID: String(accountID), sessionID: sessionID, page: 1)
                         }
                 } else {
-                    // Grid display here?
+                    // Displaying the favorites using GridDisplay
                     GridDisplay(title: "Favorites", tvShows: convertFavoritesToTvShows(favorites: userAccountViewModel.favorites))
-
                 }
 
                 if let errorMessage = userAccountViewModel.errorMessage {
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                 }
-
             } else {
-             // user not signed in
+                // User not signed in
                 Text("You are not signed in! Please sign in to see your favorite shows.")
             }
         }
     }
     
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
-         return favorites.map { favorite in
-             TvShow(
-                 id: favorite.id,
-                 title: favorite.name,
-                 overview: favorite.overview,
-                 posterPath: favorite.posterPath,
-                 popularity: 0.0, // Replace with actual data if available
-                 genreId: [], // Replace with actual data if available
-                 voteAverage: favorite.voteAverage
-             )
-         }
-     }
+        return favorites.map { favorite in
+            TvShow(
+                id: favorite.id,
+                title: favorite.name,
+                overview: favorite.overview,
+                posterPath: favorite.posterPath,
+                popularity: 0.0, // Replace with actual data if available
+                genreId: [], // Replace with actual data if available
+                voteAverage: favorite.voteAverage
+            )
+        }
+    }
 }
 
 #Preview {
-    UserFavoritesView(
-        authViewModel: AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>())),
-        userAccountViewModel: UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
-    )
+    UserFavoritesView()
+        .environmentObject(AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>())))
+        .environmentObject(UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>())))
 }

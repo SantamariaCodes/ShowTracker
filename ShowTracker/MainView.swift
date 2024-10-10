@@ -15,8 +15,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var authViewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
     @StateObject private var userAccountViewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
-
-
+    
     var body: some View {
         ZStack {
             TabView {
@@ -25,20 +24,24 @@ struct MainView: View {
                         Image(systemName: "house.fill")
                         Text("Home")
                     }
-
-                UserFavoritesView(authViewModel: authViewModel, userAccountViewModel: userAccountViewModel)
+                
+                UserFavoritesView()
                     .tabItem {
                         Image(systemName: "star.fill")
                         Text("Favorites")
                     }
-
-                UserDetailsView(authViewModel: authViewModel, userAccountViewModel: userAccountViewModel)
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
+                
+                UserDetailsView()
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
             }
+            // Injecting the view models into the environment
+            .environmentObject(authViewModel)
+            .environmentObject(userAccountViewModel)
         }
     }
 }
+
 
