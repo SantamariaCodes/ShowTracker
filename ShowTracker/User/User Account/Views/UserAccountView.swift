@@ -5,11 +5,17 @@
 //  Created by Diego Santamaria on 1/10/24.
 //
 
+//
+//  UserAccountView.swift
+//  ShowTracker
+//
+//  Created by Diego Santamaria on 1/10/24.
+//
+
 import SwiftUI
 
 struct UserAccountView: View {
     @ObservedObject var viewModel: UserAccountViewModel
-    var sessionID: String
 
     var body: some View {
         VStack {
@@ -90,6 +96,19 @@ struct UserAccountView: View {
                         .foregroundColor(.red)
                         .padding()
                 }
+
+                // Logout button
+                Button(action: {
+                    viewModel.logout()
+                }) {
+                    Text("Logout")
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
+                        .padding(.top)
+                }
             } else if let errorMessage = viewModel.errorMessage {
                 // Display error message if user details couldn't be fetched
                 Text("Error: \(errorMessage)")
@@ -99,7 +118,7 @@ struct UserAccountView: View {
                 // Display loading indicator while fetching account details
                 ProgressView("Loading account details...")
                     .onAppear {
-                        viewModel.fetchAccountDetails(sessionID: sessionID)
+                        viewModel.fetchAccountDetails()
                     }
             }
         }

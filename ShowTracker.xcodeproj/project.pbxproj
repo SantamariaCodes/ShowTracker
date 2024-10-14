@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */; };
 		9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */; };
+		9F07A01C2CBDAB2C001C32A8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */; };
+		9F07A01E2CBDAF47001C32A8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */; };
 		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
@@ -80,6 +82,7 @@
 /* Begin PBXFileReference section */
 		9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePicker.swift; sourceTree = "<group>"; };
 		9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoritesButton.swift; sourceTree = "<group>"; };
+		9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
 		9F4C152A2C722675005C385A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F07A01C2CBDAB2C001C32A8 /* KeychainSwift in Frameworks */,
 				9F4C15152C71B6A3005C385A /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +352,7 @@
 		9FB3E7B12C7192D40088A993 = {
 			isa = PBXGroup;
 			children = (
+				9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */,
 				9FEDB9752C76308B008AD959 /* Example.swift */,
 				9FB3E7BC2C7192D40088A993 /* ShowTracker */,
 				9FB3E7CE2C7192D50088A993 /* ShowTrackerTests */,
@@ -440,6 +445,7 @@
 			name = ShowTracker;
 			packageProductDependencies = (
 				9F4C15142C71B6A3005C385A /* Moya */,
+				9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */,
 			);
 			productName = ShowTracker;
 			productReference = 9FB3E7BA2C7192D40088A993 /* ShowTracker.app */;
@@ -515,6 +521,7 @@
 			mainGroup = 9FB3E7B12C7192D40088A993;
 			packageReferences = (
 				9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */,
+				9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 9FB3E7BB2C7192D40088A993 /* Products */;
 			projectDirPath = "";
@@ -575,6 +582,7 @@
 				9FEDB9762C76308B008AD959 /* Example.swift in Sources */,
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,
+				9F07A01E2CBDAF47001C32A8 /* KeychainManager.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
@@ -957,6 +965,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -968,6 +984,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		9F4C15142C71B6A3005C385A /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */;

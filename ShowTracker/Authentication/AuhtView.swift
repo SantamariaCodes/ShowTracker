@@ -5,6 +5,12 @@
 //  Created by Diego Santamaria on 25/9/24.
 //
 
+//  AuhtView.swift
+//  ShowTracker
+//
+//  Created by Diego Santamaria on 25/9/24.
+//
+
 import SwiftUI
 
 struct AuthView: View {

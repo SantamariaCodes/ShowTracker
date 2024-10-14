@@ -1,4 +1,3 @@
-//
 //  MainView.swift
 //  ShowTracker
 //
@@ -11,7 +10,7 @@
 
 
 import SwiftUI
-
+// use keychain for  keychainManager userID. Sensitive data.
 struct MainView: View {
     @StateObject private var authViewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
     @StateObject private var userAccountViewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
@@ -19,6 +18,7 @@ struct MainView: View {
     var body: some View {
         ZStack {
             TabView {
+                // replicate this
                 TvShowView(viewModel: TvShowListViewModel.make())
                     .tabItem {
                         Image(systemName: "house.fill")
@@ -40,8 +40,12 @@ struct MainView: View {
             // Injecting the view models into the environment
             .environmentObject(authViewModel)
             .environmentObject(userAccountViewModel)
+            .onAppear() {
+                print("is it running?")
+            }
         }
     }
 }
+
 
 

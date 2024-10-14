@@ -18,12 +18,12 @@ struct UserFavoritesView: View {
                 .font(.headline)
                 .padding()
 
-            if let sessionID = authViewModel.sessionID, let accountDetails = userAccountViewModel.accountDetails {
+            if let accountDetails = userAccountViewModel.accountDetails {
                 if userAccountViewModel.favorites.isEmpty {
                     Text("Loading your favorite shows...")
                         .onAppear {
                             let accountID = accountDetails.id
-                            userAccountViewModel.getFavorites(accountID: String(accountID), sessionID: sessionID, page: 1)
+                            userAccountViewModel.getFavorites(accountID: String(accountID), page: 1)
                         }
                 } else {
                     // Displaying the favorites using GridDisplay
