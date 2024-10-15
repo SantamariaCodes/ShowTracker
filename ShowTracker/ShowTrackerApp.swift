@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ShowTrackerApp: App {
+struct ShowTrackerApp: App {        
     //testing out sessionManager to store session info, not working at the moment
     @StateObject var sessionManager = SessionManager()
 

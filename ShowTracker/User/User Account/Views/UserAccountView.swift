@@ -16,9 +16,9 @@ import SwiftUI
 
 struct UserAccountView: View {
     @ObservedObject var viewModel: UserAccountViewModel
-
     var body: some View {
         VStack {
+           
             if let accountDetails = viewModel.accountDetails {
                 // Avatar section
                 HStack {

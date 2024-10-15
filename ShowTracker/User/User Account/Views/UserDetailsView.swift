@@ -15,7 +15,8 @@ import SwiftUI
 
 struct UserDetailsView: View {
     
-    
+    let keychainManager = KeychainManager()
+
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var userAccountViewModel: UserAccountViewModel
@@ -46,7 +47,6 @@ struct UserDetailsView: View {
     //This might be improved with userDefaults?
     private func displayLoginSuccessMessageOnce() {
         if !showLoginMessage && amountOfTimesLoginMessageHasBeenDisplayed == 0 {
-            print("logging message displayed 0")
             showLoginMessage = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 showLoginMessage = false
@@ -68,60 +68,35 @@ struct UserDetailsView: View {
     
     @ViewBuilder
     private var viewContent: some View {
-        Group {
-            UserAccountView(viewModel: userAccountViewModel)
-                .onAppear {
-                    displayLoginSuccessMessageOnce()
-                }
-                .opacity(userAccountViewModel.isUserLoggedIn ? 1 : 0)
-
-            
-            AuthView()
-                .onOpenURL { url in
-                    if url.absoluteString.lowercased().hasSuffix("&approved=true") {
-                        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                           let queryItems = components.queryItems,
-                           let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
-                            print("Request Token: \(requestToken)")
-                            authViewModel.createSession(requestToken: requestToken)
+        ZStack {
+            if userAccountViewModel.sessionID == nil {
+                AuthView()
+                    .onOpenURL { url in
+                        if url.absoluteString.lowercased().hasSuffix("&approved=true") {
+                            if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                               let queryItems = components.queryItems,
+                               let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
+                                authViewModel.createSession(requestToken: requestToken)
+                            } else {
+                                displayLoginFailureMessage()
+                            }
                         } else {
                             displayLoginFailureMessage()
                         }
-                    } else {
-                        displayLoginFailureMessage()
                     }
-                }
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    print("App became active again")
-                }
-                .opacity(userAccountViewModel.isUserLoggedIn ? 0 : 1)
-            
-            //            if userAccountViewModel.isUserLoggedIn() {
-            //                UserAccountView(viewModel: userAccountViewModel)
-            //                    .onAppear {
-            //                        displayLoginSuccessMessageOnce()
-            //                    }
-            //            } else {
-            //                AuthView()
-            //                    .onOpenURL { url in
-            //                        if url.absoluteString.lowercased().hasSuffix("&approved=true") {
-            //                            if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-            //                               let queryItems = components.queryItems,
-            //                               let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
-            //                                print("Request Token: \(requestToken)")
-            //                                authViewModel.createSession(requestToken: requestToken)
-            //                            } else {
-            //                                displayLoginFailureMessage()
-            //                            }
-            //                        } else {
-            //                            displayLoginFailureMessage()
-            //                        }
-            //                    }
-            //                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-            //                        print("App became active again")
-            //                    }
-            //            }
+                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                        userAccountViewModel.updateSessionID()
+
+                    }
+                    .onAppear() {
+                    }
+            } else {
+                UserAccountView(viewModel: userAccountViewModel)
+                    .onAppear {
+                        displayLoginSuccessMessageOnce()
+                    }
+                    
+            }
         }
     }
-    
 }

@@ -28,25 +28,21 @@ class UserAccountViewModel: ObservableObject {
 
     init(userAccountService: UserAccountServiceProtocol) {
         self.userAccountService = userAccountService
-        self.sessionID = keychainManager.getSessionID()
-        print("the user AccountViewModel is called")
     }
 
+        
     func logout() {
             keychainManager.deleteSessionID()
             sessionID = nil  // Clear the sessionID property to update the UI
-            
-            print("User has been logged out, and Keychain has been cleared.")
         }
+    
     func fetchAccountDetails() {
         userAccountService.getAccountDetails(sessionID: self.sessionID ?? "N/A") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let accountDetails):
-                    print("Success but no data returned")
                     self?.accountDetails = accountDetails
                 case .failure(let error):
-                    print("failure but no data returned")
                     self?.errorMessage = error.localizedDescription
                 }
             }
@@ -66,11 +62,9 @@ class UserAccountViewModel: ObservableObject {
         }
     }
     
-    var isUserLoggedIn: Bool {
-        guard let sessionID = sessionID else {
-            return false
-        }
-        
-        return true
+    func updateSessionID() {
+        sessionID = keychainManager.getSessionID()
     }
+    
+ 
 }

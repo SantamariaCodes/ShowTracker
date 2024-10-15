@@ -16,12 +16,10 @@ class KeychainManager {
     }
 
     func getSessionID() -> String? {
-        print("current session id is \(keychain.get("Session_ID"))")
         return keychain.get("Session_ID")
     }
 
     func deleteSessionID() {
-        print("session deleted")
         keychain.delete("Session_ID")
         
     }

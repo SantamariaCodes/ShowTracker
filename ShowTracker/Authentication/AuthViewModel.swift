@@ -18,7 +18,6 @@ class AuthViewModel: ObservableObject {
     init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
         fetchRequestToken()
-        print("the AuthViewModel is called")
     }
     
     func fetchRequestToken() {
@@ -41,7 +40,6 @@ class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let sessionID):
-                    print("Session ID created successfully: \(sessionID)")
                     self?.keychainManager.saveSessionID(sessionID)
                 case .failure(let error):
                     self?.errorMessage = "Failed to create session: \(error.localizedDescription)"
@@ -50,4 +48,5 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
+
 }
