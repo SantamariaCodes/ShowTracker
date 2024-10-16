@@ -2,56 +2,60 @@ import SwiftUI
 
 struct TvShowView: View {
     @StateObject var viewModel: TvShowListViewModel
-    @StateObject var searchViewModel = SearchShowViewModel(searchShowService: SearchShowService(networkManager: NetworkManager<SearchShowTarget>()))
-    
     @State private var selectedGenre: TvShowListTarget? = nil
-
-    private var airingTodayShows: [TvShow] {
-        return viewModel.genreTvShows[.airingToday(page: 1)] ?? []
-    }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    CarouselContentView(shows: airingTodayShows)
+                    // Carousel for "Airing Today"
+                    CarouselContentView(shows: viewModel.genreTvShows[.airingToday(page: 1)] ?? [])
+
+                    // Custom Genre Picker
                     CustomGenrePicker(selectedGenre: $selectedGenre)
-                    
-                    if searchViewModel.searchText.isEmpty {
+
+                    if viewModel.searchText.isEmpty {
+                        // Display TV Shows based on selected or all genres
                         LazyVStack(spacing: 20) {
                             if let genre = selectedGenre {
                                 let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
-                                
                                 ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
                                     if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                                        DashboardRow(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        DashboardRow(
+                                            title: subGenre.name,
+                                            tvShows: tvShows,
+                                            listType: genre,
+                                            viewModel: viewModel
+                                        )
+                                        .id(subGenre.id) // Ensure the row identity stays intact
                                     }
                                 }
                             } else {
                                 ForEach(TvShowListTarget.allCases, id: \.self) { genre in
-                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: searchViewModel.searchText) {
-                                        DashboardRow(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
-                                    } else {
-                                        Text("No data available for \(genre.title)")
+                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
+                                        DashboardRow(
+                                            title: genre.title,
+                                            tvShows: tvShows,
+                                            listType: genre,
+                                            viewModel: viewModel
+                                        )
+                                        .id(genre.title) // Ensure unique identity for each row
                                     }
                                 }
                             }
                         }
+
                         .padding()
-                        .preferredColorScheme(.dark)
                     } else {
-                        GridDisplay(title: "Search Results", tvShows: searchViewModel.retrievedShows)
+                        // Display search results
+                        GridDisplay(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
             }
             .navigationTitle("ShowSeeker")
-            .searchable(text: $searchViewModel.searchText, prompt: "Search for a TV show")
-        }
-        .onAppear {
-            loadTvShows()
-        }
-        .onChange(of: selectedGenre) { _, _ in
-            loadTvShows()
+            .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
+            .onAppear { loadTvShows() }
+            .onChange(of: selectedGenre) { _ in loadTvShows() }
         }
     }
 
@@ -60,19 +64,8 @@ struct TvShowView: View {
             viewModel.loadTvShows(listType: genre)
             viewModel.loadGenres()
         } else {
-            viewModel.loadTvShows(listType: .airingToday(page: 1))
+            // Load all genres when no specific genre is selected
             viewModel.loadAllGenres()
         }
-    }
-}
-
-struct TvShowsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let networkManager = NetworkManager<TvShowListTarget>()
-        let tvShowService = TvShowListService(networkManager: networkManager)
-        let subgenreService = SubGenreTypesService(networkManager: networkManager)
-        let viewModel = TvShowListViewModel(tvService: tvShowService, genreService: subgenreService)
-        
-        return TvShowView(viewModel: viewModel)
     }
 }

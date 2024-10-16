@@ -12,10 +12,11 @@ struct DashboardRow: View {
     let title: String
     let tvShows: [TvShow]
     let listType: TvShowListTarget
-    @ObservedObject var viewModel: TvShowListViewModel
+
+    @ObservedObject var viewModel: TvShowListViewModel // Use ObservedObject instead of StateObject
     @State private var isLoadingMore = false
     
-    let threshold = 1
+    let threshold = 3
 
     var body: some View {
         VStack(alignment: .leading) {
