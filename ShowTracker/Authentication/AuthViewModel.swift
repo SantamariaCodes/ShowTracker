@@ -10,6 +10,7 @@ import KeychainSwift
 class AuthViewModel: ObservableObject {
     @Published var requestToken: String? = nil
     @Published var errorMessage: String? = nil
+    @Published var sessionID: String? = nil
 
     let keychainManager = KeychainManager()
     
@@ -48,5 +49,16 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
+    func updateSessionID() {
+        sessionID = "Contains"
+    }
 
+}
+
+extension AuthViewModel {
+    static func make() -> AuthViewModel {
+        let AuthViewModelNetworkManager = NetworkManager<AuthenticationTarget>()
+        let authViewModelService = AuthenticationService(networkManager: AuthViewModelNetworkManager)
+        return AuthViewModel(authenticationService: authViewModelService)
+    }
 }

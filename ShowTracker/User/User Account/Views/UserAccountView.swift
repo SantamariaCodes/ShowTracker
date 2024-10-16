@@ -23,7 +23,6 @@ struct UserAccountView: View {
                 // Avatar section
                 HStack {
                     if let avatarPath = accountDetails.avatar.tmdb.avatar_path {
-                        // Load TMDB avatar if available
                         AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w200\(avatarPath)")) { image in
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -34,7 +33,6 @@ struct UserAccountView: View {
                             ProgressView()
                         }
                     } else {
-                        // Use Gravatar as fallback
                         AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(accountDetails.avatar.gravatar.hash)")) { image in
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -61,7 +59,6 @@ struct UserAccountView: View {
                 }
                 .padding()
 
-                // Additional user info
                 VStack(alignment: .leading, spacing: 10) {
                     Text("User Info")
                         .font(.headline)

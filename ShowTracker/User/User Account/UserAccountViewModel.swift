@@ -19,25 +19,27 @@ class UserAccountViewModel: ObservableObject {
     @Published var favorites: [FavoritesModel.TVShow] = []
     @Published var errorMessage: String?
     @Published var sessionID: String?
-    @Published var showUserDetails: Bool?
-    @Published var showLoginView: Bool?
+    @Published var isLoggedIn: Bool = false // Tracks authentication state
     
-
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountServiceProtocol
+    private let authenticationService: AuthenticationService
 
-    init(userAccountService: UserAccountServiceProtocol) {
+    init(userAccountService: UserAccountServiceProtocol, authenticationService: AuthenticationService) {
         self.userAccountService = userAccountService
+        self.authenticationService = authenticationService
+        self.isLoggedIn = sessionID != nil
     }
 
-        
     func logout() {
-            keychainManager.deleteSessionID()
-            sessionID = nil  // Clear the sessionID property to update the UI
-        }
-    
+        keychainManager.deleteSessionID()
+        sessionID = nil
+        isLoggedIn = false // Update state to trigger UI refresh
+    }
+
     func fetchAccountDetails() {
-        userAccountService.getAccountDetails(sessionID: self.sessionID ?? "N/A") { [weak self] result in
+        guard let sessionID = sessionID else { return }
+        userAccountService.getAccountDetails(sessionID: sessionID) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let accountDetails):
@@ -49,6 +51,21 @@ class UserAccountViewModel: ObservableObject {
         }
     }
 
+    func createSession(requestToken: String) {
+        authenticationService.createSession(requestToken: requestToken) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let sessionID):
+                    self?.sessionID = sessionID
+                    self?.keychainManager.saveSessionID(sessionID)
+                    self?.isLoggedIn = true // Update state to trigger UI refresh
+                case .failure(let error):
+                    self?.errorMessage = "Failed to create session: \(error.localizedDescription)"
+                }
+            }
+        }
+    }
+    
     func getFavorites(accountID: String, page: Int) {
         userAccountService.getFavorites(accountID: accountID, sessionID: self.sessionID ?? "N/A", page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
             DispatchQueue.main.async {
@@ -61,10 +78,22 @@ class UserAccountViewModel: ObservableObject {
             }
         }
     }
-    
     func updateSessionID() {
         sessionID = keychainManager.getSessionID()
     }
-    
- 
 }
+
+
+
+extension UserAccountViewModel {
+    static func make() -> UserAccountViewModel {
+        let userAccountNetworkManager = NetworkManager<UserAccountTarget>()
+        let userAccountService = UserAccountService(networkManager: userAccountNetworkManager)
+        let authenticationService = AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>())
+        return UserAccountViewModel(userAccountService: userAccountService, authenticationService: authenticationService)
+    }
+}
+
+
+
+

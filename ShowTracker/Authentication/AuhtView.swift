@@ -14,7 +14,9 @@
 import SwiftUI
 
 struct AuthView: View {
-    @StateObject private var viewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
+    
+    @EnvironmentObject var viewModel: AuthViewModel
+
     @State private var showAlert = false
 
     var body: some View {

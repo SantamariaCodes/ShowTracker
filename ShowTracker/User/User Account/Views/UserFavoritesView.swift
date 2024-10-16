@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct UserFavoritesView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var userAccountViewModel: UserAccountViewModel
 
     var body: some View {
@@ -26,7 +25,6 @@ struct UserFavoritesView: View {
                             userAccountViewModel.getFavorites(accountID: String(accountID), page: 1)
                         }
                 } else {
-                    // Displaying the favorites using GridDisplay
                     GridDisplay(title: "Favorites", tvShows: convertFavoritesToTvShows(favorites: userAccountViewModel.favorites))
                 }
 
@@ -35,8 +33,16 @@ struct UserFavoritesView: View {
                         .foregroundColor(.red)
                 }
             } else {
-                // User not signed in
                 Text("You are not signed in! Please sign in to see your favorite shows.")
+            }
+        }
+        .onAppear {
+            if userAccountViewModel.accountDetails == nil {
+                userAccountViewModel.fetchAccountDetails()
+            } else {
+                if let accountID = userAccountViewModel.accountDetails?.id {
+                    userAccountViewModel.getFavorites(accountID: String(accountID), page: 1)
+                }
             }
         }
     }
@@ -58,6 +64,5 @@ struct UserFavoritesView: View {
 
 #Preview {
     UserFavoritesView()
-        .environmentObject(AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>())))
-        .environmentObject(UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>())))
+        .environmentObject(UserAccountViewModel.make())
 }

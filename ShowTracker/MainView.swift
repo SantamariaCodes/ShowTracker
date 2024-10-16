@@ -9,40 +9,29 @@
 // Unify objects? on details and tvShow?
 
 
+
 import SwiftUI
-// use keychain for  keychainManager userID. Sensitive data.
+
 struct MainView: View {
-    @StateObject private var authViewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
-    @StateObject private var userAccountViewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
-    
     var body: some View {
-        ZStack {
-            TabView {
-                // replicate this
-                TvShowView(viewModel: TvShowListViewModel.make())
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
-                
-                UserFavoritesView()
-                    .tabItem {
-                        Image(systemName: "star.fill")
-                        Text("Favorites")
-                    }
-                
-                UserDetailsView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-            }
-            // Injecting the view models into the environment
-            .environmentObject(authViewModel)
-            .environmentObject(userAccountViewModel)
-            .onAppear() {
-                print("is it running?")
-            }
+        TabView {
+            TvShowView(viewModel: TvShowListViewModel.make())
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+
+            UserFavoritesView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
+                }
+
+            UserDetailsView()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
+                }
         }
     }
 }
