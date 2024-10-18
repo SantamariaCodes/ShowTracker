@@ -6,7 +6,7 @@
 
 import Foundation
 
-class TvShowListViewModel: ObservableObject {
+class TvShowViewModel: ObservableObject {
     // genreTvShow should be refactored into Category or showCategory
     @Published var genreTvShows: [TvShowListTarget: [TvShow]] = [:]
     @Published var genres: [Genre]? // Changed from subGenres to genres
@@ -147,12 +147,12 @@ class TvShowListViewModel: ObservableObject {
     }
 }
 
-extension TvShowListViewModel {
-    static func make() -> TvShowListViewModel {
+extension TvShowViewModel {
+    static func make() -> TvShowViewModel {
         let tvShowNetworkManager = NetworkManager<TvShowListTarget>()
         let tvShowService = TvShowListService(networkManager: tvShowNetworkManager)
         let genreService = SubGenreTypesService(networkManager: tvShowNetworkManager)
-        return TvShowListViewModel(tvService: tvShowService, genreService: genreService)
+        return TvShowViewModel(tvService: tvShowService, genreService: genreService)
     }
 }
 
