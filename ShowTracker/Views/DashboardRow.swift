@@ -11,8 +11,8 @@ import SwiftUI
 struct DashboardRow: View {
     let title: String
     let tvShows: [TvShow]
-    let listType: TvShowListTarget
-    @ObservedObject var viewModel: TvShowListViewModel
+    let listType: TvShowTarget
+    @ObservedObject var viewModel: TvShowViewModel
     @State private var isLoadingMore = false
     
     let threshold = 1
@@ -28,7 +28,7 @@ struct DashboardRow: View {
                     ForEach(tvShows.indices, id: \.self) { index in
                         let tvShow = tvShows[index]
                         
-                        NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())))) {
+                        NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())))) {
                             tvShowBanner(tvShow: tvShow)
                         }
                         .buttonStyle(PlainButtonStyle())

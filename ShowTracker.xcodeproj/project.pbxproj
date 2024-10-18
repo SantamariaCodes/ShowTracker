@@ -32,12 +32,12 @@
 		9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A202C7194A800F919D0 /* TvListResponse.swift */; };
 		9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */; };
 		9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A242C7194BA00F919D0 /* NetworkManager.swift */; };
-		9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A262C7194C200F919D0 /* TvShowListTarget.swift */; };
+		9F851A272C7194C200F919D0 /* TvShowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A262C7194C200F919D0 /* TvShowTarget.swift */; };
 		9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A282C7194CB00F919D0 /* TvListService.swift */; };
 		9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */; };
 		9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2C2C7194E400F919D0 /* Constants.swift */; };
 		9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */; };
-		9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A302C71951700F919D0 /* TvShowListViewModel.swift */; };
+		9F851A312C71951700F919D0 /* TvShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A302C71951700F919D0 /* TvShowViewModel.swift */; };
 		9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A322C71952200F919D0 /* TvShowDetailView.swift */; };
 		9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A342C71952B00F919D0 /* TvShowView.swift */; };
 		9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96C15B2C7BBA4B009E1A85 /* Genres.swift */; };
@@ -103,12 +103,12 @@
 		9F851A202C7194A800F919D0 /* TvListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListResponse.swift; sourceTree = "<group>"; };
 		9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailModel.swift; sourceTree = "<group>"; };
 		9F851A242C7194BA00F919D0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		9F851A262C7194C200F919D0 /* TvShowListTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListTarget.swift; sourceTree = "<group>"; };
+		9F851A262C7194C200F919D0 /* TvShowTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowTarget.swift; sourceTree = "<group>"; };
 		9F851A282C7194CB00F919D0 /* TvListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListService.swift; sourceTree = "<group>"; };
 		9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Movie&ShowDetailsService.swift"; sourceTree = "<group>"; };
 		9F851A2C2C7194E400F919D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailsViewModel.swift; sourceTree = "<group>"; };
-		9F851A302C71951700F919D0 /* TvShowListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListViewModel.swift; sourceTree = "<group>"; };
+		9F851A302C71951700F919D0 /* TvShowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowViewModel.swift; sourceTree = "<group>"; };
 		9F851A322C71952200F919D0 /* TvShowDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailView.swift; sourceTree = "<group>"; };
 		9F851A342C71952B00F919D0 /* TvShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowView.swift; sourceTree = "<group>"; };
 		9F96C15B2C7BBA4B009E1A85 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		9F96C15E2C7BBAEB009E1A85 /* Target */ = {
 			isa = PBXGroup;
 			children = (
-				9F851A262C7194C200F919D0 /* TvShowListTarget.swift */,
+				9F851A262C7194C200F919D0 /* TvShowTarget.swift */,
 			);
 			path = Target;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */,
-				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
+				9F851A302C71951700F919D0 /* TvShowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -566,14 +566,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD804DF2C7284A000A939DB /* CarouselView.swift in Sources */,
-				9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */,
+				9F851A272C7194C200F919D0 /* TvShowTarget.swift in Sources */,
 				9F78B87C2CADDE15006F5147 /* FavoritesModel.swift in Sources */,
 				9F7C0CF42CB57DA700D045FF /* SearchShowService.swift in Sources */,
 				9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */,
 				9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */,
 				9FA920892CA48B0600F5D60E /* AuhtView.swift in Sources */,
 				9F7C0CF22CB5787100D045FF /* SearchShowTarget.swift in Sources */,
-				9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */,
+				9F851A312C71951700F919D0 /* TvShowViewModel.swift in Sources */,
 				9FA920822CA46F4B00F5D60E /* AuthenticationModels.swift in Sources */,
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
 				9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */,

@@ -7,22 +7,37 @@
 
 import Foundation
 
-protocol TvShowListServiceProtocol {
-    func fetchListOfTvShows(listType: TvShowListTarget, completion: @escaping (Result<[TvShow], Error>) -> Void)
+protocol TvShowServiceProtocol {
+    func fetchListOfTvShows(listType: TvShowTarget, completion: @escaping (Result<[TvShow], Error>) -> Void)
+    func searchTvShow(showName: String, completion: @escaping (Result<[TvShow], Error>) -> Void)
 }
 
-class TvShowListService: TvShowListServiceProtocol {
-    private var networkManager: NetworkManager<TvShowListTarget>
+class TvShowService: TvShowServiceProtocol {
+    private var networkManager: NetworkManager<TvShowTarget>
+    private let searchNetworkManager: NetworkManager<SearchShowTarget>
+
     
-    init(networkManager: NetworkManager<TvShowListTarget>) {
+    init(networkManager: NetworkManager<TvShowTarget>, searchNetworkManager: NetworkManager<SearchShowTarget>) {
         self.networkManager = networkManager
+        self.searchNetworkManager = searchNetworkManager
     }
     
-    func fetchListOfTvShows(listType: TvShowListTarget, completion: @escaping (Result<[TvShow], Error>) -> Void) {
+    func fetchListOfTvShows(listType: TvShowTarget, completion: @escaping (Result<[TvShow], Error>) -> Void) {
         networkManager.request(target: listType) { (result: Result<ListOfTvShowsResponse, Error>) in
             switch result {
             case .success(let tvListResponse):
                 completion(.success(tvListResponse.results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func searchTvShow(showName: String, completion: @escaping (Result<[TvShow], Error>) -> Void) {
+        searchNetworkManager.request(target: .searchTvShow(showName: showName)) { (result: Result<ListOfTvShowsResponse, Error>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.results))
             case .failure(let error):
                 completion(.failure(error))
             }

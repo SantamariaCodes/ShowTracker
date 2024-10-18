@@ -5,21 +5,37 @@
 //  Created by Diego Santamaria on 19/2/24.
 
 import Foundation
+import Combine
 
 class TvShowViewModel: ObservableObject {
-    // genreTvShow should be refactored into Category or showCategory
-    @Published var genreTvShows: [TvShowListTarget: [TvShow]] = [:]
+    @Published var genreTvShows: [TvShowTarget: [TvShow]] = [:]
     @Published var genres: [Genre]? // Changed from subGenres to genres
+
+    @Published var searchText: String = ""
+    @Published var retrievedShows: [TvShow] = []
     
-    private let tvService: TvShowListService
+    private let tvService: TvShowService
     private let genreService: SubGenreTypesService
+    //look into this
+    private var cancellables = Set<AnyCancellable>()
     
-    init(tvService: TvShowListService, genreService: SubGenreTypesService) {
-        self.tvService = tvService
+    init(tvService: TvShowService, genreService: SubGenreTypesService) {
         self.genreService = genreService
+        self.tvService = tvService
+        $searchText
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { [weak self] newText in
+                guard let self = self else { return }
+                if !newText.isEmpty {
+                    self.searchTvShow(searchText: newText)
+                }
+            }
+            .store(in: &cancellables)
+  
     }
     
-    func loadTvShows(listType: TvShowListTarget) {
+    func loadTvShows(listType: TvShowTarget) {
         tvService.fetchListOfTvShows(listType: listType) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -32,9 +48,7 @@ class TvShowViewModel: ObservableObject {
         }
     }
     
- 
-    
-    func loadMoreShows(listType: TvShowListTarget) {
+    func loadMoreShows(listType: TvShowTarget) {
         let key = listType.withUpdatedPage(1) // General key for the list type
         
         tvService.fetchListOfTvShows(listType: listType) { result in
@@ -42,17 +56,14 @@ class TvShowViewModel: ObservableObject {
                 switch result {
                 case .success(let shows):
                     if var existingShows = self.genreTvShows[key] {
-                        // Append new shows and log it
                         existingShows += shows
                         self.genreTvShows[key] = existingShows
                         print("Appended shows for \(key), total shows: \(existingShows.count)")
                     } else {
-                        // If no shows exist, add them for the first time
                         self.genreTvShows[key] = shows
                         print("First batch of shows for \(key), total shows: \(shows.count)")
                     }
-
-                    // Debugging: Print the total number of shows after appending
+                    
                     print("Total number of shows for \(key): \(self.genreTvShows[key]?.count ?? 0)")
                 case .failure(let error):
                     print("Error loading shows: \(error)")
@@ -60,19 +71,11 @@ class TvShowViewModel: ObservableObject {
             }
         }
     }
-
-
-
-
-
     
-    
-    
-
     func loadAllGenres() {
         let group = DispatchGroup()
         
-        for genre in TvShowListTarget.allCases {
+        for genre in TvShowTarget.allCases {
             group.enter()
             tvService.fetchListOfTvShows(listType: genre) { result in
                 DispatchQueue.main.async {
@@ -85,10 +88,6 @@ class TvShowViewModel: ObservableObject {
                     group.leave()
                 }
             }
-        }
-        
-        group.notify(queue: .main) {
-            // All genres are loaded
         }
     }
     
@@ -105,14 +104,12 @@ class TvShowViewModel: ObservableObject {
         }
     }
     
-    func tvShowsBySubGenres(for genre: TvShowListTarget) -> [Genre: [TvShow]] {
+    func tvShowsBySubGenres(for genre: TvShowTarget) -> [Genre: [TvShow]] {
         var tvShowsBySubGenre: [Genre: [TvShow]] = [:]
         
         guard let tvShows = genreTvShows[genre], let genres = genres else {
             return tvShowsBySubGenre
         }
-        
-        // Filter out genres, they return with just a couple of shows and dont trigger the dashboardRow call even when lowered treshold. Great feature
         let excludedGenres = ["War & Politics", "Sci-Fi & Fantasy", "Kids", "Documentary", "Mystery"]
         let filteredGenres = genres.filter { !excludedGenres.contains($0.name) }
         
@@ -120,21 +117,14 @@ class TvShowViewModel: ObservableObject {
             let filteredShows = tvShows.filter { $0.genreId.contains(genre.id) }
             tvShowsBySubGenre[genre] = filteredShows
         }
-        
         return tvShowsBySubGenre
     }
-
     
     
-    
-    
-    
-
-    func filteredTvShows(for genre: TvShowListTarget, with searchText: String) -> [TvShow]? {
+    func filteredTvShows(for genre: TvShowTarget, with searchText: String) -> [TvShow]? {
         guard let tvShows = genreTvShows[genre] else {
             return nil
         }
-        
         if searchText.isEmpty {
             return tvShows
         } else {
@@ -145,12 +135,26 @@ class TvShowViewModel: ObservableObject {
     func filteredTvShows(for searchText: String) -> [TvShow] {
         return genreTvShows.values.flatMap { $0 }.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
     }
+    
+    func searchTvShow(searchText: String) {
+        tvService.searchTvShow(showName: searchText) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let shows):
+                    self.retrievedShows = shows
+                case .failure(let error):
+                    print("Error retrieving shows: \(error)")
+                }
+            }
+        }
+    }
 }
 
 extension TvShowViewModel {
     static func make() -> TvShowViewModel {
-        let tvShowNetworkManager = NetworkManager<TvShowListTarget>()
-        let tvShowService = TvShowListService(networkManager: tvShowNetworkManager)
+        let tvShowNetworkManager = NetworkManager<TvShowTarget>()
+        let searchNetworkManager = NetworkManager<SearchShowTarget>()
+        let tvShowService = TvShowService(networkManager: tvShowNetworkManager, searchNetworkManager: searchNetworkManager)
         let genreService = SubGenreTypesService(networkManager: tvShowNetworkManager)
         return TvShowViewModel(tvService: tvShowService, genreService: genreService)
     }

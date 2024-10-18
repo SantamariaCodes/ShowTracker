@@ -15,7 +15,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            TvShowView(viewModel: TvShowListViewModel.make())
+            TvShowView(viewModel: TvShowViewModel.make())
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")

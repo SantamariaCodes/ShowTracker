@@ -41,7 +41,7 @@ struct TvShowDetailView: View {
 // Example usage, ensure you have a valid TV show ID and network service setup to use it
 struct TvShowDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())
+        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())
         let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
         TvShowDetailView(viewModel: viewModel)
     }

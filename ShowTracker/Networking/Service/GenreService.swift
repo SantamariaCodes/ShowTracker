@@ -9,17 +9,17 @@
 import Foundation
 
 protocol SubGenreServiceProtocol {
-    func fetchGenres(listType: TvShowListTarget, completion: @escaping (Result<[Genre], Error>) -> Void)
+    func fetchGenres(listType: TvShowTarget, completion: @escaping (Result<[Genre], Error>) -> Void)
 }
 
 class SubGenreTypesService: SubGenreServiceProtocol {
-    private var networkManager: NetworkManager<TvShowListTarget>
+    private var networkManager: NetworkManager<TvShowTarget>
     
-    init(networkManager: NetworkManager<TvShowListTarget>) {
+    init(networkManager: NetworkManager<TvShowTarget>) {
         self.networkManager = networkManager
     }
     
-    func fetchGenres(listType: TvShowListTarget, completion: @escaping (Result<[Genre], Error>) -> Void) {
+    func fetchGenres(listType: TvShowTarget, completion: @escaping (Result<[Genre], Error>) -> Void) {
         networkManager.request(target: listType) { (result: Result<GenreListResponse, Error>) in
             switch result {
             case .success(let genreResponse):

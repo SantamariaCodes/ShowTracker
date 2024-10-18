@@ -71,7 +71,7 @@ struct ShowDetailView: View {
 
 struct ShowDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowListTarget>())
+        let service = TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())
         let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
         ShowDetailView(viewModel: viewModel)
     }

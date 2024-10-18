@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct TvShowView: View {
-    @StateObject var viewModel: TvShowListViewModel
-    @StateObject var searchViewModel = SearchShowViewModel(searchShowService: SearchShowService(networkManager: NetworkManager<SearchShowTarget>()))
+    @StateObject var viewModel: TvShowViewModel
+//    @StateObject var searchViewModel = SearchShowViewModel(searchShowService: SearchShowService(networkManager: NetworkManager<SearchShowTarget>()))
     
-    @State private var selectedGenre: TvShowListTarget? = nil
+    @State private var selectedGenre: TvShowTarget? = nil
 
     private var airingTodayShows: [TvShow] {
         return viewModel.genreTvShows[.airingToday(page: 1)] ?? []
@@ -17,7 +17,7 @@ struct TvShowView: View {
                     CarouselContentView(shows: airingTodayShows)
                     CustomGenrePicker(selectedGenre: $selectedGenre)
                     
-                    if searchViewModel.searchText.isEmpty {
+                    if viewModel.searchText.isEmpty {
                         LazyVStack(spacing: 20) {
                             if let genre = selectedGenre {
                                 let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
@@ -28,8 +28,8 @@ struct TvShowView: View {
                                     }
                                 }
                             } else {
-                                ForEach(TvShowListTarget.allCases, id: \.self) { genre in
-                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: searchViewModel.searchText) {
+                                ForEach(TvShowTarget.allCases, id: \.self) { genre in
+                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
                                         DashboardRow(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
                                     } else {
                                         Text("No data available for \(genre.title)")
@@ -40,12 +40,12 @@ struct TvShowView: View {
                         .padding()
                         .preferredColorScheme(.dark)
                     } else {
-                        GridDisplay(title: "Search Results", tvShows: searchViewModel.retrievedShows)
+                        GridDisplay(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
             }
             .navigationTitle("ShowSeeker")
-            .searchable(text: $searchViewModel.searchText, prompt: "Search for a TV show")
+            .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
         }
         .onAppear {
             loadTvShows()
@@ -68,10 +68,11 @@ struct TvShowView: View {
 
 struct TvShowsView_Previews: PreviewProvider {
     static var previews: some View {
-        let networkManager = NetworkManager<TvShowListTarget>()
-        let tvShowService = TvShowListService(networkManager: networkManager)
+        let networkManager = NetworkManager<TvShowTarget>()
+        let searchNetworkManager = NetworkManager<SearchShowTarget>()
+        let tvShowService = TvShowService(networkManager: networkManager, searchNetworkManager: searchNetworkManager)
         let subgenreService = SubGenreTypesService(networkManager: networkManager)
-        let viewModel = TvShowListViewModel(tvService: tvShowService, genreService: subgenreService)
+        let viewModel = TvShowViewModel(tvService: tvShowService, genreService: subgenreService)
         
         return TvShowView(viewModel: viewModel)
     }

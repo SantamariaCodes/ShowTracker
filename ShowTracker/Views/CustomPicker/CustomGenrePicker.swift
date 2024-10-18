@@ -1,7 +1,7 @@
 import SwiftUI
 // creat custom modifiers for All and allCases
 struct CustomGenrePicker: View {
-    @Binding var selectedGenre: TvShowListTarget?
+    @Binding var selectedGenre: TvShowTarget?
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -26,7 +26,7 @@ struct CustomGenrePicker: View {
                         }
                 }
                 
-                ForEach(TvShowListTarget.allCases, id: \.self) { genre in
+                ForEach(TvShowTarget.allCases, id: \.self) { genre in
                     ZStack(alignment: .leading) {
                         if selectedGenre == genre {
                             Rectangle()
