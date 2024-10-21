@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserDetailsView: View {
-    @StateObject var userAccountViewModel: UserAccountViewModel
+    @StateObject var viewModel: UserAccountViewModel
 
     @State private var showLoginMessage: Bool = false
     @State private var loginMessage: String = "Successfully Logged In!"
@@ -33,8 +33,8 @@ struct UserDetailsView: View {
     @ViewBuilder
     private var viewContent: some View {
         ZStack {
-            if userAccountViewModel.isLoggedIn {
-                UserAccountView(viewModel: userAccountViewModel)
+            if viewModel.isLoggedIn {
+                UserAccountView(viewModel: viewModel)
                     .onAppear {
                         displayLoginSuccessMessageOnce()
                     }
@@ -44,8 +44,8 @@ struct UserDetailsView: View {
                         handleOpenURL(url)
                     }
                     .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                        userAccountViewModel.updateSessionID()
-                        userAccountViewModel.isLoggedIn = userAccountViewModel.sessionID != nil
+                        viewModel.updateSessionID()
+                        viewModel.isLoggedIn = viewModel.sessionID != nil
                     }
             }
         }
@@ -56,7 +56,7 @@ struct UserDetailsView: View {
             if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                let queryItems = components.queryItems,
                let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
-                userAccountViewModel.createSession(requestToken: requestToken)
+                viewModel.createSession(requestToken: requestToken)
             } else {
                 displayLoginFailureMessage()
             }

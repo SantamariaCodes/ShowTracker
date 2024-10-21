@@ -11,7 +11,7 @@ import SwiftUI
 struct UserFavoritesView: View {
     
    
-    @StateObject var userFavoritesViewModel: UserFavoritesViewModel
+    @StateObject var viewModel: UserFavoritesViewModel
 
     var body: some View {
         VStack {
@@ -19,23 +19,23 @@ struct UserFavoritesView: View {
                 .font(.headline)
                 .padding()
 
-            if userFavoritesViewModel.favorites.isEmpty {
+            if viewModel.favorites.isEmpty {
                 Text("It appears you are not logged in. Please log in to see your favorites...")
                     .onAppear {
-                        userFavoritesViewModel.updateAccountIDandSessionID()
-                        userFavoritesViewModel.getFavorites(page: 1)
+                        viewModel.updateAccountIDandSessionID()
+                        viewModel.getFavorites(page: 1)
                     }
             } else {
                 GridDisplay(
                     title: "Favorites",
-                    tvShows: convertFavoritesToTvShows(favorites: userFavoritesViewModel.favorites)
+                    tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
                 )
             }
 
         }
         .onAppear {
-            if userFavoritesViewModel.accountID != nil {
-                userFavoritesViewModel.getFavorites(page: 1)
+            if viewModel.accountID != nil {
+                viewModel.getFavorites(page: 1)
             }
         }
     }
@@ -56,5 +56,5 @@ struct UserFavoritesView: View {
 }
 
 #Preview {
-    UserFavoritesView(userFavoritesViewModel: UserFavoritesViewModel.make())
+    UserFavoritesView(viewModel: UserFavoritesViewModel.make())
 }

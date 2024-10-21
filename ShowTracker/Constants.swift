@@ -11,7 +11,7 @@ struct Constants {
     struct API {
         static let baseUrl = "https://api.themoviedb.org/3/"
         static let users = "users/"
-        static let apiKey = "1722fc1c5166dae1d81f050d1172510d"
+        static let apiKey = "1b629661a503bcece441fffc87be7f63"
         // Add other endpoints or constants here
     }
 }

@@ -16,4 +16,4 @@ struct Genre: Codable, Identifiable, Hashable {
 struct GenreListResponse: Codable {
     let genres: [Genre]
 }
-
+    

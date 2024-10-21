@@ -7,10 +7,8 @@
 // Add navigation to favorite shows
 // Add ability to view details on saved favorites
 // Unify objects? on details and tvShow?
-// Favorites shares Target from UserAccountView is that according best practices?
-// Add to watchList/ favorites button does nothing. Add local save later
-
-
+// Favorites shares Target from UserAccountView. Is that according to best practices?
+// Add to watchList/favorites button does nothing. Add local save later
 
 import SwiftUI
 
@@ -24,13 +22,13 @@ struct MainView: View {
                     Text("Home")
                 }
 
-            UserFavoritesView(userFavoritesViewModel: UserFavoritesViewModel.make())
+            UserFavoritesView(viewModel: UserFavoritesViewModel.make())
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")
                 }
 
-            UserDetailsView(userAccountViewModel: UserAccountViewModel.make())
+            UserDetailsView(viewModel: UserAccountViewModel.make())
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
