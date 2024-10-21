@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserDetailsView: View {
-    @EnvironmentObject var userAccountViewModel: UserAccountViewModel
+    @StateObject var userAccountViewModel: UserAccountViewModel
 
     @State private var showLoginMessage: Bool = false
     @State private var loginMessage: String = "Successfully Logged In!"
@@ -39,7 +39,7 @@ struct UserDetailsView: View {
                         displayLoginSuccessMessageOnce()
                     }
             } else {
-                AuthView()
+                AuthView(viewModel: AuthViewModel.make())
                     .onOpenURL { url in
                         handleOpenURL(url)
                     }

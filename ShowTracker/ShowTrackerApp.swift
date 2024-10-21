@@ -13,8 +13,6 @@ struct ShowTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(AuthViewModel.make())
-                .environmentObject(UserAccountViewModel.make())
         }
     }
 }

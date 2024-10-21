@@ -28,7 +28,6 @@
 		9F78B8822CAEDFF9006F5147 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78B8812CAEDFF9006F5147 /* SessionManager.swift */; };
 		9F7C0CF22CB5787100D045FF /* SearchShowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */; };
 		9F7C0CF42CB57DA700D045FF /* SearchShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */; };
-		9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */; };
 		9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A202C7194A800F919D0 /* TvListResponse.swift */; };
 		9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */; };
 		9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A242C7194BA00F919D0 /* NetworkManager.swift */; };
@@ -60,6 +59,7 @@
 		9FD804E62C72853200A939DB /* GridDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplay.swift */; };
 		9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRow.swift */; };
 		9FEDB9762C76308B008AD959 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDB9752C76308B008AD959 /* Example.swift */; };
+		9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +99,6 @@
 		9F78B8812CAEDFF9006F5147 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowTarget.swift; sourceTree = "<group>"; };
 		9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowService.swift; sourceTree = "<group>"; };
-		9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowViewModel.swift; sourceTree = "<group>"; };
 		9F851A202C7194A800F919D0 /* TvListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListResponse.swift; sourceTree = "<group>"; };
 		9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailModel.swift; sourceTree = "<group>"; };
 		9F851A242C7194BA00F919D0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		9FD804E52C72853200A939DB /* GridDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplay.swift; sourceTree = "<group>"; };
 		9FD804E72C72856200A939DB /* DashboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRow.swift; sourceTree = "<group>"; };
 		9FEDB9752C76308B008AD959 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +315,6 @@
 			children = (
 				9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */,
 				9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */,
-				9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */,
 			);
 			path = SearchFunction;
 			sourceTree = "<group>";
@@ -375,6 +374,7 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9FF846012CC68EF200071CC2 /* Favorites */,
 				9F7C0CF02CB573CA00D045FF /* SearchFunction */,
 				9FA9208A2CA4A27600F5D60E /* Info.plist */,
 				9F78B86B2CAC1B24006F5147 /* User */,
@@ -425,6 +425,14 @@
 				9F851A302C71951700F919D0 /* TvShowViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9FF846012CC68EF200071CC2 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,13 +584,13 @@
 				9F851A312C71951700F919D0 /* TvShowViewModel.swift in Sources */,
 				9FA920822CA46F4B00F5D60E /* AuthenticationModels.swift in Sources */,
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
-				9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */,
 				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
 				9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */,
 				9FEDB9762C76308B008AD959 /* Example.swift in Sources */,
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,
 				9F07A01E2CBDAF47001C32A8 /* KeychainManager.swift in Sources */,
+				9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,

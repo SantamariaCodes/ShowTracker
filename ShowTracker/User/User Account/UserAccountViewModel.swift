@@ -19,13 +19,14 @@ class UserAccountViewModel: ObservableObject {
     @Published var favorites: [FavoritesModel.TVShow] = []
     @Published var errorMessage: String?
     @Published var sessionID: String?
-    @Published var isLoggedIn: Bool = false // Tracks authentication state
+    @Published var isLoggedIn: Bool = false
     
     private let keychainManager = KeychainManager()
-    private let userAccountService: UserAccountServiceProtocol
+    private let userAccountService: UserAccountService
     private let authenticationService: AuthenticationService
 
-    init(userAccountService: UserAccountServiceProtocol, authenticationService: AuthenticationService) {
+    
+    init(userAccountService: UserAccountService, authenticationService: AuthenticationService) {
         self.userAccountService = userAccountService
         self.authenticationService = authenticationService
         self.isLoggedIn = sessionID != nil
@@ -34,7 +35,7 @@ class UserAccountViewModel: ObservableObject {
     func logout() {
         keychainManager.deleteSessionID()
         sessionID = nil
-        isLoggedIn = false // Update state to trigger UI refresh
+        isLoggedIn = false
     }
 
     func fetchAccountDetails() {
@@ -44,6 +45,8 @@ class UserAccountViewModel: ObservableObject {
                 switch result {
                 case .success(let accountDetails):
                     self?.accountDetails = accountDetails
+                    self?.keychainManager.saveAccountID(accountDetails.id)
+                    
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }
