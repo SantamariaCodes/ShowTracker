@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct DashboardRow: View {
+struct DashboardRowView: View {
     let title: String
     let tvShows: [TvShow]
     let listType: TvShowTarget
@@ -16,7 +16,7 @@ struct DashboardRow: View {
     @State private var isLoadingMore = false
     
     let threshold = 1
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -39,7 +39,7 @@ struct DashboardRow: View {
                         }
                     }
                     
-                if isLoadingMore {
+                    if isLoadingMore {
                         ProgressView()
                             .padding()
                             .frame(width: 130, height: 150)
@@ -53,16 +53,16 @@ struct DashboardRow: View {
             }
         }
     }
-//
+    //
     private func loadMoreIfNeeded() {
         if !isLoadingMore {
             isLoadingMore = true
-
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 //Consider creating a constant for Key widUpdatedPage(1) sounds confusing.Perhaps .withKey or .listTypeKey
                 let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
                 print("Loading page \(currentPage + 1) for \(listType)")
-
+                
                 viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
                 // not sure this enhances the user experience
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -71,7 +71,7 @@ struct DashboardRow: View {
             }
         }
     }
-
+    
     private func tvShowBanner(tvShow: TvShow) -> some View {
         VStack {
             ZStack {
@@ -79,7 +79,7 @@ struct DashboardRow: View {
                     .fill(Color.white)
                     .frame(width: 130, height: 150)
                     .shadow(color: .black, radius: 3)
-
+                
                 if let posterURL = tvShow.posterURL {
                     AsyncImage(url: posterURL) { image in
                         image

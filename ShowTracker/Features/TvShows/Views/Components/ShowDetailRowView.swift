@@ -5,13 +5,6 @@
 //  Created by Diego Santamaria on 28/8/24.
 //
 
-//
-//  DetailRowView.swift
-//  MovieTracker
-//
-//  Created by Diego Santamaria on 30/7/24.
-//
-
 import SwiftUI
 
 struct ShowDetailRowView: View {
@@ -59,9 +52,3 @@ struct ShowDetailRowView: View {
     
     
 }
-
-
-//#Preview {
-//    ShowDetailRowView(movie: M)
-//}
-//

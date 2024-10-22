@@ -9,7 +9,7 @@ import Combine
 
 class TvShowViewModel: ObservableObject {
     @Published var genreTvShows: [TvShowTarget: [TvShow]] = [:]
-    @Published var genres: [Genre]? // Changed from subGenres to genres
+    @Published var genres: [Genre]?
 
     @Published var searchText: String = ""
     @Published var retrievedShows: [TvShow] = []
