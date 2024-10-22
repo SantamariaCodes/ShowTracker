@@ -12,46 +12,6 @@ User Profile: Display user information and session details.
 Authentication: Secure login using token-based authentication.
 Modular Architecture: Organized by feature and core utilities for easy scalability and maintenance.
 
-##Project Structure 🗂️
-
-ShowTracker/
-│
-├── App/                     # Core app entry points
-│   ├── MainView.swift        # Tab-based main view
-│   ├── ShowTrackerApp.swift  # Entry point for the app
-│
-├── Features/
-│   ├── TvShows/              # TV show browsing feature
-│   │   ├── Views/            # Views for TV shows
-│   │   │   ├── Components/   # Reusable view components
-│   │   │   │   ├── GridDisplayView.swift
-│   │   │   │   ├── DashboardRowView.swift
-│   │   │   │   ├── ShowDetailRowView.swift
-│   │   │   │   ├── CustomGenrePickerView.swift
-│   │   │   ├── Screens/      # Main screens
-│   │   │   │   ├── TvShowView.swift
-│   │   │   │   ├── TvShowDetailView.swift
-│   │   ├── ViewModels/       # State management logic
-│   │   ├── Models/           # TV show-related models
-│   │   ├── Networking/       # Networking code for TV shows
-│
-│   ├── User/                 # User profile and favorites feature
-│   │   ├── Views/            # User-related views
-│   │   ├── ViewModels/       # User view models
-│
-├── Core/                     # Core utilities
-│   ├── Network/              # Network manager and API setup
-│   │   ├── NetworkManager.swift
-│   │   ├── APIConstants.swift
-│   ├── Storage/              # Keychain and UserDefaults managers
-│   │   ├── KeychainManager.swift
-│   │   ├── UserDefaultsManager.swift
-│
-├── Resources/                # App resources (images, strings, etc.)
-│   ├── Constants.swift
-│   ├── Images/
-│   ├── Localizable.strings
-
 ##Getting Started 🛠️
 
 Prerequisites
@@ -67,48 +27,32 @@ Build and run the project on an iOS simulator or a physical device.
 
 ##Usage 🧑‍💻
 
-Browse TV Shows:
-Navigate to the Home tab to discover popular TV shows and explore different genres.
-Search Shows:
-Use the search bar at the top of the Home tab to find shows by name.
-Manage Profile:
-Visit the Profile tab to manage your account and session details.
+Browse TV Shows: Navigate to the Home tab to discover popular TV shows and explore different genres.
+Search Shows: Use the search bar at the top of the Home tab to find shows by name.
+Display Profile: Visit the Profile tab to View your account and session details.
 
 ##Core Technologies 🛠️
 
-SwiftUI:
-A modern declarative UI framework for building responsive interfaces across Apple platforms.
-Moya:
-A network abstraction layer built on top of Alamofire, simplifying API requests.
-KeychainAccess:
-A library for secure storage of sensitive data such as user session tokens.
-UserDefaults:
-A lightweight storage system for non-sensitive user preferences and settings.
-Authentication Flow 🔑
+SwiftUI: A modern declarative UI framework for building responsive interfaces across Apple platforms.
+Moya: A network abstraction layer built on top of Alamofire, simplifying API requests.
+KeychainAccess: A library for secure storage of sensitive data such as user session tokens.
+UserDefaults: A lightweight storage system for non-sensitive user preferences and settings.
 
-Request Token:
-Fetch a request token from the TMDB API.
-Create Session:
-After the user logs in, the request token is exchanged for a session ID.
-Keychain Storage:
-The session ID is securely stored using KeychainAccess for subsequent requests.
+##Authentication Flow 🔑
+
+Request Token: Fetch a request token from the TMDB API.
+Create Session: After the user logs in, the request token is exchanged for a session ID.
+Keychain Storage: The session ID is securely stored using KeychainAccess for subsequent requests.
 
 ##Planned Improvements 📋
 
-Guest Login:
-Implement guest login with locally stored favorite shows.
-Favorites List Navigation:
-Add navigation to a dedicated favorites screen.
-Unified Object Models:
-Consolidate TvShowDetailView, ShowDetailView, and ShowDetailRowView.
-Local Save Functionality:
-Add local storage to enable saving shows to favorites.
-Review Architecture:
-Evaluate if Favorites should share the same target from UserAccountViewModel.
-Refactor Detail Views:
-Ensure GridDisplayView uses the most up-to-date TvShowDetailView.
-Dark Mode Support:
-Implement full dark mode for a better user experience.
+Guest Login: Implement guest login with locally stored favorite shows.
+Favorites List Navigation: Add navigation to a dedicated favorites screen.
+Unified Object Models: Consolidate TvShowDetailView, ShowDetailView, and ShowDetailRowView.
+Local Save Functionality: Add local storage to enable saving shows to favorites.
+Review Architecture: Evaluate if Favorites should share the same target from UserAccountViewModel.
+Refactor Detail Views: Ensure GridDisplayView uses the most up-to-date TvShowDetailView.
+Dark Mode Support: Implement full dark mode for a better user experience.
 
 ##Contact 📬
 
