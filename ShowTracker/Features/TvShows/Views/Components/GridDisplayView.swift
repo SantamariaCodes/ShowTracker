@@ -6,14 +6,14 @@
 
 import SwiftUI
 
-struct GridDisplay: View {
+struct GridDisplayView: View {
     let title: String
     let tvShows: [TvShow]
-
+    
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
@@ -25,20 +25,20 @@ struct GridDisplay: View {
                 }
             }
         }
-
+        
     }
 }
 
 private func tvShowBanner(tvShow: TvShow) -> some View {
     VStack {
         ZStack {
-             RoundedRectangle(cornerRadius: 20)
-                 .fill(Color.white)
-                 .frame(width: 120, height: 130)
-
-                 .shadow(color: .black, radius: 3)
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white)
+                .frame(width: 120, height: 130)
             
-
+                .shadow(color: .black, radius: 3)
+            
+            
             if let posterURL = tvShow.posterURL {
                 AsyncImage(url: posterURL) { image in
                     image
@@ -51,11 +51,11 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                     ProgressView()
                 }
             } else {
-                Color.gray 
+                Color.gray
                     .frame(width: 120, height: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-         }
+        }
         VStack {
             Text(tvShow.title)
                 .font(.caption)
@@ -65,11 +65,3 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
     }
     .padding(2)
 }
-//#Preview {
-//    GridDisplay(genre: "Action", movies: Movie.exampleArray)
-//}
-
-//
-//    .resizable()
-//    .scaledToFit()
-//    .clipShape(RoundedRectangle(cornerRadius: 10))

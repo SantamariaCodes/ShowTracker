@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct TvShowView: View {
-    @StateObject var viewModel: TvShowViewModel
-//    @StateObject var searchViewModel = SearchShowViewModel(searchShowService: SearchShowService(networkManager: NetworkManager<SearchShowTarget>()))
-    
+    @StateObject var viewModel: TvShowViewModel    
     @State private var selectedGenre: TvShowTarget? = nil
 
     private var airingTodayShows: [TvShow] {
@@ -15,7 +13,7 @@ struct TvShowView: View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     CarouselContentView(shows: airingTodayShows)
-                    CustomGenrePicker(selectedGenre: $selectedGenre)
+                    CustomGenrePickerView(selectedGenre: $selectedGenre)
                     
                     if viewModel.searchText.isEmpty {
                         LazyVStack(spacing: 20) {
@@ -24,13 +22,13 @@ struct TvShowView: View {
                                 
                                 ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
                                     if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                                        DashboardRow(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
                                     }
                                 }
                             } else {
                                 ForEach(TvShowTarget.allCases, id: \.self) { genre in
                                     if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
-                                        DashboardRow(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
                                     } else {
                                         Text("No data available for \(genre.title)")
                                     }
@@ -40,7 +38,7 @@ struct TvShowView: View {
                         .padding()
                         .preferredColorScheme(.dark)
                     } else {
-                        GridDisplay(title: "Search Results", tvShows: viewModel.retrievedShows)
+                        GridDisplayView(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
             }

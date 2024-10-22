@@ -22,8 +22,6 @@ struct TvShowDetailView: View {
                         Text(tvShowDetail.overview)
                         Text(tvShowDetail.firstAirDate ?? "N/A")
                             .font(.title)
-                        
-                        // Display poster, overview, genres, and rating...
                     }
                     .padding()
                 } else if let errorMessage = viewModel.errorMessage {
@@ -38,7 +36,6 @@ struct TvShowDetailView: View {
     }
 }
 
-// Example usage, ensure you have a valid TV show ID and network service setup to use it
 struct TvShowDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let service = TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())

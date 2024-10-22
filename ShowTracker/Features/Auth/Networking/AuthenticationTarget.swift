@@ -21,7 +21,6 @@ extension AuthenticationTarget: TargetType {
     }
 
     var path: String {
-        // so the base https://api.themoviedb.org/3/ plus this
         switch self {
         case .requestToken:
             return "authentication/token/new"

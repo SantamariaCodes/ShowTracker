@@ -1,6 +1,6 @@
 import SwiftUI
 // creat custom modifiers for All and allCases
-struct CustomGenrePicker: View {
+struct CustomGenrePickerView: View {
     @Binding var selectedGenre: TvShowTarget?
     
     var body: some View {
@@ -51,5 +51,5 @@ struct CustomGenrePicker: View {
 }
 
 #Preview {
-    CustomGenrePicker(selectedGenre: .constant(nil))
+    CustomGenrePickerView(selectedGenre: .constant(nil))
 }

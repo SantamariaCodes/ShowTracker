@@ -26,7 +26,7 @@ struct UserFavoritesView: View {
                         viewModel.getFavorites(page: 1)
                     }
             } else {
-                GridDisplay(
+                GridDisplayView(
                     title: "Favorites",
                     tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
                 )
