@@ -5,21 +5,28 @@
 //  Created by Diego Santamaria on 25/9/24.
 //
 
+//  AuhtView.swift
+//  ShowTracker
+//
+//  Created by Diego Santamaria on 25/9/24.
+//
+
 import SwiftUI
 
 struct AuthView: View {
-    @StateObject private var viewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
+    
+    @StateObject var viewModel: AuthViewModel
+
     @State private var showAlert = false
 
     var body: some View {
         VStack {
-            // Display the error message if it exists
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
                     .multilineTextAlignment(.center)
-                    .transition(.opacity) // Smooth appearance for error messages
+                    .transition(.opacity) 
             } else if let requestToken = viewModel.requestToken {
                 Text("Hi! It appears you aren't signed in. We need to redirect you to the TMDB authentication page. If you wish to continue, please click the button below.")
                     .padding()

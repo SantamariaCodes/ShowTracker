@@ -13,9 +13,9 @@ protocol TvShowDetailsProtocol {
 }
 
 class TvShowDetailsService: TvShowDetailsProtocol {
-    private var networkManager: NetworkManager<TvShowListTarget>
+    private var networkManager: NetworkManager<TvShowTarget>
     
-    init(networkManager: NetworkManager<TvShowListTarget>) {
+    init(networkManager: NetworkManager<TvShowTarget>) {
         self.networkManager = networkManager
     }
     

@@ -1,4 +1,3 @@
-//
 //  MainView.swift
 //  ShowTracker
 //
@@ -8,40 +7,35 @@
 // Add navigation to favorite shows
 // Add ability to view details on saved favorites
 // Unify objects? on details and tvShow?
-
+// Favorites shares Target from UserAccountView. Is that according to best practices?
+// Add to watchList/favorites button does nothing. Add local save later
 
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var authViewModel = AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>()))
-    @StateObject private var userAccountViewModel = UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>()))
-    
+
     var body: some View {
-        ZStack {
-            TabView {
-                TvShowView(viewModel: TvShowListViewModel.make())
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
-                
-                UserFavoritesView()
-                    .tabItem {
-                        Image(systemName: "star.fill")
-                        Text("Favorites")
-                    }
-                
-                UserDetailsView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-            }
-            // Injecting the view models into the environment
-            .environmentObject(authViewModel)
-            .environmentObject(userAccountViewModel)
+        TabView {
+            TvShowView(viewModel: TvShowViewModel.make())
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+
+            UserFavoritesView(viewModel: UserFavoritesViewModel.make())
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
+                }
+
+            UserDetailsView(viewModel: UserAccountViewModel.make())
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
+                }
         }
     }
 }
+
 
 

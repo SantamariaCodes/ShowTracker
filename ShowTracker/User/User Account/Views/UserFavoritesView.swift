@@ -9,34 +9,33 @@
 import SwiftUI
 
 struct UserFavoritesView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var userAccountViewModel: UserAccountViewModel
+    
+   
+    @StateObject var viewModel: UserFavoritesViewModel
 
     var body: some View {
         VStack {
-            Text("Here is a list of your favorite shows!")
+            Text("Here is a list of your favorite shows from your TMDB account!")
                 .font(.headline)
                 .padding()
 
-            if let sessionID = authViewModel.sessionID, let accountDetails = userAccountViewModel.accountDetails {
-                if userAccountViewModel.favorites.isEmpty {
-                    Text("Loading your favorite shows...")
-                        .onAppear {
-                            let accountID = accountDetails.id
-                            userAccountViewModel.getFavorites(accountID: String(accountID), sessionID: sessionID, page: 1)
-                        }
-                } else {
-                    // Displaying the favorites using GridDisplay
-                    GridDisplay(title: "Favorites", tvShows: convertFavoritesToTvShows(favorites: userAccountViewModel.favorites))
-                }
-
-                if let errorMessage = userAccountViewModel.errorMessage {
-                    Text("Error: \(errorMessage)")
-                        .foregroundColor(.red)
-                }
+            if viewModel.favorites.isEmpty {
+                Text("It appears you are not logged in. Please log in to see your favorites...")
+                    .onAppear {
+                        viewModel.updateAccountIDandSessionID()
+                        viewModel.getFavorites(page: 1)
+                    }
             } else {
-                // User not signed in
-                Text("You are not signed in! Please sign in to see your favorite shows.")
+                GridDisplay(
+                    title: "Favorites",
+                    tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
+                )
+            }
+
+        }
+        .onAppear {
+            if viewModel.accountID != nil {
+                viewModel.getFavorites(page: 1)
             }
         }
     }
@@ -57,7 +56,5 @@ struct UserFavoritesView: View {
 }
 
 #Preview {
-    UserFavoritesView()
-        .environmentObject(AuthViewModel(authenticationService: AuthenticationService(networkManager: NetworkManager<AuthenticationTarget>())))
-        .environmentObject(UserAccountViewModel(userAccountService: UserAccountService(networkManager: NetworkManager<UserAccountTarget>())))
+    UserFavoritesView(viewModel: UserFavoritesViewModel.make())
 }

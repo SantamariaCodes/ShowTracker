@@ -16,10 +16,12 @@ struct AddToFavoritesButton: View {
 
     var body: some View {
         VStack {
+         
+            Text("This feature will be added soon!")
             Button(action: {
                 navigateToUserDetails = true
             }) {
-                Text("Add to Favorites")
+                Text("Add to Watch List")
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: 200)
@@ -27,13 +29,7 @@ struct AddToFavoritesButton: View {
                     .cornerRadius(25)
             }
             .padding(.horizontal)
-            
-            NavigationLink(
-                destination: UserDetailsView(),
-                isActive: $navigateToUserDetails
-            ) {
-                EmptyView()
-            }
+        
         }
     }
 }

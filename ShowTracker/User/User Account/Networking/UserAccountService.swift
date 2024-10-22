@@ -25,9 +25,7 @@ class UserAccountService: UserAccountServiceProtocol {
             switch result {
             case .success(let accountDetails):
                 completion(.success(accountDetails))
-                print("Account Details: \(accountDetails)")
             case .failure(let error):
-                print("Failed to get account details: \(error.localizedDescription)")
                 completion(.failure(error))
 
             }
@@ -40,7 +38,6 @@ class UserAccountService: UserAccountServiceProtocol {
             switch result {
             case .success(let favoritesModel):
                 completion(.success(favoritesModel))
-                print("Favorites: \(favoritesModel.results)")
             case .failure(let error):
                 print("Failed to get favorites: \(error.localizedDescription)")
                 completion(.failure(error))

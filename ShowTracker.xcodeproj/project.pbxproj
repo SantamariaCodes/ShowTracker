@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9F0333112C72793500AA82E5 /* CustomGenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */; };
 		9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */; };
+		9F07A01C2CBDAB2C001C32A8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */; };
+		9F07A01E2CBDAF47001C32A8 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */; };
 		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
@@ -26,16 +28,15 @@
 		9F78B8822CAEDFF9006F5147 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78B8812CAEDFF9006F5147 /* SessionManager.swift */; };
 		9F7C0CF22CB5787100D045FF /* SearchShowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */; };
 		9F7C0CF42CB57DA700D045FF /* SearchShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */; };
-		9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */; };
 		9F851A212C7194A900F919D0 /* TvListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A202C7194A800F919D0 /* TvListResponse.swift */; };
 		9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */; };
 		9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A242C7194BA00F919D0 /* NetworkManager.swift */; };
-		9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A262C7194C200F919D0 /* TvShowListTarget.swift */; };
+		9F851A272C7194C200F919D0 /* TvShowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A262C7194C200F919D0 /* TvShowTarget.swift */; };
 		9F851A292C7194CB00F919D0 /* TvListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A282C7194CB00F919D0 /* TvListService.swift */; };
 		9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */; };
 		9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2C2C7194E400F919D0 /* Constants.swift */; };
 		9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */; };
-		9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A302C71951700F919D0 /* TvShowListViewModel.swift */; };
+		9F851A312C71951700F919D0 /* TvShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A302C71951700F919D0 /* TvShowViewModel.swift */; };
 		9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A322C71952200F919D0 /* TvShowDetailView.swift */; };
 		9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F851A342C71952B00F919D0 /* TvShowView.swift */; };
 		9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96C15B2C7BBA4B009E1A85 /* Genres.swift */; };
@@ -58,6 +59,7 @@
 		9FD804E62C72853200A939DB /* GridDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplay.swift */; };
 		9FD804E82C72856200A939DB /* DashboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRow.swift */; };
 		9FEDB9762C76308B008AD959 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDB9752C76308B008AD959 /* Example.swift */; };
+		9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 /* Begin PBXFileReference section */
 		9F0333102C72793500AA82E5 /* CustomGenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePicker.swift; sourceTree = "<group>"; };
 		9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoritesButton.swift; sourceTree = "<group>"; };
+		9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
 		9F4C152A2C722675005C385A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
@@ -96,16 +99,15 @@
 		9F78B8812CAEDFF9006F5147 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowTarget.swift; sourceTree = "<group>"; };
 		9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowService.swift; sourceTree = "<group>"; };
-		9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShowViewModel.swift; sourceTree = "<group>"; };
 		9F851A202C7194A800F919D0 /* TvListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListResponse.swift; sourceTree = "<group>"; };
 		9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailModel.swift; sourceTree = "<group>"; };
 		9F851A242C7194BA00F919D0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		9F851A262C7194C200F919D0 /* TvShowListTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListTarget.swift; sourceTree = "<group>"; };
+		9F851A262C7194C200F919D0 /* TvShowTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowTarget.swift; sourceTree = "<group>"; };
 		9F851A282C7194CB00F919D0 /* TvListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvListService.swift; sourceTree = "<group>"; };
 		9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Movie&ShowDetailsService.swift"; sourceTree = "<group>"; };
 		9F851A2C2C7194E400F919D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailsViewModel.swift; sourceTree = "<group>"; };
-		9F851A302C71951700F919D0 /* TvShowListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowListViewModel.swift; sourceTree = "<group>"; };
+		9F851A302C71951700F919D0 /* TvShowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowViewModel.swift; sourceTree = "<group>"; };
 		9F851A322C71952200F919D0 /* TvShowDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailView.swift; sourceTree = "<group>"; };
 		9F851A342C71952B00F919D0 /* TvShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowView.swift; sourceTree = "<group>"; };
 		9F96C15B2C7BBA4B009E1A85 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		9FD804E52C72853200A939DB /* GridDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplay.swift; sourceTree = "<group>"; };
 		9FD804E72C72856200A939DB /* DashboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRow.swift; sourceTree = "<group>"; };
 		9FEDB9752C76308B008AD959 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F07A01C2CBDAB2C001C32A8 /* KeychainSwift in Frameworks */,
 				9F4C15152C71B6A3005C385A /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +315,6 @@
 			children = (
 				9F7C0CF12CB5787100D045FF /* SearchShowTarget.swift */,
 				9F7C0CF32CB57DA700D045FF /* SearchShowService.swift */,
-				9F7C0CF52CB5960000D045FF /* SearchShowViewModel.swift */,
 			);
 			path = SearchFunction;
 			sourceTree = "<group>";
@@ -329,7 +332,7 @@
 		9F96C15E2C7BBAEB009E1A85 /* Target */ = {
 			isa = PBXGroup;
 			children = (
-				9F851A262C7194C200F919D0 /* TvShowListTarget.swift */,
+				9F851A262C7194C200F919D0 /* TvShowTarget.swift */,
 			);
 			path = Target;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 		9FB3E7B12C7192D40088A993 = {
 			isa = PBXGroup;
 			children = (
+				9F07A01D2CBDAF47001C32A8 /* KeychainManager.swift */,
 				9FEDB9752C76308B008AD959 /* Example.swift */,
 				9FB3E7BC2C7192D40088A993 /* ShowTracker */,
 				9FB3E7CE2C7192D50088A993 /* ShowTrackerTests */,
@@ -370,6 +374,7 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9FF846012CC68EF200071CC2 /* Favorites */,
 				9F7C0CF02CB573CA00D045FF /* SearchFunction */,
 				9FA9208A2CA4A27600F5D60E /* Info.plist */,
 				9F78B86B2CAC1B24006F5147 /* User */,
@@ -417,9 +422,17 @@
 			isa = PBXGroup;
 			children = (
 				9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */,
-				9F851A302C71951700F919D0 /* TvShowListViewModel.swift */,
+				9F851A302C71951700F919D0 /* TvShowViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9FF846012CC68EF200071CC2 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +453,7 @@
 			name = ShowTracker;
 			packageProductDependencies = (
 				9F4C15142C71B6A3005C385A /* Moya */,
+				9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */,
 			);
 			productName = ShowTracker;
 			productReference = 9FB3E7BA2C7192D40088A993 /* ShowTracker.app */;
@@ -515,6 +529,7 @@
 			mainGroup = 9FB3E7B12C7192D40088A993;
 			packageReferences = (
 				9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */,
+				9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 9FB3E7BB2C7192D40088A993 /* Products */;
 			projectDirPath = "";
@@ -559,22 +574,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD804DF2C7284A000A939DB /* CarouselView.swift in Sources */,
-				9F851A272C7194C200F919D0 /* TvShowListTarget.swift in Sources */,
+				9F851A272C7194C200F919D0 /* TvShowTarget.swift in Sources */,
 				9F78B87C2CADDE15006F5147 /* FavoritesModel.swift in Sources */,
 				9F7C0CF42CB57DA700D045FF /* SearchShowService.swift in Sources */,
 				9F851A332C71952200F919D0 /* TvShowDetailView.swift in Sources */,
 				9F851A232C7194B100F919D0 /* TvShowDetailModel.swift in Sources */,
 				9FA920892CA48B0600F5D60E /* AuhtView.swift in Sources */,
 				9F7C0CF22CB5787100D045FF /* SearchShowTarget.swift in Sources */,
-				9F851A312C71951700F919D0 /* TvShowListViewModel.swift in Sources */,
+				9F851A312C71951700F919D0 /* TvShowViewModel.swift in Sources */,
 				9FA920822CA46F4B00F5D60E /* AuthenticationModels.swift in Sources */,
 				9FD804E42C72850500A939DB /* MainView.swift in Sources */,
-				9F7C0CF62CB5960000D045FF /* SearchShowViewModel.swift in Sources */,
 				9F851A252C7194BA00F919D0 /* NetworkManager.swift in Sources */,
 				9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */,
 				9FEDB9762C76308B008AD959 /* Example.swift in Sources */,
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,
+				9F07A01E2CBDAF47001C32A8 /* KeychainManager.swift in Sources */,
+				9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
@@ -957,6 +973,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -968,6 +992,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F07A01A2CBDAB2C001C32A8 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		9F4C15142C71B6A3005C385A /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FE9C9992C7199D500332C5F /* XCRemoteSwiftPackageReference "Moya" */;

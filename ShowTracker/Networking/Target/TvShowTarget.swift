@@ -1,8 +1,8 @@
 import Moya
 import Foundation
 
-enum TvShowListTarget: Hashable, CaseIterable {
-    static var allCases: [TvShowListTarget] {
+enum TvShowTarget: Hashable, CaseIterable {
+    static var allCases: [TvShowTarget] {
         return [.popular(page: 1), .topRated(page: 1), .onTheAir(page: 1)]
     }
     
@@ -32,7 +32,7 @@ enum TvShowListTarget: Hashable, CaseIterable {
     }
 }
 
-extension TvShowListTarget: TargetType {
+extension TvShowTarget: TargetType {
     var baseURL: URL {
         return URL(string: Constants.API.baseUrl) ?? URL(string: "https://fallback.url")!
     }
@@ -81,8 +81,8 @@ extension TvShowListTarget: TargetType {
 }
 
 
-extension TvShowListTarget {
-    func withUpdatedPage(_ page: Int) -> TvShowListTarget {
+extension TvShowTarget {
+    func withUpdatedPage(_ page: Int) -> TvShowTarget {
         switch self {
         case .popular:
             return .popular(page: page)
