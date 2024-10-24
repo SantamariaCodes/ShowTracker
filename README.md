@@ -1,7 +1,10 @@
 # ShowTracker App 📱
 
 
-ShowTracker is a SwiftUI-based iOS app that allows users to browse, search, and see their favorite TV shows from TMDB account. Users can explore genres, view show details, and see their profiles with key functionalities such as Favorites and User Account Display. While the app integrates with the TMDB API, certain features like adding to favorites are planned for future local implementation due to API limitations.
+ShowTracker is a SwiftUI-based iOS app that enables users to browse, search, and manage TV shows through integration with their TMDB account. It implements genre filtering, detailed show pages, and personalized user profiles with features like Favorites and Account Display.
+
+The app utilizes MVVM architecture to maintain clean, scalable code and asynchronous networking with Moya to fetch real-time data from the TMDB API, ensuring a smooth and responsive user experience. Future enhancements will include local storage for favorites to provide offline access. 
+
 
 ##Features 🚀
 
