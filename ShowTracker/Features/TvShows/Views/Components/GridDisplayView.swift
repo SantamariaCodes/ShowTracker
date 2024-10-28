@@ -18,7 +18,7 @@ struct GridDisplayView: View {
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(tvShows) { tvShow in
-                    NavigationLink(destination: TvShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())))) {
+                    NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: tvShow.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())))) {
                         tvShowBanner(tvShow: tvShow)
                     }
                     .buttonStyle(PlainButtonStyle())
