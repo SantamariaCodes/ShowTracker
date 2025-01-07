@@ -49,8 +49,7 @@ class TvShowViewModel: ObservableObject {
     }
     
     func loadMoreShows(listType: TvShowTarget) {
-        let currentPage = (genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
-        let key = listType.withUpdatedPage(currentPage + 1) // General key for the list type
+        let key = listType.withUpdatedPage(1) // General key for the list type
         
         tvService.fetchListOfTvShows(listType: listType) { result in
             DispatchQueue.main.async {
@@ -58,10 +57,10 @@ class TvShowViewModel: ObservableObject {
                 case .success(let shows):
                     if var existingShows = self.genreTvShows[key] {
                         existingShows += shows
-                        self.genreTvShows[key]?.append(contentsOf: existingShows)
+                        self.genreTvShows[key] = existingShows
                         print("Appended shows for \(key), total shows: \(existingShows.count)")
                     } else {
-                        self.genreTvShows[key]?.append(contentsOf: shows)
+                        self.genreTvShows[key] = shows
                         print("First batch of shows for \(key), total shows: \(shows.count)")
                     }
                     
@@ -113,7 +112,7 @@ class TvShowViewModel: ObservableObject {
         }
         let excludedGenres = ["War & Politics", "Sci-Fi & Fantasy", "Kids", "Documentary", "Mystery"]
         let filteredGenres = genres.filter { !excludedGenres.contains($0.name) }
-
+        
         for genre in filteredGenres {
             let filteredShows = tvShows.filter { $0.genreId.contains(genre.id) }
             tvShowsBySubGenre[genre] = filteredShows
