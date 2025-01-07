@@ -56,6 +56,9 @@ struct UserDetailsView: View {
             if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                let queryItems = components.queryItems,
                let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
+                // Print the token to debug its status
+                print("Request Token Status: \(requestToken)")
+                
                 viewModel.createSession(requestToken: requestToken)
             } else {
                 displayLoginFailureMessage()
@@ -64,6 +67,8 @@ struct UserDetailsView: View {
             displayLoginFailureMessage()
         }
     }
+
+
 
     private func displayLoginSuccessMessageOnce() {
         if !showLoginMessage && amountOfTimesLoginMessageHasBeenDisplayed == 0 {

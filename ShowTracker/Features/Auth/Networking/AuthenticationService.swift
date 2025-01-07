@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 
 protocol AuthenticationServiceProtocol {
     func getRequestToken(completion: @escaping (Result<String, Error>) -> Void)
@@ -36,7 +37,13 @@ class AuthenticationService: AuthenticationServiceProtocol {
             case .success(let response):
                 completion(.success(response.sessionID))
             case .failure(let error):
-                completion(.failure(error))
+                if let moyaError = error as? MoyaError, case let .underlying(_, response) = moyaError,
+                   let response = response,
+                   let responseBody = try? response.mapString() {
+                    print("Response Body: \(responseBody)")
+                }
+                print("Failed to create session: \(error.localizedDescription)")
+
             }
         }
     }

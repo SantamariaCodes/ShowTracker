@@ -48,7 +48,7 @@ struct AuthView: View {
                         title: Text("Redirect to TMDB"),
                         message: Text("You are about to be redirected to the TMDB website for authentication. Do you want to continue?"),
                         primaryButton: .default(Text("Continue")) {
-                            if let url = URL(string: "https://www.themoviedb.org/authenticate/\(requestToken)?redirect_to=PortfolioApp://approved") {
+                            if let url = URL(string: "https://www.themoviedb.org/authenticate/\(requestToken)?redirect_to=ShowTracker://approved") {
                                 UIApplication.shared.open(url)
                             }
                         },

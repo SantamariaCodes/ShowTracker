@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct DashboardRowView: View {
+    // MARK: - Properties
+    @State private var isLoadingMore = false
+    
     let title: String
     let tvShows: [TvShow]
     let listType: TvShowTarget
-    @ObservedObject var viewModel: TvShowViewModel
-    @State private var isLoadingMore = false
-    
     let threshold = 1
+    var loadMore: (TvShowTarget) -> Void
     
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -53,18 +55,15 @@ struct DashboardRowView: View {
             }
         }
     }
-    //
+    
+    
     private func loadMoreIfNeeded() {
         if !isLoadingMore {
             isLoadingMore = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                //Consider creating a constant for Key widUpdatedPage(1) sounds confusing.Perhaps .withKey or .listTypeKey
-                let currentPage = (viewModel.genreTvShows[listType.withUpdatedPage(1)]?.count ?? 0) / 20 + 1
-                print("Loading page \(currentPage + 1) for \(listType)")
+                loadMore(listType)
                 
-                viewModel.loadMoreShows(listType: listType.withUpdatedPage(currentPage + 1))
-                // not sure this enhances the user experience
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.isLoadingMore = false
                 }

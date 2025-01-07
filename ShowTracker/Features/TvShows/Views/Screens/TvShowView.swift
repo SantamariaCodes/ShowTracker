@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TvShowView: View {
-    @StateObject var viewModel: TvShowViewModel    
+    @StateObject var viewModel: TvShowViewModel
     @State private var selectedGenre: TvShowTarget? = nil
 
     private var airingTodayShows: [TvShow] {
@@ -22,13 +22,17 @@ struct TvShowView: View {
                                 
                                 ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
                                     if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre) { listType in
+                                            viewModel.loadMoreShows(listType: listType)
+                                        }
                                     }
                                 }
                             } else {
                                 ForEach(TvShowTarget.allCases, id: \.self) { genre in
                                     if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
-                                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre) { listType in
+                                            viewModel.loadMoreShows(listType: listType)
+                                        }
                                     } else {
                                         Text("No data available for \(genre.title)")
                                     }
@@ -56,6 +60,7 @@ struct TvShowView: View {
     private func loadTvShows() {
         if let genre = selectedGenre {
             viewModel.loadTvShows(listType: genre)
+            print("chibi test: \(genre)")
             viewModel.loadGenres()
         } else {
             viewModel.loadTvShows(listType: .airingToday(page: 1))

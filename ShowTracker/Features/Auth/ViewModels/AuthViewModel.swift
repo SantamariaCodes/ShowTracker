@@ -27,6 +27,7 @@ class AuthViewModel: ObservableObject {
                 switch result {
                 case .success(let token):
                     //future keychain
+
                     self?.requestToken = token
                 case .failure(let error):
                     self?.errorMessage = "Failed to fetch token: \(error.localizedDescription)"
