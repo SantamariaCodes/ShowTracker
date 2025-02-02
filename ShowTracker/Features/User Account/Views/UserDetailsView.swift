@@ -34,6 +34,7 @@ struct UserDetailsView: View {
     private var viewContent: some View {
         ZStack {
             if viewModel.isLoggedIn {
+                
                 UserAccountView(viewModel: viewModel)
                     .onAppear {
                         displayLoginSuccessMessageOnce()
@@ -47,6 +48,7 @@ struct UserDetailsView: View {
                         viewModel.updateSessionID()
                         viewModel.isLoggedIn = viewModel.sessionID != nil
                     }
+                
             }
         }
     }
