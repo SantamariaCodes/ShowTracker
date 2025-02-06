@@ -1,28 +1,22 @@
-//
-//  UserProfileView.swift
-//  ShowTracker
-//
-//  Created by Diego Santamaria on 23/1/25.
-//
-
-import Foundation
 import SwiftUI
 
 struct UserProfileView: View {
-  @EnvironmentObject var viewModel: AuthenticationViewModel
+  @EnvironmentObject var authVM: AuthenticationViewModel
   @Environment(\.dismiss) var dismiss
-  @State var presentingConfirmationDialog = false
+  @State private var presentingConfirmationDialog = false
 
   private func deleteAccount() {
     Task {
-      if await viewModel.deleteAccount() == true {
+      if await authVM.deleteAccount() {
         dismiss()
       }
     }
   }
 
   private func signOut() {
-    viewModel.signOut()
+    authVM.signOut()
+    AuthManager.shared.logout()
+
   }
 
   var body: some View {
@@ -33,23 +27,24 @@ struct UserProfileView: View {
             Spacer()
             Image(systemName: "person.fill")
               .resizable()
-              .frame(width: 100 , height: 100)
+              .frame(width: 100, height: 100)
               .aspectRatio(contentMode: .fit)
               .clipShape(Circle())
-              .clipped()
               .padding(4)
               .overlay(Circle().stroke(Color.accentColor, lineWidth: 2))
             Spacer()
           }
-          Button(action: {}) {
-            Text("edit")
+          Button("Edit") {
+            // Implement edit functionality if needed.
           }
         }
       }
       .listRowBackground(Color(UIColor.systemGroupedBackground))
-      Section("Email") {
-        Text(viewModel.displayName)
+      
+      Section(header: Text("Email")) {
+        Text(authVM.displayName)
       }
+      
       Section {
         Button(role: .cancel, action: signOut) {
           HStack {
@@ -59,6 +54,7 @@ struct UserProfileView: View {
           }
         }
       }
+      
       Section {
         Button(role: .destructive, action: { presentingConfirmationDialog.toggle() }) {
           HStack {
@@ -71,19 +67,23 @@ struct UserProfileView: View {
     }
     .navigationTitle("Profile")
     .navigationBarTitleDisplayMode(.inline)
-    .confirmationDialog("Deleting your account is permanent. Do you want to delete your account?",
-                        isPresented: $presentingConfirmationDialog, titleVisibility: .visible) {
+    .confirmationDialog(
+      "Deleting your account is permanent. Do you want to delete your account?",
+      isPresented: $presentingConfirmationDialog,
+      titleVisibility: .visible
+    ) {
       Button("Delete Account", role: .destructive, action: deleteAccount)
-      Button("Cancel", role: .cancel, action: { })
+      Button("Cancel", role: .cancel) { }
     }
   }
 }
 
-//struct UserProfileView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    NavigationView {
-//      UserProfileView()
-//        .environmentObject(AuthenticationViewModel())
-//    }
-//  }
-//}
+struct UserProfileView_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationView {
+      UserProfileView()
+        .environmentObject(AuthenticationViewModel.make())  // using make extension
+        .environmentObject(AuthManager.shared)
+    }
+  }
+}

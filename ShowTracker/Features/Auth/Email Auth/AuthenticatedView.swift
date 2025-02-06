@@ -9,88 +9,82 @@
 import SwiftUI
 import AuthenticationServices
 
-// see https://michael-ginn.medium.com/creating-optional-viewbuilder-parameters-in-swiftui-views-a0d4e3e1a0ae
-extension AuthenticatedView where Unauthenticated == EmptyView {
-  init(@ViewBuilder content: @escaping () -> Content) {
-    self.unauthenticated = nil
-    self.content = content
-  }
-}
 
 struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Unauthenticated: View {
-  @StateObject  var viewModel = AuthenticationViewModel()
-  @State private var presentingLoginScreen = false
-//  @State private var presentingProfileScreen = false
+    @StateObject var viewModel = AuthenticationViewModel()
+    @State private var presentingLoginScreen = false
 
-  var unauthenticated: Unauthenticated?
-  @ViewBuilder var content: () -> Content
+    var unauthenticated: Unauthenticated?
+    @ViewBuilder var content: () -> Content
 
-  public init(unauthenticated: Unauthenticated?, @ViewBuilder content: @escaping () -> Content) {
-    self.unauthenticated = unauthenticated
-    self.content = content
-  }
-
-  public init(@ViewBuilder unauthenticated: @escaping () -> Unauthenticated, @ViewBuilder content: @escaping () -> Content) {
-    self.unauthenticated = unauthenticated()
-    self.content = content
-  }
-
-
-  var body: some View {
-    switch viewModel.authenticationState {
-    case .unauthenticated, .authenticating:
-      VStack {
-        if let unauthenticated = unauthenticated {
-          unauthenticated
-        }
-        else {
-          Text("You're not logged in.WHERE IS THIS DISPLAYED")
-        }
-        Button("Tap here to log in with email") {
-          viewModel.reset()
-          presentingLoginScreen.toggle()
-        }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(10)
-      }
-      .sheet(isPresented: $presentingLoginScreen) {
-        AuthenticationView()
-          .environmentObject(viewModel)
-      }
-    case .authenticated:
-      VStack {
-        content()
-          .environmentObject(viewModel)
-//        Text("You're logged in as \(viewModel.displayName).")
-//        Button("Tap here to view your profile") {
-//          presentingProfileScreen.toggle()
-//        }
-      }
-      .onReceive(NotificationCenter.default.publisher(for: ASAuthorizationAppleIDProvider.credentialRevokedNotification)) { event in
-        viewModel.signOut()
-        if let userInfo = event.userInfo, let info = userInfo["info"] {
-          print(info)
-        }
-      }
-//      .sheet(isPresented: $presentingProfileScreen) {
-//        NavigationView {
-//          UserProfileView()
-//            .environmentObject(viewModel)
-//        }
-//      }
+    public init(unauthenticated: Unauthenticated?, @ViewBuilder content: @escaping () -> Content) {
+        self.unauthenticated = unauthenticated
+        self.content = content
     }
-  }
+
+    public init(@ViewBuilder unauthenticated: @escaping () -> Unauthenticated,
+                @ViewBuilder content: @escaping () -> Content) {
+        self.unauthenticated = unauthenticated()
+        self.content = content
+    }
+
+    var body: some View {
+        switch viewModel.authenticationState {
+        case .unauthenticated, .authenticating:
+            VStack {
+                if let unauthenticated = unauthenticated {
+                    unauthenticated
+                }
+                Button("Tap here to log in with email") {
+                    viewModel.reset()
+                    presentingLoginScreen.toggle()
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+            .padding()
+            .sheet(isPresented: $presentingLoginScreen) {
+                // Present your AuthenticationView which handles email login.
+                AuthenticationView()
+                    .environmentObject(viewModel)
+            }
+        case .authenticated:
+            VStack {
+                content()
+                    .environmentObject(viewModel)
+                // Optionally add a logout button that uses AuthManager.
+                Button("Logout") {
+                    AuthManager.shared.logout()
+                }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: ASAuthorizationAppleIDProvider.credentialRevokedNotification)) { _ in
+                // Update sign-out behavior upon Apple credential revocation.
+                AuthManager.shared.logout()
+            }
+        }
+    }
 }
 
 struct AuthenticatedView_Previews: PreviewProvider {
-  static var previews: some View {
-    AuthenticatedView {
-      Text("You're signed in.")
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .background(.yellow)
+    static var previews: some View {
+        AuthenticatedView {
+            Text("You're signed in.")
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .background(.yellow)
+        }
     }
-  }
+}
+
+extension AuthenticatedView where Unauthenticated == EmptyView {
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.unauthenticated = nil
+        self.content = content
+    }
 }

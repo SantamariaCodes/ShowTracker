@@ -40,7 +40,7 @@ struct UserDetailsView: View {
                         displayLoginSuccessMessageOnce()
                     }
             } else {
-                AuthView(viewModel: AuthViewModel.make())
+                AuthView()
                     .onOpenURL { url in
                         handleOpenURL(url)
                     }

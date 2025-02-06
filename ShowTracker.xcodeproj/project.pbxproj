@@ -49,6 +49,7 @@
 		9FB3E7D02C7192D50088A993 /* ShowTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7CF2C7192D50088A993 /* ShowTrackerTests.swift */; };
 		9FB3E7DA2C7192D50088A993 /* ShowTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7D92C7192D50088A993 /* ShowTrackerUITests.swift */; };
 		9FB3E7DC2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */; };
+		9FBFFCE22D53B48B00992BEA /* TmdbAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFFCE12D53B48B00992BEA /* TmdbAccessView.swift */; };
 		9FC0D1A72D442C300049AE9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FC0D1A62D442C300049AE9A /* GoogleService-Info.plist */; };
 		9FC0D1A92D442E420049AE9A /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC0D1A82D442E420049AE9A /* Welcome.swift */; };
 		9FC4DC562D3EBAAF002B7679 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4DC552D3EBAAF002B7679 /* FirebaseAnalytics */; };
@@ -133,6 +134,7 @@
 		9FB3E7D52C7192D50088A993 /* ShowTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB3E7D92C7192D50088A993 /* ShowTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerUITests.swift; sourceTree = "<group>"; };
 		9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FBFFCE12D53B48B00992BEA /* TmdbAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmdbAccessView.swift; sourceTree = "<group>"; };
 		9FC0D1A62D442C300049AE9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FC0D1A82D442E420049AE9A /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		9FC4DC5B2D428269002B7679 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				9F023BF72CC8183A00BD441B /* Views */,
 				9F023BF62CC8182F00BD441B /* ViewModels */,
 				9F81390B2D4F1B9000C726CE /* AuthManager.swift */,
+				9FBFFCE12D53B48B00992BEA /* TmdbAccessView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
+				9FBFFCE22D53B48B00992BEA /* TmdbAccessView.swift in Sources */,
 				9FC4DC612D428306002B7679 /* AuthenticationView.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
 				9FA920872CA48AE900F5D60E /* AuthViewModel.swift in Sources */,

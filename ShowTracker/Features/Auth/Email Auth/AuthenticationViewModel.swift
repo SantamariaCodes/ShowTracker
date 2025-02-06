@@ -57,6 +57,14 @@ class AuthenticationViewModel: ObservableObject {
         self.user = user
         self.authenticationState = user == nil ? .unauthenticated : .authenticated
         self.displayName = user?.displayName ?? user?.email ?? ""
+          //ensure that the listener isn't being set up multiple times and that we handle any potential duplicate calls.
+          if self.authenticationState == .authenticated {
+              AuthManager.shared.loginWithFirebase()
+          }
+          if self.authenticationState == .unauthenticated {
+              AuthManager.shared.logout()
+          }
+          
       }
     }
   }
@@ -91,11 +99,10 @@ extension AuthenticationViewModel {
   func signInWithEmailPassword() async -> Bool {
     authenticationState = .authenticating
     do {
-      try await Auth.auth().signIn(withEmail: self.email, password: self.password)
+      _ = try await Auth.auth().signIn(withEmail: self.email, password: self.password)
+      AuthManager.shared.loginWithFirebase()
       return true
-    }
-    catch  {
-      print(error)
+    } catch {
       errorMessage = error.localizedDescription
       authenticationState = .unauthenticated
       return false
@@ -104,39 +111,49 @@ extension AuthenticationViewModel {
 
   func signUpWithEmailPassword() async -> Bool {
     authenticationState = .authenticating
-    do  {
-      try await Auth.auth().createUser(withEmail: email, password: password)
+    do {
+      _ = try await Auth.auth().createUser(withEmail: email, password: password)
+      AuthManager.shared.loginWithFirebase()
       return true
-    }
-    catch {
-      print(error)
+    } catch {
       errorMessage = error.localizedDescription
       authenticationState = .unauthenticated
       return false
     }
   }
-
-  func signOut() {
-    do {
-      try Auth.auth().signOut()
-    }
-    catch {
-      print(error)
-      errorMessage = error.localizedDescription
-    }
-  }
-
-  func deleteAccount() async -> Bool {
-    do {
-      try await user?.delete()
-      return true
-    }
-    catch {
-      errorMessage = error.localizedDescription
-      return false
-    }
-  }
 }
 
+extension AuthenticationViewModel {
+    func deleteAccount() async -> Bool {
+        do {
+            try await user?.delete()
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+}
+
+
+
+extension AuthenticationViewModel {
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            authenticationState = .unauthenticated
+            user = nil
+            displayName = ""
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+}
+
+extension AuthenticationViewModel {
+    static func make() -> AuthenticationViewModel {
+        return AuthenticationViewModel()
+    }
+}
 
 

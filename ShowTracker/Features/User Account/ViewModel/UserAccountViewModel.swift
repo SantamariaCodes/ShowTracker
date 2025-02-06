@@ -5,12 +5,6 @@
 //  Created by Diego Santamaria on 1/10/24.
 //
 
-//  UserAccountViewModel.swift
-//  ShowTracker
-//
-//  Created by Diego Santamaria on 1/10/24.
-//
-
 import Foundation
 import KeychainSwift
 
@@ -25,7 +19,6 @@ class UserAccountViewModel: ObservableObject {
     private let userAccountService: UserAccountService
     private let authenticationService: AuthenticationService
 
-    
     init(userAccountService: UserAccountService, authenticationService: AuthenticationService) {
         self.userAccountService = userAccountService
         self.authenticationService = authenticationService
@@ -36,6 +29,7 @@ class UserAccountViewModel: ObservableObject {
         keychainManager.deleteSessionID()
         sessionID = nil
         isLoggedIn = false
+        AuthManager.shared.logout()
     }
 
     func fetchAccountDetails() {
@@ -46,7 +40,6 @@ class UserAccountViewModel: ObservableObject {
                 case .success(let accountDetails):
                     self?.accountDetails = accountDetails
                     self?.keychainManager.saveAccountID(accountDetails.id)
-                    
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }
@@ -61,7 +54,8 @@ class UserAccountViewModel: ObservableObject {
                 case .success(let sessionID):
                     self?.sessionID = sessionID
                     self?.keychainManager.saveSessionID(sessionID)
-                    self?.isLoggedIn = true // Update state to trigger UI refresh
+                    self?.isLoggedIn = true
+                    AuthManager.shared.loginWithTMDB() 
                 case .failure(let error):
                     self?.errorMessage = "Failed to create session: \(error.localizedDescription)"
                 }
@@ -81,12 +75,11 @@ class UserAccountViewModel: ObservableObject {
             }
         }
     }
+    
     func updateSessionID() {
         sessionID = keychainManager.getSessionID()
     }
 }
-
-
 
 extension UserAccountViewModel {
     static func make() -> UserAccountViewModel {
@@ -96,7 +89,3 @@ extension UserAccountViewModel {
         return UserAccountViewModel(userAccountService: userAccountService, authenticationService: authenticationService)
     }
 }
-
-
-
-

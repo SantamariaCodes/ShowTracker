@@ -22,10 +22,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct ShowTrackerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var authManager = AuthManager.shared
 
+    
     var body: some Scene {
         WindowGroup {
                   MainView()
+                .environmentObject(authManager)
             }
         }
     }
