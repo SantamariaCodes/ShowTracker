@@ -15,16 +15,17 @@ struct UserFavoritesView: View {
 
     var body: some View {
         VStack {
-            Text("Here is a list of your favorite shows from your TMDB account!")
+            Text("Here is a list of your favorite shows!")
                 .font(.headline)
-                .padding()
+                
 
             if viewModel.favorites.isEmpty {
-                Text("It appears you are not logged in. Please log in to see your favorites...")
+                Text("It appears you are not logged in.")
                     .onAppear {
                         viewModel.updateAccountIDandSessionID()
                         viewModel.getFavorites(page: 1)
                     }
+                    
             } else {
                 GridDisplayView(
                     title: "Favorites",
@@ -33,11 +34,13 @@ struct UserFavoritesView: View {
             }
 
         }
+       
         .onAppear {
             if viewModel.accountID != nil {
                 viewModel.getFavorites(page: 1)
             }
         }
+        .padding()
     }
     
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {

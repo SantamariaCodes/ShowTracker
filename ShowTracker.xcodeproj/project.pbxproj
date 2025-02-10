@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -152,6 +152,10 @@
 		9FD804E72C72856200A939DB /* DashboardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRowView.swift; sourceTree = "<group>"; };
 		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9F1701AE2D59242D00A8AED7 /* Sort */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sort; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9FB3E7B72C7192D40088A993 /* Frameworks */ = {
@@ -431,6 +435,7 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9F1701AE2D59242D00A8AED7 /* Sort */,
 				9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */,
 				9FD804E32C72850500A939DB /* MainView.swift */,
 				9F023BF32CC817F000BD441B /* Features */,
@@ -497,6 +502,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9F1701AE2D59242D00A8AED7 /* Sort */,
 			);
 			name = ShowTracker;
 			packageProductDependencies = (

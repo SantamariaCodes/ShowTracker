@@ -6,9 +6,14 @@
 // 
 
 import Foundation
+import SwiftUI
+import Combine
 
 class UserFavoritesViewModel: ObservableObject {
     
+    private var authManager: AuthManager
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var favorites: [FavoritesModel.TVShow] = []
     @Published var errorMessage: String?
     @Published var accountID: String?
@@ -16,23 +21,55 @@ class UserFavoritesViewModel: ObservableObject {
 
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountService
+    private let localFavoriteService: LocalFavoriteService
 
-    
-    init(userAccountService: UserAccountService) {
+    @MainActor
+    init(userAccountService: UserAccountService, authManager: AuthManager = AuthManager.shared) {
         self.userAccountService = userAccountService
+        self.authManager = authManager
+        self.localFavoriteService = LocalFavoriteService()
+        
+        authManager.$authMethod
+            .sink { [weak self] newAuthMethod in
+                if newAuthMethod == .none {
+                    self?.userLoggedOut()
+                }
+            }
+            .store(in: &cancellables)
+        
+        localFavoriteService.$favorites
+            .sink { [weak self] newFavorites in
+                self?.getFavorites(page: 1)
+            }
+            .store(in: &cancellables)
+        
+        localFavoriteService.$favorites
+              .sink { [weak self] newFavorites in
+                  if self?.authManager.authMethod == .firebase {
+                      self?.favorites = newFavorites
+                  }
+              }
+              .store(in: &cancellables)
     }
     
     
-    func getFavorites(page: Int) {
-        userAccountService.getFavorites(accountID: self.accountID ?? "N/A", sessionID: self.sessionID ?? "N/A", page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let favoritesModel):
-                    self?.favorites = favoritesModel.results
-                case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+    
+    
+    
+    @MainActor func getFavorites(page: Int) {
+        if authManager.authMethod == .tmdb {
+            userAccountService.getFavorites(accountID: self.accountID ?? "N/A", sessionID: self.sessionID ?? "N/A", page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let favoritesModel):
+                        self?.favorites = favoritesModel.results
+                    case .failure(let error):
+                        self?.errorMessage = error.localizedDescription
+                    }
                 }
             }
+        } else if authManager.authMethod == .firebase {
+            self.favorites = self.localFavoriteService.favorites
         }
     }
     
@@ -41,10 +78,13 @@ class UserFavoritesViewModel: ObservableObject {
         self.sessionID = keychainManager.getSessionID()
     }
     
-  
-
+    func userLoggedOut() {
+        self.accountID = nil
+        self.sessionID = nil
+        self.favorites = []
+    }
 }
-
+@MainActor
 extension UserFavoritesViewModel {
     static func make() -> UserFavoritesViewModel {
         let userFavoritesNetworkManager = NetworkManager<UserAccountTarget>()
@@ -52,4 +92,3 @@ extension UserFavoritesViewModel {
         return UserFavoritesViewModel(userAccountService: userAccountService)
     }
 }
-
