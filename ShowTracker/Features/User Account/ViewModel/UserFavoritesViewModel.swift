@@ -3,7 +3,7 @@
 //  ShowTracker
 //
 //  Created by Diego Santamaria on 21/10/24.
-// 
+//
 
 import Foundation
 import SwiftUI
@@ -34,12 +34,6 @@ class UserFavoritesViewModel: ObservableObject {
                 if newAuthMethod == .none {
                     self?.userLoggedOut()
                 }
-            }
-            .store(in: &cancellables)
-        
-        localFavoriteService.$favorites
-            .sink { [weak self] newFavorites in
-                self?.getFavorites(page: 1)
             }
             .store(in: &cancellables)
         

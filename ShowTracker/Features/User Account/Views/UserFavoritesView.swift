@@ -20,7 +20,7 @@ struct UserFavoritesView: View {
                 
 
             if viewModel.favorites.isEmpty {
-                Text("It appears you are not logged in.")
+                Text("It appears you are not logged in or you dont have favorites yet!")
                     .onAppear {
                         viewModel.updateAccountIDandSessionID()
                         viewModel.getFavorites(page: 1)
