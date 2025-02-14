@@ -10,14 +10,12 @@ import SwiftUI
 
 struct UserFavoritesView: View {
     
-   
     @StateObject var viewModel: UserFavoritesViewModel
 
     var body: some View {
         VStack {
             Text("Here is a list of your favorite shows!")
                 .font(.headline)
-                
 
             if viewModel.favorites.isEmpty {
                 Text("It appears you are not logged in or you dont have favorites yet!")
@@ -50,14 +48,12 @@ struct UserFavoritesView: View {
                 title: favorite.name,
                 overview: favorite.overview,
                 posterPath: favorite.posterPath,
-                popularity: 0.0, // Replace with actual data if available
-                genreId: [], // Replace with actual data if available
+                popularity: 0.0,
+                genreId: [],
                 voteAverage: favorite.voteAverage
             )
         }
     }
 }
 
-#Preview {
-    UserFavoritesView(viewModel: UserFavoritesViewModel.make())
-}
+

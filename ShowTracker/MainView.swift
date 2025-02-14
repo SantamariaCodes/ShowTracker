@@ -9,9 +9,9 @@ import SwiftUI
 
 
 struct MainView: View {
-    
+    @EnvironmentObject var localFavoriteService: LocalFavoriteService
+
     var body: some View {
-        
         TabView {
             TvShowView(viewModel: TvShowViewModel.make())
                 .tabItem {
@@ -19,7 +19,7 @@ struct MainView: View {
                     Text("Home")
                 }
             
-            UserFavoritesView(viewModel: UserFavoritesViewModel.make())
+            UserFavoritesView(viewModel: UserFavoritesViewModel.make(localFavoriteService: localFavoriteService))
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")
@@ -33,6 +33,7 @@ struct MainView: View {
         }
     }
 }
+
 
 
 

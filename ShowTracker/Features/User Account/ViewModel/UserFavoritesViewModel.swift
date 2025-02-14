@@ -11,23 +11,25 @@ import Combine
 
 class UserFavoritesViewModel: ObservableObject {
     
-    private var authManager: AuthManager
-    private var cancellables = Set<AnyCancellable>()
-
+    
     @Published var favorites: [FavoritesModel.TVShow] = []
     @Published var errorMessage: String?
     @Published var accountID: String?
     @Published var sessionID: String?
-
+    
+    private var authManager: AuthManager
+    private var cancellables = Set<AnyCancellable>()
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountService
     private let localFavoriteService: LocalFavoriteService
 
     @MainActor
-    init(userAccountService: UserAccountService, authManager: AuthManager = AuthManager.shared) {
+    init(userAccountService: UserAccountService,
+         authManager: AuthManager = AuthManager.shared,
+         localFavoriteService: LocalFavoriteService) {
         self.userAccountService = userAccountService
         self.authManager = authManager
-        self.localFavoriteService = LocalFavoriteService()
+        self.localFavoriteService = localFavoriteService
         
         authManager.$authMethod
             .sink { [weak self] newAuthMethod in
@@ -38,21 +40,19 @@ class UserFavoritesViewModel: ObservableObject {
             .store(in: &cancellables)
         
         localFavoriteService.$favorites
-              .sink { [weak self] newFavorites in
-                  if self?.authManager.authMethod == .firebase {
-                      self?.favorites = newFavorites
-                  }
-              }
-              .store(in: &cancellables)
+            .sink { [weak self] newFavorites in
+                if self?.authManager.authMethod == .firebase {
+                    self?.favorites = newFavorites
+                }
+            }
+            .store(in: &cancellables)
     }
-    
-    
-    
-    
     
     @MainActor func getFavorites(page: Int) {
         if authManager.authMethod == .tmdb {
-            userAccountService.getFavorites(accountID: self.accountID ?? "N/A", sessionID: self.sessionID ?? "N/A", page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
+            userAccountService.getFavorites(accountID: self.accountID ?? "N/A",
+                                            sessionID: self.sessionID ?? "N/A",
+                                            page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let favoritesModel):
@@ -78,11 +78,16 @@ class UserFavoritesViewModel: ObservableObject {
         self.favorites = []
     }
 }
+
 @MainActor
 extension UserFavoritesViewModel {
-    static func make() -> UserFavoritesViewModel {
+    static func make(localFavoriteService: LocalFavoriteService) -> UserFavoritesViewModel {
         let userFavoritesNetworkManager = NetworkManager<UserAccountTarget>()
         let userAccountService  = UserAccountService(networkManager: userFavoritesNetworkManager)
-        return UserFavoritesViewModel(userAccountService: userAccountService)
+        return UserFavoritesViewModel(userAccountService: userAccountService,
+                                      authManager: AuthManager.shared,
+                                      localFavoriteService: localFavoriteService)
     }
 }
+
+

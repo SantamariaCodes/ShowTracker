@@ -14,9 +14,9 @@
 import SwiftUI
 
 struct AuthView: View {
+    
     @EnvironmentObject var authManager: AuthManager
-
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {

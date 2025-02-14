@@ -23,12 +23,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct ShowTrackerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var authManager = AuthManager.shared
+    @StateObject private var localFavoriteService = LocalFavoriteService()
+
 
     
     var body: some Scene {
         WindowGroup {
                   MainView()
                 .environmentObject(authManager)
+                .environmentObject(localFavoriteService)
             }
         }
     }
