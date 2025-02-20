@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 class LocalFavoriteService: ObservableObject {
     @Published private(set) var favorites: [FavoritesModel.TVShow]
-    private let saveKey = "LocalFavorites"
+    private var saveKey = "LocalFavorites"
 
     init() {
         
@@ -26,6 +26,25 @@ class LocalFavoriteService: ObservableObject {
             favorites = []
         }
     }
+    
+    func updateUserID(_ userID: String) {
+          saveKey = "LocalFavorites-\(userID)"
+          loadFavorites()
+      }
+    // not sure about current function of uodateUserID by adding favorites instead of re initializing object?
+    private func loadFavorites() {
+         if let data = UserDefaults.standard.data(forKey: saveKey) {
+             do {
+                 let decoded = try JSONDecoder().decode([FavoritesModel.TVShow].self, from: data)
+                 favorites = decoded
+             } catch {
+                 print("Error decoding favorites: \(error)")
+                 favorites = []
+             }
+         } else {
+             favorites = []
+         }
+     }
    
     func add(_ tvShow: FavoritesModel.TVShow) {
         if favorites.contains(where: { $0.id == tvShow.id }) {

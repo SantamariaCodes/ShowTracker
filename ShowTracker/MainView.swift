@@ -5,12 +5,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MainView: View {
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var localFavoriteService: LocalFavoriteService
     @State private var selectedTab: Int = 0
     @State private var homePath = NavigationPath()
-
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             TvShowView(viewModel: TvShowViewModel.make(), path: $homePath)
@@ -34,11 +36,14 @@ struct MainView: View {
                 }
                 .tag(2)
         }
-        .onChange(of: selectedTab) {_, newValue in
+        .onChange(of: selectedTab) { _, newValue in
             if newValue == 0 {
-                // Reset the navigation path when Home is reselected.
                 homePath = NavigationPath()
             }
+        }
+        .onChange(of: authManager.authMethod) {_, newAuthMethod in
+            let identifier = newAuthMethod == .firebase ? (Auth.auth().currentUser?.email ?? "default") : "default"
+                       localFavoriteService.updateUserID(identifier)
         }
     }
 }
