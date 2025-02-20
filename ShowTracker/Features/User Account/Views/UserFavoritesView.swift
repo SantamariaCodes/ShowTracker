@@ -25,24 +25,23 @@ struct UserFavoritesView: View {
                     }
                     
             } else {
-                GridDisplayView(
+                FavoritesGridDisplayView(
                     title: "Favorites",
-                    tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
-                )
+                    tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites))
             }
 
         }
        
         .onAppear {
             if viewModel.accountID != nil {
-                viewModel.getFavorites(page: 1)
+                viewModel.getFavorites(page: 0)
             }
         }
         .padding()
     }
     
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
-        return favorites.map { favorite in
+        let convertFavoriteTvModelToTvShow = favorites.map { favorite in
             TvShow(
                 id: favorite.id,
                 title: favorite.name,
@@ -53,6 +52,8 @@ struct UserFavoritesView: View {
                 voteAverage: favorite.voteAverage
             )
         }
+        print("This is the conversion happening on UserFavoritesView \(convertFavoriteTvModelToTvShow)")
+        return convertFavoriteTvModelToTvShow
     }
 }
 

@@ -68,6 +68,7 @@
 		9FD804E42C72850500A939DB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E32C72850500A939DB /* MainView.swift */; };
 		9FD804E62C72853200A939DB /* GridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplayView.swift */; };
 		9FD804E82C72856200A939DB /* DashboardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRowView.swift */; };
+		9FE9DAD52D5F9E0600429003 /* FavoritesGridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */; };
 		9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,7 @@
 		9FD804E32C72850500A939DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9FD804E52C72853200A939DB /* GridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplayView.swift; sourceTree = "<group>"; };
 		9FD804E72C72856200A939DB /* DashboardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRowView.swift; sourceTree = "<group>"; };
+		9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGridDisplayView.swift; sourceTree = "<group>"; };
 		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +288,7 @@
 				9F0333102C72793500AA82E5 /* CustomGenrePickerView.swift */,
 				9FD804E72C72856200A939DB /* DashboardRowView.swift */,
 				9F4C151B2C722614005C385A /* Carousel */,
+				9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				9FD804E62C72853200A939DB /* GridDisplayView.swift in Sources */,
 				9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */,
 				9F81390C2D4F1B9000C726CE /* AuthManager.swift in Sources */,
+				9FE9DAD52D5F9E0600429003 /* FavoritesGridDisplayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

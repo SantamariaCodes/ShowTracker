@@ -22,7 +22,9 @@ class UserFavoritesViewModel: ObservableObject {
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountService
     private let localFavoriteService: LocalFavoriteService
-
+    
+    
+    
     @MainActor
     init(userAccountService: UserAccountService,
          authManager: AuthManager = AuthManager.shared,
@@ -41,11 +43,13 @@ class UserFavoritesViewModel: ObservableObject {
         
         localFavoriteService.$favorites
             .sink { [weak self] newFavorites in
-                if self?.authManager.authMethod == .firebase {
-                    self?.favorites = newFavorites
+                guard let self = self else { return }
+                if self.authManager.authMethod == .firebase {
+                    self.favorites = newFavorites
                 }
             }
             .store(in: &cancellables)
+
     }
     
     @MainActor func getFavorites(page: Int) {
