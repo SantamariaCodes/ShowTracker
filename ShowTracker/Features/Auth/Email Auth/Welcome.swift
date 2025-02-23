@@ -28,7 +28,7 @@ struct Welcome: View {
                         .environmentObject(authenticationViewModel)
                 }
             }
-            .navigationTitle("My Favourites")
+            .navigationTitle("My account")
         }
         
     }

@@ -31,7 +31,7 @@ class LocalFavoriteService: ObservableObject {
           saveKey = "LocalFavorites-\(userID)"
           loadFavorites()
       }
-    // not sure about current function of uodateUserID by adding favorites instead of re initializing object?
+    
     private func loadFavorites() {
          if let data = UserDefaults.standard.data(forKey: saveKey) {
              do {
