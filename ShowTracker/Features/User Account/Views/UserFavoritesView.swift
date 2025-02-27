@@ -25,9 +25,11 @@ struct UserFavoritesView: View {
                     }
                     
             } else {
-                FavoritesGridDisplayView(
-                    title: "Favorites",
-                    tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites))
+                NavigationStack{
+                    FavoritesGridDisplayView(
+                        title: "Favorites",
+                        tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites))
+                }
             }
 
         }
