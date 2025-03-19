@@ -50,6 +50,7 @@ class LocalFavoriteService: ObservableObject {
         if favorites.contains(where: { $0.id == tvShow.id }) {
         } else {
             favorites.append(tvShow)
+            
             save()
         }
     }
