@@ -31,10 +31,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                 .shadow(color: .black, radius: 3)
             
             if let posterURL = tvShow.posterURL {
-                // Append a dummy query parameter to force AsyncImage to refresh the image.
-                let refreshedURLString = "\(posterURL.absoluteString)?refresh=\(UUID().uuidString)"
-                if let refreshedURL = URL(string: refreshedURLString) {
-                    AsyncImage(url: refreshedURL) { image in
+                    AsyncImage(url: posterURL) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -44,11 +41,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                     } placeholder: {
                         ProgressView()
                     }
-                } else {
-                    Color.gray
-                        .frame(width: 120, height: 150)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
+                
             } else {
                 Color.gray
                     .frame(width: 120, height: 150)

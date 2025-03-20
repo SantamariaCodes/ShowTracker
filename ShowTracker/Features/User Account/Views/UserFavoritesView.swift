@@ -17,22 +17,7 @@ struct UserFavoritesView: View {
         VStack {
             Text("Here is a list of your favorite shows!")
                 .font(.headline)
-
-            if viewModel.favorites.isEmpty {
-                Text("It appears you are not logged in or you dont have favorites yet!")
-                    .onAppear {
-                        viewModel.updateAccountIDandSessionID()
-                        viewModel.getFavorites(page: 1)
-                    }
-                    
-            } else {
-                NavigationStack{
-                    FavoritesGridDisplayView(
-                        title: "Favorites",
-                        tvShows: $favoriteShows)
-                }
-            }
-
+                renderUI()
         }
        
         .onAppear {
@@ -44,6 +29,19 @@ struct UserFavoritesView: View {
         .padding()
     }
     
+    @ViewBuilder
+    private func renderUI() -> some View {
+        if viewModel.favorites.isEmpty {
+            Text("It appears you are not logged in or you dont have favorites yet!")
+            
+        } else {
+            NavigationStack{
+                FavoritesGridDisplayView(
+                    title: "Favorites",
+                    tvShows: $favoriteShows)
+            }
+        }
+    }
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
         let convertFavoriteTvModelToTvShow = favorites.map { favorite in
             TvShow(
