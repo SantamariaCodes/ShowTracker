@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FavoritesGridDisplayView: View {
     let title: String
-    let tvShows: [TvShow]
+    @Binding var tvShows: [TvShow]
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]

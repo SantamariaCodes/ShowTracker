@@ -11,7 +11,8 @@ import SwiftUI
 struct UserFavoritesView: View {
     
     @StateObject var viewModel: UserFavoritesViewModel
-
+    @State var favoriteShows: [TvShow] = []
+    
     var body: some View {
         VStack {
             Text("Here is a list of your favorite shows!")
@@ -28,7 +29,7 @@ struct UserFavoritesView: View {
                 NavigationStack{
                     FavoritesGridDisplayView(
                         title: "Favorites",
-                        tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites))
+                        tvShows: $favoriteShows)
                 }
             }
 
@@ -38,6 +39,7 @@ struct UserFavoritesView: View {
             if viewModel.accountID != nil {
                 viewModel.getFavorites(page: 0)
             }
+            favoriteShows = convertFavoritesToTvShows(favorites: viewModel.favorites)
         }
         .padding()
     }
