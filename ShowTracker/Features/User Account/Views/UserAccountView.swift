@@ -97,6 +97,8 @@ struct UserAccountView: View {
                 // Logout button
                 Button(action: {
                     viewModel.logout()
+                    AuthManager.shared.logout()
+
                 }) {
                     Text("Logout")
                         .foregroundColor(.red)

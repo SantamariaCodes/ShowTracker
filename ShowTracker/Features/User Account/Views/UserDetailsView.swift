@@ -34,12 +34,13 @@ struct UserDetailsView: View {
     private var viewContent: some View {
         ZStack {
             if viewModel.isLoggedIn {
+                
                 UserAccountView(viewModel: viewModel)
                     .onAppear {
                         displayLoginSuccessMessageOnce()
                     }
             } else {
-                AuthView(viewModel: AuthViewModel.make())
+                AuthView()
                     .onOpenURL { url in
                         handleOpenURL(url)
                     }
@@ -56,9 +57,7 @@ struct UserDetailsView: View {
             if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                let queryItems = components.queryItems,
                let requestToken = queryItems.first(where: { $0.name == "request_token" })?.value {
-                // Print the token to debug its status
                 print("Request Token Status: \(requestToken)")
-                
                 viewModel.createSession(requestToken: requestToken)
             } else {
                 displayLoginFailureMessage()

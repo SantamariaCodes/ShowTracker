@@ -79,7 +79,7 @@ struct CarouselContentView: View {
                                             .font(.caption)
                                             .foregroundColor(.white)
                                         
-                                        NavigationLink(destination: ShowDetailView(viewModel: TvShowDetailViewModel(tvShowId: show.id, tvShowDetailsService: TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())))) {
+                                        NavigationLink(value: show) {
                                             Text("Show Details")
                                                 .font(.caption)
                                                 .foregroundColor(.white)
