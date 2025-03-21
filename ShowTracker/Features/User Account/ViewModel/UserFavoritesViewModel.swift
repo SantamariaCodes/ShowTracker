@@ -16,6 +16,7 @@ class UserFavoritesViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var accountID: String?
     @Published var sessionID: String?
+    @Published var FirebaseTrue: Bool?
     
     private var authManager: AuthManager
     private var cancellables = Set<AnyCancellable>()
@@ -54,6 +55,7 @@ class UserFavoritesViewModel: ObservableObject {
     
     @MainActor func getFavorites(page: Int) {
         if authManager.authMethod == .tmdb {
+            FirebaseTrue = false
             userAccountService.getFavorites(accountID: self.accountID ?? "N/A",
                                             sessionID: self.sessionID ?? "N/A",
                                             page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
@@ -63,10 +65,12 @@ class UserFavoritesViewModel: ObservableObject {
                         self?.favorites = favoritesModel.results
                     case .failure(let error):
                         self?.errorMessage = error.localizedDescription
+
                     }
                 }
             }
         } else if authManager.authMethod == .firebase {
+            FirebaseTrue = true
             self.favorites = self.localFavoriteService.favorites
         }
     }

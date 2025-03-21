@@ -13,6 +13,7 @@ struct UserFavoritesView: View {
     @StateObject var viewModel: UserFavoritesViewModel
     @State var favoriteShows: [TvShow] = []
     
+    
     var body: some View {
         VStack {
             Text("Here is a list of your favorite shows!")
@@ -32,13 +33,25 @@ struct UserFavoritesView: View {
     @ViewBuilder
     private func renderUI() -> some View {
         if viewModel.favorites.isEmpty {
-            Text("It appears you are not logged in or you dont have favorites yet!")
-            
+            Text("It appears you are not logged in or you don’t have favorites yet!")
+                .onAppear {
+                    viewModel.updateAccountIDandSessionID()
+                    viewModel.getFavorites(page: 1)
+                }
         } else {
-            NavigationStack{
-                FavoritesGridDisplayView(
-                    title: "Favorites",
-                    tvShows: $favoriteShows)
+            // @Binding when using Firebase to ensure UI responsiveness. Plain array from view model when using TMDB.
+            NavigationStack {
+                if viewModel.FirebaseTrue == true {
+                    FavoritesGridDisplayView(
+                        title: "Favorites",
+                        tvShows: $favoriteShows
+                    )
+                } else {
+                    FavoritesGridDisplayView(
+                        title: "Favorites",
+                        tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
+                    )
+                }
             }
         }
     }

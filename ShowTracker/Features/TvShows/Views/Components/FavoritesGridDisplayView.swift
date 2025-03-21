@@ -6,7 +6,15 @@ struct FavoritesGridDisplayView: View {
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-    
+    init(title: String, tvShows: Binding<[TvShow]>) {
+         self.title = title
+         self._tvShows = tvShows
+     }
+
+     init(title: String, tvShows: [TvShow]) {
+         self.title = title
+         self._tvShows = .constant(tvShows)
+     }
     
     var body: some View {
         ScrollView {
