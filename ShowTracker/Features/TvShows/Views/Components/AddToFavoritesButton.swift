@@ -29,12 +29,16 @@ struct AddToFavoritesButton: View {
                 localFavoriteService.add(convertedShow)
             }) {
                 Text("Add to Favorites")
-                    .foregroundColor(.white)
-                    .padding()
+                    .fontWeight(.semibold)
                     .frame(maxWidth: 200)
-                    .background(Color.red)
-                    .cornerRadius(25)
+                    .padding()
+                    .background(Color.cyan)
+                    .foregroundColor(.white)
+                    .cornerRadius(30)
+                    .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
             }
+            .padding(.horizontal)
+
         }
     }
     

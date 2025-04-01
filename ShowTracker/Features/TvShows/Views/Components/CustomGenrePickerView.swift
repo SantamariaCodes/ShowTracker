@@ -10,7 +10,7 @@ struct CustomGenrePickerView: View {
                 ZStack(alignment: .leading) {
                     if selectedGenre == nil {
                         Rectangle()
-                            .fill(Color.red)
+                            .fill(Color.cyan)
                             .frame(width: 2, height: 18)
                             .offset(x: -1)
                     }
@@ -30,7 +30,7 @@ struct CustomGenrePickerView: View {
                     ZStack(alignment: .leading) {
                         if selectedGenre == genre {
                             Rectangle()
-                                .fill(Color.red)
+                                .fill(Color.cyan)
                                 .frame(width: 2, height: 18)
                                 .offset(x: -1)
                         }

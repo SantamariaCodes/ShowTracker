@@ -37,7 +37,7 @@ struct AuthView: View {
 private func emailLoginViews() -> some View {
       AuthenticatedView {
       } content: {
-        Welcome()
+        UserProfileView()
       }
 }
 

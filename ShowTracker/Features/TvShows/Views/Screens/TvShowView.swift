@@ -36,13 +36,13 @@ struct TvShowView: View {
                             }
                         }
                         .padding()
-                        .preferredColorScheme(.dark)
                     } else {
                         GridDisplayView(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
             }
             .navigationTitle("ShowSeeker")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
             .onAppear {
                 loadTvShows()

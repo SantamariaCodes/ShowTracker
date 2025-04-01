@@ -51,7 +51,6 @@
 		9FB3E7DC2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */; };
 		9FBFFCE22D53B48B00992BEA /* TmdbAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFFCE12D53B48B00992BEA /* TmdbAccessView.swift */; };
 		9FC0D1A72D442C300049AE9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FC0D1A62D442C300049AE9A /* GoogleService-Info.plist */; };
-		9FC0D1A92D442E420049AE9A /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC0D1A82D442E420049AE9A /* Welcome.swift */; };
 		9FC4DC562D3EBAAF002B7679 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4DC552D3EBAAF002B7679 /* FirebaseAnalytics */; };
 		9FC4DC582D3EBAAF002B7679 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4DC572D3EBAAF002B7679 /* FirebaseAuth */; };
 		9FC4DC5A2D3EBAAF002B7679 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4DC592D3EBAAF002B7679 /* FirebaseCore */; };
@@ -137,7 +136,6 @@
 		9FB3E7DB2C7192D50088A993 /* ShowTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9FBFFCE12D53B48B00992BEA /* TmdbAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmdbAccessView.swift; sourceTree = "<group>"; };
 		9FC0D1A62D442C300049AE9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9FC0D1A82D442E420049AE9A /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		9FC4DC5B2D428269002B7679 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		9FC4DC5E2D4282EB002B7679 /* AuthenticatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedView.swift; sourceTree = "<group>"; };
 		9FC4DC602D428306002B7679 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -486,7 +484,6 @@
 				9FC4DC642D42837E002B7679 /* LoginView.swift */,
 				9FC4DC662D4283B9002B7679 /* SignupView.swift */,
 				9FC4DC682D4283D0002B7679 /* UserProfileView.swift */,
-				9FC0D1A82D442E420049AE9A /* Welcome.swift */,
 			);
 			path = "Email Auth";
 			sourceTree = "<group>";
@@ -672,7 +669,6 @@
 				9FA9207E2CA46CC200F5D60E /* AuthenticationService.swift in Sources */,
 				9F0333112C72793500AA82E5 /* CustomGenrePickerView.swift in Sources */,
 				9F851A292C7194CB00F919D0 /* TvShowService.swift in Sources */,
-				9FC0D1A92D442E420049AE9A /* Welcome.swift in Sources */,
 				9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */,
 				9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */,
 				9F78B8742CAC69A3006F5147 /* AccountDetailsModel.swift in Sources */,

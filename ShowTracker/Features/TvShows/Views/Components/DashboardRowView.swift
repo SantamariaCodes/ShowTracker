@@ -61,7 +61,7 @@ struct DashboardRowView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white)
+                    .fill(Color.black)
                     .frame(width: 130, height: 150)
                     .shadow(color: .black, radius: 3)
                 

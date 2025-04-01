@@ -84,7 +84,7 @@ struct CarouselContentView: View {
                                                 .font(.caption)
                                                 .foregroundColor(.white)
                                                 .padding(6)
-                                                .background(Color.red)
+                                                .background(Color.cyan)
                                                 .cornerRadius(10)
                                         }
                                     }

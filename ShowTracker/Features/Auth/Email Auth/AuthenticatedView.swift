@@ -31,43 +31,39 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
     var body: some View {
         switch viewModel.authenticationState {
         case .unauthenticated, .authenticating:
-            VStack {
+            VStack(spacing: 20) {
                 if let unauthenticated = unauthenticated {
                     unauthenticated
                 }
-                Button("Tap here to log in with email") {
+
+                Button(action: {
                     viewModel.reset()
                     presentingLoginScreen.toggle()
+                }) {
+                    Text("Log in with Email")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.cyan)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+
             }
             .padding()
             .sheet(isPresented: $presentingLoginScreen) {
-                // Present your AuthenticationView which handles email login.
                 AuthenticationView()
                     .environmentObject(viewModel)
             }
+
         case .authenticated:
-            VStack {
+            VStack(spacing: 24) {
                 content()
                     .environmentObject(viewModel)
-                // Optionally add a logout button that uses AuthManager.
-                Button("Logout") {
-                    AuthManager.shared.logout()
-                }
-                .padding()
-                .background(Color.red)
-                .foregroundColor(.white)
-                .cornerRadius(10)
             }
-            .onReceive(NotificationCenter.default.publisher(for: ASAuthorizationAppleIDProvider.credentialRevokedNotification)) { _ in
-                // Update sign-out behavior upon Apple credential revocation.
-                AuthManager.shared.logout()
-            }
+         
+
         }
     }
 }
