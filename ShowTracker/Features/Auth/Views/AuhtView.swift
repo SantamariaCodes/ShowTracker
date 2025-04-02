@@ -22,6 +22,8 @@ struct AuthView: View {
             VStack(spacing: 10) {
                 
                 if authManager.authMethod == .none {
+                    Image("ShowTrackerLogo")
+                        .resizable()
                     emailLoginViews()
                     tmdbLoginButton()
                 }
