@@ -23,7 +23,7 @@ struct AuthView: View {
                 
                 if authManager.authMethod == .none {
                     Image("ShowTrackerLogo")
-                        .resizable()
+                        
                     emailLoginViews()
                     tmdbLoginButton()
                 }

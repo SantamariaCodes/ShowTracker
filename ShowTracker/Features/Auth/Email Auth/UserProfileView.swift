@@ -20,6 +20,12 @@ struct UserProfileView: View {
 
     var body: some View {
         ScrollView {
+            Image("ShowTrackerIcon")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+
+
             VStack(spacing: 24) {
                 // Profile Picture
 //                VStack {
