@@ -11,8 +11,9 @@ struct GridDisplayView: View {
     let tvShows: [TvShow]
     
     let columns = [
-        GridItem(.adaptive(minimum: 100))
+        GridItem(.adaptive(minimum: 120))
     ]
+
     
     var body: some View {
         ScrollView {
@@ -52,7 +53,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                 }
             } else {
                 Color.gray
-                    .frame(width: 120, height: 150)
+                    .frame(width: 120, height: 130)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }

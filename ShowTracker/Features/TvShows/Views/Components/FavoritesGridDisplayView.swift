@@ -4,7 +4,7 @@ struct FavoritesGridDisplayView: View {
     let title: String
     @Binding var tvShows: [TvShow]
     let columns = [
-        GridItem(.adaptive(minimum: 100))
+        GridItem(.adaptive(minimum: 110))
     ]
     init(title: String, tvShows: Binding<[TvShow]>) {
          self.title = title
@@ -35,7 +35,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color.white)
-                .frame(width: 120, height: 130)
+                .frame(width: 110, height: 130)
                 .shadow(color: .black, radius: 3)
             
             if let posterURL = tvShow.posterURL {
@@ -43,7 +43,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 120, height: 130)
+                            .frame(width: 110, height: 130)
                             .clipped()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     } placeholder: {
@@ -52,7 +52,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
                 
             } else {
                 Color.gray
-                    .frame(width: 120, height: 150)
+                    .frame(width: 110, height: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
