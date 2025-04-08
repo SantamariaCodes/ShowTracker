@@ -17,6 +17,15 @@ struct PersonalBannerView: View {
             Text("Built by Diego Santamaria")
                 .font(.footnote)
                 .foregroundColor(.gray.opacity(0.5))
+            
+            Text("This product uses the TMDB API but is not endorsed or certified by TMDB.")
+                .font(.caption2)
+                .foregroundColor(.gray.opacity(0.5))
+                .multilineTextAlignment(.center)
+
+            Link("Powered by TMDB", destination: URL(string: "https://www.themoviedb.org/")!)
+                .font(.caption2)
+                .foregroundColor(.cyan)
         }
         .padding(.top, 40)
         .padding(.bottom, 20)

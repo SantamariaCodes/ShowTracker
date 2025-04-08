@@ -24,7 +24,7 @@ struct DashboardRowView: View {
                                 .background(
                                     GeometryReader { geo in
                                         Color.clear
-                                            .onChange(of: geo.frame(in: .global).minX) { _ in
+                                            .onChange(of: geo.frame(in: .global).minX) { _, _ in
                                                 detectIfEndItemVisible(index: index, geo: geo)
                                             }
                                     }
