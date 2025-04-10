@@ -18,27 +18,27 @@ struct UserAccountView: View {
     @ObservedObject var viewModel: UserAccountViewModel
     var body: some View {
         VStack {
-           
+       
             if let accountDetails = viewModel.accountDetails {
                 // Avatar section
                 HStack {
                     if let avatarPath = accountDetails.avatar.tmdb.avatar_path {
                         AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w200\(avatarPath)")) { image in
                             image.resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
+                                .scaledToFit()
+                                .frame(width: 120, height: 120)
                                 .clipShape(Circle())
-                                .shadow(radius: 5)
+                                .overlay(Circle().stroke(Color.cyan, lineWidth: 3))
                         } placeholder: {
                             ProgressView()
                         }
                     } else {
                         AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(accountDetails.avatar.gravatar.hash)")) { image in
                             image.resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
+                                .scaledToFit()
+                                .frame(width: 120, height: 120)
                                 .clipShape(Circle())
-                                .shadow(radius: 5)
+                                .overlay(Circle().stroke(Color.cyan, lineWidth: 3))
                         } placeholder: {
                             ProgressView()
                         }
@@ -101,12 +101,13 @@ struct UserAccountView: View {
 
                 }) {
                     Text("Logout")
-                        .foregroundColor(.red)
-                        .padding()
+                        .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
-                        .padding(.top)
+                        .padding()
+                        .background(Color.cyan)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
                 }
             } else if let errorMessage = viewModel.errorMessage {
                 // Display error message if user details couldn't be fetched

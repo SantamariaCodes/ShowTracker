@@ -16,8 +16,9 @@ struct UserFavoritesView: View {
     
     var body: some View {
         VStack {
-            Text("Here is a list of your favorite shows!")
+            Text("Favorites")
                 .font(.headline)
+                .foregroundColor(Color.cyan)
                 renderUI()
         }
        

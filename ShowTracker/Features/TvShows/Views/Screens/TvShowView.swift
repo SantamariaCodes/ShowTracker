@@ -10,8 +10,6 @@ struct TvShowView: View {
         NavigationStack(path: $path) {
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    // Example: Carousel at the top (adjust as needed)
-                    
                     CarouselContentView(shows: viewModel.genreTvShows[.airingToday(page: 1)] ?? [])
                     
                     CustomGenrePickerView(selectedGenre: $selectedGenre)
@@ -34,6 +32,7 @@ struct TvShowView: View {
                                     }
                                 }
                             }
+                            PersonalBannerView()
                         }
                         .padding()
                     } else {
@@ -41,7 +40,7 @@ struct TvShowView: View {
                     }
                 }
             }
-            .navigationTitle("ShowSeeker")
+            .navigationTitle("ShowTracker")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
             .onAppear {
@@ -50,7 +49,6 @@ struct TvShowView: View {
             .onChange(of: selectedGenre) { _, _ in
                 loadTvShows()
             }
-            // Define a navigation destination for TvShow.
             .navigationDestination(for: TvShow.self) { tvShow in
                 ShowDetailView(viewModel: TvShowDetailViewModel(
                     tvShowId: tvShow.id,
@@ -70,3 +68,4 @@ struct TvShowView: View {
         }
     }
 }
+
