@@ -10,36 +10,15 @@ struct TvShowView: View {
         NavigationStack(path: $path) {
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    CarouselContentView(shows: viewModel.genreTvShows[.airingToday(page: 1)] ?? [])
-                    
-                    CustomGenrePickerView(selectedGenre: $selectedGenre)
-                    
+                    carouselAndGenrePickerSection
+                
                     if viewModel.searchText.isEmpty {
-                        LazyVStack(spacing: 20) {
-                            if let genre = selectedGenre {
-                                let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
-                                ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
-                                    if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
-                                    }
-                                }
-                            } else {
-                                ForEach(TvShowTarget.allCases, id: \.self) { genre in
-                                    if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
-                                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
-                                    } else {
-                                        Text("No data available for \(genre.title)")
-                                    }
-                                }
-                            }
-                            PersonalBannerView()
-                        }
-                        .padding()
+                        dashboardRowsSection
                     } else {
                         GridDisplayView(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
-            }
+            }	
             .navigationTitle("ShowTracker")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
@@ -57,6 +36,37 @@ struct TvShowView: View {
             }
         }
     }
+    
+    private var carouselAndGenrePickerSection: some View {
+        VStack {
+            CarouselContentView(shows: viewModel.genreTvShows[.airingToday(page: 1)] ?? [])
+            CustomGenrePickerView(selectedGenre: $selectedGenre)
+        }
+    }
+    
+    private var dashboardRowsSection: some View {
+        LazyVStack(spacing: 20) {
+            if let genre = selectedGenre {
+                let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
+                ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
+                    if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
+                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                    }
+                }
+            } else {
+                ForEach(TvShowTarget.allCases, id: \.self) { genre in
+                    if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
+                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                    } else {
+                        Text("No data available for \(genre.title)")
+                    }
+                }
+            }
+            PersonalBannerView()
+        }
+        .padding()
+    }
+
 
     private func loadTvShows() {
         if let genre = selectedGenre {

@@ -37,7 +37,7 @@ struct AddToFavoritesButton: View {
                     .cornerRadius(30)
                     .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
             }
-            .padding(.horizontal)
+            .padding(.bottom, 20)
 
         }
     }

@@ -13,6 +13,8 @@
 		9F07A01E2CBDAF47001C32A8 /* KeychainManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A01D2CBDAF47001C32A8 /* KeychainManager 2.swift */; };
 		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
+		9F2FD1F32DB1CAA100880E1D /* LoginMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FD1F22DB1CAA100880E1D /* LoginMessageView.swift */; };
+		9F2FD1F52DB1CB2C00880E1D /* AuthViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FD1F42DB1CB2C00880E1D /* AuthViewContainer.swift */; };
 		9F4AA0A72D9B8ADB00BA8873 /* ShowTrackerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4AA0A62D9B8ADB00BA8873 /* ShowTrackerLogo.png */; };
 		9F4C15152C71B6A3005C385A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C15142C71B6A3005C385A /* Moya */; };
 		9F4FF2DF2C7F4BF9008B00EE /* ShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FF2DE2C7F4BF9008B00EE /* ShowDetailView.swift */; };
@@ -95,6 +97,8 @@
 		9F07A01D2CBDAF47001C32A8 /* KeychainManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainManager 2.swift"; sourceTree = "<group>"; };
 		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
+		9F2FD1F22DB1CAA100880E1D /* LoginMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMessageView.swift; sourceTree = "<group>"; };
+		9F2FD1F42DB1CB2C00880E1D /* AuthViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewContainer.swift; sourceTree = "<group>"; };
 		9F4AA0A62D9B8ADB00BA8873 /* ShowTrackerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShowTrackerLogo.png; sourceTree = "<group>"; };
 		9F4FF2DE2C7F4BF9008B00EE /* ShowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailView.swift; sourceTree = "<group>"; };
 		9F4FF2E12C7F4C54008B00EE /* ShowDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailRowView.swift; sourceTree = "<group>"; };
@@ -389,8 +393,10 @@
 			isa = PBXGroup;
 			children = (
 				9F78B86C2CAC1B37006F5147 /* UserDetailsView.swift */,
+				9F2FD1F42DB1CB2C00880E1D /* AuthViewContainer.swift */,
 				9F78B87D2CADE18D006F5147 /* UserFavoritesView.swift */,
 				9F78B8782CAC8CF2006F5147 /* UserAccountView.swift */,
+				9F2FD1F22DB1CAA100880E1D /* LoginMessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,
 				9F07A01E2CBDAF47001C32A8 /* KeychainManager 2.swift in Sources */,
+				9F2FD1F52DB1CB2C00880E1D /* AuthViewContainer.swift in Sources */,
 				9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
@@ -680,6 +687,7 @@
 				9F96C1622C7BC252009E1A85 /* GenreService.swift in Sources */,
 				9F851A352C71952B00F919D0 /* TvShowView.swift in Sources */,
 				9F78B87E2CADE18D006F5147 /* UserFavoritesView.swift in Sources */,
+				9F2FD1F32DB1CAA100880E1D /* LoginMessageView.swift in Sources */,
 				9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */,
 				9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */,
 				9FC4DC692D4283D0002B7679 /* UserProfileView.swift in Sources */,

@@ -44,14 +44,6 @@ struct DashboardRowView: View {
                     if tvShows.count < 5 && !isLoadingMore {
                         loadMoreIfNeeded()
                     }
-
-                    // Fallback in case last item never triggers
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        if !isLoadingMore && tvShows.count % 20 == 0 {
-                            print("Retrying load as a fallback.")
-                            loadMoreIfNeeded()
-                        }
-                    }
                 }
             }
         }

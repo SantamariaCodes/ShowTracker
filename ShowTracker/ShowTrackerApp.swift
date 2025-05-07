@@ -29,7 +29,7 @@ struct ShowTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-                SplashView()
+                LogoDisplayView()
                 .environmentObject(authManager)
                 .environmentObject(localFavoriteService)
             }

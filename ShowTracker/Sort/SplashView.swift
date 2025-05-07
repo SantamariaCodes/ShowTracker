@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 
-struct SplashView: View {
+struct LogoDisplayView: View {
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var localFavoriteService: LocalFavoriteService
     @State private var isActive = false

@@ -20,7 +20,6 @@ struct UserAccountView: View {
         VStack {
        
             if let accountDetails = viewModel.accountDetails {
-                // Avatar section
                 HStack {
                     if let avatarPath = accountDetails.avatar.tmdb.avatar_path {
                         AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w200\(avatarPath)")) { image in
@@ -87,14 +86,12 @@ struct UserAccountView: View {
                 .cornerRadius(10)
                 .padding()
 
-                // Error handling
                 if let errorMessage = viewModel.errorMessage {
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
                 }
 
-                // Logout button
                 Button(action: {
                     viewModel.logout()
                     AuthManager.shared.logout()
@@ -110,12 +107,10 @@ struct UserAccountView: View {
                         .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
                 }
             } else if let errorMessage = viewModel.errorMessage {
-                // Display error message if user details couldn't be fetched
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
                     .padding()
             } else {
-                // Display loading indicator while fetching account details
                 ProgressView("Loading account details...")
                     .onAppear {
                         viewModel.fetchAccountDetails()
