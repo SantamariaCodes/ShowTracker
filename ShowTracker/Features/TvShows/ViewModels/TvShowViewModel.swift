@@ -6,12 +6,15 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class TvShowViewModel: ObservableObject {
     @Published var genreTvShows: [TvShowTarget: [TvShow]] = [:]
     @Published var genres: [Genre]?
     @Published var searchText: String = ""
     @Published var retrievedShows: [TvShow] = []
+    
+    @Published var selectedList: TvShowTarget?
     
     private let tvService: TvShowService
     private let genreService: SubGenreTypesService
@@ -147,6 +150,9 @@ class TvShowViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    
 }
 
 extension TvShowViewModel {
@@ -157,6 +163,30 @@ extension TvShowViewModel {
         let genreService = SubGenreTypesService(networkManager: tvShowNetworkManager)
         return TvShowViewModel(tvService: tvShowService, genreService: genreService)
     }
+}
+
+extension TvShowViewModel {
+    var subgenreRows: [(subgenre: Genre, shows: [TvShow])] {
+        guard let list = selectedList else { return [] }
+
+        let groups = tvShowsBySubGenres(for: list)
+        
+        let nonEmpty = groups.filter { !$0.value.isEmpty }
+        
+        return nonEmpty.map { (subgenre, shows) in
+          (subgenre: subgenre, shows: shows)
+        }
+    }
+}
+
+
+
+extension TvShowViewModel {
+  var allRows: [(genre: TvShowTarget, shows: [TvShow])] {
+    TvShowTarget.allCases.map { genre in
+      (genre, genreTvShows[genre] ?? [])
+    }
+  }
 }
 
 

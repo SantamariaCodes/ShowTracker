@@ -4,7 +4,6 @@ import SwiftUI
 struct TvShowView: View {
     @StateObject var viewModel: TvShowViewModel
     @Binding var path: NavigationPath
-    @State private var selectedGenre: TvShowTarget? = nil
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -18,14 +17,14 @@ struct TvShowView: View {
                         GridDisplayView(title: "Search Results", tvShows: viewModel.retrievedShows)
                     }
                 }
-            }	
+            }
             .navigationTitle("ShowTracker")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchText, prompt: "Search for a TV show")
             .onAppear {
                 loadTvShows()
             }
-            .onChange(of: selectedGenre) { _, _ in
+            .onChange(of: viewModel.selectedList) { _, _ in
                 loadTvShows()
             }
             .navigationDestination(for: TvShow.self) { tvShow in
@@ -40,36 +39,41 @@ struct TvShowView: View {
     private var carouselAndGenrePickerSection: some View {
         VStack {
             CarouselContentView(shows: viewModel.genreTvShows[.airingToday(page: 1)] ?? [])
-            CustomGenrePickerView(selectedGenre: $selectedGenre)
+            CustomGenrePickerView(selectedGenre: $viewModel.selectedList)
         }
     }
     
     private var dashboardRowsSection: some View {
         LazyVStack(spacing: 20) {
-            if let genre = selectedGenre {
-                let showsBySubGenre = viewModel.tvShowsBySubGenres(for: genre)
-                ForEach(showsBySubGenre.keys.sorted(by: { $0.name < $1.name }), id: \.self) { subGenre in
-                    if let tvShows = showsBySubGenre[subGenre], !tvShows.isEmpty {
-                        DashboardRowView(title: subGenre.name, tvShows: tvShows, listType: genre, viewModel: viewModel)
-                    }
+            if let list = viewModel.selectedList {
+                ForEach(viewModel.subgenreRows, id: \.subgenre) { row in
+                    SubGenreRowView(viewModel: SubGenreRowViewModel.make(tvShowTarget: list, subGenre: row.subgenre))
                 }
             } else {
-                ForEach(TvShowTarget.allCases, id: \.self) { genre in
-                    if let tvShows = viewModel.filteredTvShows(for: genre, with: viewModel.searchText) {
-                        DashboardRowView(title: genre.title, tvShows: tvShows, listType: genre, viewModel: viewModel)
+                ForEach(viewModel.allRows, id: \.genre) { row in
+                    if row.shows.isEmpty {
+                        Text("No data for \(row.genre.title)")
                     } else {
-                        Text("No data available for \(genre.title)")
+                        DashboardRowView(
+                            title: row.genre.title,
+                            tvShows: row.shows,
+                            listType: row.genre,
+                            viewModel: viewModel
+                        )
                     }
                 }
             }
+
             PersonalBannerView()
         }
         .padding()
     }
 
 
+
+
     private func loadTvShows() {
-        if let genre = selectedGenre {
+        if let genre = viewModel.selectedList {
             viewModel.loadTvShows(listType: genre)
             viewModel.loadGenres()
         } else {
