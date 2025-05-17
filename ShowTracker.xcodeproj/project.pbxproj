@@ -11,6 +11,11 @@
 		9F07A0142CB80546001C32A8 /* AddToFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */; };
 		9F07A01C2CBDAB2C001C32A8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9F07A01B2CBDAB2C001C32A8 /* KeychainSwift */; };
 		9F07A01E2CBDAF47001C32A8 /* KeychainManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07A01D2CBDAF47001C32A8 /* KeychainManager 2.swift */; };
+		9F193E912DD55B88008027F9 /* SubGenreRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F193E8B2DD55B88008027F9 /* SubGenreRowView.swift */; };
+		9F193E922DD55B88008027F9 /* LocalFavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F193E8E2DD55B88008027F9 /* LocalFavoriteService.swift */; };
+		9F193E932DD55B88008027F9 /* SubGenreRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F193E8C2DD55B88008027F9 /* SubGenreRowViewModel.swift */; };
+		9F193E942DD55B88008027F9 /* PersonalBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F193E8F2DD55B88008027F9 /* PersonalBannerView.swift */; };
+		9F193E952DD55B88008027F9 /* LogoDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F193E902DD55B88008027F9 /* LogoDisplayView.swift */; };
 		9F2395EF2C86678900B6FDC4 /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */; };
 		9F2EED862C78B28400F0F8B0 /* CustomPickerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */; };
 		9F2FD1F32DB1CAA100880E1D /* LoginMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FD1F22DB1CAA100880E1D /* LoginMessageView.swift */; };
@@ -95,6 +100,11 @@
 		9F0333102C72793500AA82E5 /* CustomGenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenrePickerView.swift; sourceTree = "<group>"; };
 		9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoritesButton.swift; sourceTree = "<group>"; };
 		9F07A01D2CBDAF47001C32A8 /* KeychainManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainManager 2.swift"; sourceTree = "<group>"; };
+		9F193E8B2DD55B88008027F9 /* SubGenreRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGenreRowView.swift; sourceTree = "<group>"; };
+		9F193E8C2DD55B88008027F9 /* SubGenreRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGenreRowViewModel.swift; sourceTree = "<group>"; };
+		9F193E8E2DD55B88008027F9 /* LocalFavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteService.swift; sourceTree = "<group>"; };
+		9F193E8F2DD55B88008027F9 /* PersonalBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalBannerView.swift; sourceTree = "<group>"; };
+		9F193E902DD55B88008027F9 /* LogoDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoDisplayView.swift; sourceTree = "<group>"; };
 		9F2395EE2C86678900B6FDC4 /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerModifier.swift; sourceTree = "<group>"; };
 		9F2FD1F22DB1CAA100880E1D /* LoginMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMessageView.swift; sourceTree = "<group>"; };
@@ -256,6 +266,7 @@
 		9F023BFB2CC8198300BD441B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9F193E8C2DD55B88008027F9 /* SubGenreRowViewModel.swift */,
 				9F851A302C71951700F919D0 /* TvShowViewModel.swift */,
 				9F851A2E2C71950F00F919D0 /* TvShowDetailsViewModel.swift */,
 			);
@@ -290,6 +301,7 @@
 				9F07A0132CB80546001C32A8 /* AddToFavoritesButton.swift */,
 				9F2EED852C78B28400F0F8B0 /* CustomPickerModifier.swift */,
 				9F0333102C72793500AA82E5 /* CustomGenrePickerView.swift */,
+				9F193E8B2DD55B88008027F9 /* SubGenreRowView.swift */,
 				9FD804E72C72856200A939DB /* DashboardRowView.swift */,
 				9F4C151B2C722614005C385A /* Carousel */,
 				9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */,
@@ -392,6 +404,8 @@
 		9F78B87F2CADE1A9006F5147 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F193E902DD55B88008027F9 /* LogoDisplayView.swift */,
+				9F193E8F2DD55B88008027F9 /* PersonalBannerView.swift */,
 				9F78B86C2CAC1B37006F5147 /* UserDetailsView.swift */,
 				9F2FD1F42DB1CB2C00880E1D /* AuthViewContainer.swift */,
 				9F78B87D2CADE18D006F5147 /* UserFavoritesView.swift */,
@@ -405,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				9F78B86F2CAC37D7006F5147 /* UserAccountTarget.swift */,
+				9F193E8E2DD55B88008027F9 /* LocalFavoriteService.swift */,
 				9F78B8712CAC395D006F5147 /* UserAccountService.swift */,
 			);
 			path = Networking;
@@ -692,6 +707,11 @@
 				9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */,
 				9FC4DC692D4283D0002B7679 /* UserProfileView.swift in Sources */,
 				9F78B8792CAC8CF2006F5147 /* UserAccountView.swift in Sources */,
+				9F193E912DD55B88008027F9 /* SubGenreRowView.swift in Sources */,
+				9F193E922DD55B88008027F9 /* LocalFavoriteService.swift in Sources */,
+				9F193E932DD55B88008027F9 /* SubGenreRowViewModel.swift in Sources */,
+				9F193E942DD55B88008027F9 /* PersonalBannerView.swift in Sources */,
+				9F193E952DD55B88008027F9 /* LogoDisplayView.swift in Sources */,
 				9FC4DC5F2D4282EB002B7679 /* AuthenticatedView.swift in Sources */,
 				9FD804E62C72853200A939DB /* GridDisplayView.swift in Sources */,
 				9F851A2D2C7194E400F919D0 /* Constants.swift in Sources */,
