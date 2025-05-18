@@ -28,10 +28,6 @@ A sleek SwiftUI app to browse, search, and view your favorite TV shows using The
 |-----------|--------|
 | ![](ShowTracker/Screenshots/favorites.png) | ![](ShowTracker/Screenshots/search.png) |
 
-| User Profile |
-|--------------|
-| ![](ShowTracker/Screenshots/userprofile.png) |
-
 ---
 
 ## 🧰 Tech Stack
