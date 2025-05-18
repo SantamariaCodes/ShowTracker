@@ -22,15 +22,15 @@ A sleek SwiftUI app to browse, search, and view your favorite TV shows using The
 
 | Dashboard | Detail View |
 |-----------|-------------|
-| ![](screenshots/dashboard.png) | ![](screenshots/detail.png) |
+| ![](ShowTracker/screenshots/dashboard.png) | ![](ShowTracker/screenshots/detail.png) |
 
 | Favorites | Search |
 |-----------|--------|
-| ![](screenshots/favorites.png) | ![](screenshots/search.png) |
+| ![](ShowTracker/screenshots/favorites.png) | ![](ShowTracker/screenshots/search.png) |
 
 | User Profile |
 |--------------|
-| ![](screenshots/userprofile.png) |
+| ![](ShowTracker/screenshots/userprofile.png) |
 
 ---
 
