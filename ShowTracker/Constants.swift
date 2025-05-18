@@ -11,6 +11,6 @@ struct Constants {
     struct API {
         static let baseUrl = "https://api.themoviedb.org/3/"
         static let users = "users/"
-        static let apiKey = "1b629661a503bcece441fffc87be7f63"
+        static let apiKey = "YOUR_TMDB_API_KEY" // ← Replace this
     }
 }

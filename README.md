@@ -1,85 +1,86 @@
-# ShowTracker App 📱
+# 🎬 ShowTracker
 
+A sleek SwiftUI app to browse, search, and view your favorite TV shows using The Movie Database (TMDB) API. Built with a clean MVVM architecture, real-time search, carousel UI, and dual authentication support via Firebase and TMDB.
 
-ShowTracker is a SwiftUI-based iOS app that enables users to browse, search, and manage TV shows through integration with their TMDB account. It implements genre filtering, detailed show pages, and personalized user profiles with features like Favorites and Account Display.
+---
 
-The app utilizes MVVM architecture to maintain clean, scalable code and asynchronous networking with Moya to fetch real-time data from the TMDB API, ensuring a smooth and responsive user experience. Future enhancements will include local storage for favorites to provide offline access. 
+## ✨ Features
 
+- 🔍 Browse top-rated, popular, and currently airing TV shows via TMDB API
+- 🎯 Search functionality with real-time filtering
+- 🎞️ Interactive carousel for featured content
+- 🗂 Horizontal genre picker with subgenre breakdown
+- ✅ Dual authentication: Firebase and TMDB login
+- 💾 View saved favorites with TMDB login *(read-only)*
+- 🔐 Save and remove favorites using Firebase authentication
+- 🧪 MVVM architecture with Moya-based network abstraction
+- 📱 Built entirely with SwiftUI and Combine
 
-##Features 🚀
+---
 
-- Browse TV Shows: Discover top-rated shows, airing today, or by genre using data from the TMDB API.
+## 📸 Screenshots
 
-- Search Shows: Search for TV shows by name.
+| Dashboard | Detail View |
+|-----------|-------------|
+| ![](screenshots/dashboard.png) | ![](screenshots/detail.png) |
 
-- Favorites Management: Planned ability to save favorite shows locally for easy access.
+| Favorites | Search |
+|-----------|--------|
+| ![](screenshots/favorites.png) | ![](screenshots/search.png) |
 
-- User Profile: Display user information and session details.
+| User Profile |
+|--------------|
+| ![](screenshots/userprofile.png) |
 
-- Authentication: Secure login using token-based authentication.
+---
 
-- Modular Architecture: Organized by feature and core utilities for easy scalability and maintenance.
+## 🧰 Tech Stack
 
-##Getting Started 🛠️
+- **Language:** Swift
+- **UI Framework:** SwiftUI
+- **Architecture:** MVVM
+- **Networking:** Moya
+- **Backend Services:** Firebase Auth, TMDB API
+- **Persistence:** Keychain (for session data), UserDefaults (for local favorites)
 
-Prerequisites
-Xcode 15+: Ensure Xcode is installed on your machine.
-Setup Instructions
-Clone the repository:
+---
+
+## 🧱 Architecture Notes
+
+- Views are organized by feature (`TvShows`, `User`, `Auth`, etc.)
+- ViewModels handle all filtering, API calls, and data logic
+- `TvShowView` is intentionally designed to showcase all major categories by default
+- `DashboardRowView` currently receives the main `TvShowViewModel` for simplicity; in a production environment, this would be further modularized
+- A reusable `LocalFavoriteService` handles local persistence for Firebase users
+- Session management uses `KeychainManager` for TMDB-authenticated users
+
+> ℹ️ **Note:** The TMDB API does not allow third-party apps to modify user favorites. This app supports *viewing* favorites with TMDB, and *adding/removing* favorites when using Firebase login.
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+
 git clone https://github.com/santamariacodes/ShowTracker.git
-cd ShowTracker
-Open the project: open ShowTracker.xcodeproj
-Build and run the project on an iOS simulator or a physical device.
 
-##Usage 🧑‍💻
+2. **Open Xcode**
+Open ShowTracker.xcodeproj using Xcode 14+.
 
-- Browse TV Shows: Navigate to the Home tab to discover popular TV shows and explore different genres.
+3. **Configure your API key**
+Open Constants.swift and replace the placeholder with your actual TMDB API key:
 
-- Search Shows: Use the search bar at the top of the Home tab to find shows by name.
+struct Constants {
+    struct API {
+        static let baseUrl = "https://api.themoviedb.org/3/"
+        static let users = "users/"
+        static let apiKey = "YOUR_TMDB_API_KEY" // ← Replace this
+    }
+}
 
-- Display Profile: Visit the Profile tab to View your account and session details.
+🙋‍♂️ Author
 
-##Core Technologies 🛠️
+Built by Diego Santamaria
+LinkedIn:"https://linkedin.com/in/diego-santamaria-miguel"
 
-- SwiftUI: A modern declarative UI framework for building responsive interfaces across Apple platforms.
 
-- Moya: A network abstraction layer built on top of Alamofire, simplifying API requests.
-
-- KeychainAccess: A library for secure storage of sensitive data such as user session tokens.
-
-- UserDefaults: A lightweight storage system for non-sensitive user preferences and settings.
-
-##Authentication Flow 🔑
-
-- Request Token: Fetch a request token from the TMDB API.
-
-- Create Session: After the user logs in, the request token is exchanged for a session ID.
-
-- Keychain Storage: The session ID is securely stored using KeychainAccess for subsequent requests.
-
-##Planned Improvements 📋
-
-- Guest Login: Implement guest login with locally stored favorite shows.
-
-- Favorites List Navigation: Add navigation to a dedicated favorites screen.
-
-- Unified Object Models: Consolidate TvShowDetailView, ShowDetailView, and ShowDetailRowView.
-
-- Local Save Functionality: Add local storage to enable saving shows to favorites.
-
-- Review Architecture: Evaluate if Favorites should share the same target from UserAccountViewModel.
-
-- Refactor Detail Views: Ensure GridDisplayView uses the most up-to-date TvShowDetailView.
-
-- Dark Mode Support: Implement full dark mode for a better user experience.
-
-##Contact 📬
-
-Created by Diego Santamaria.
-
-GitHub: santamariacodes
-Website: santamariacodes
-
-##Issues 🐛
-
-If you encounter any issues, please open an issue on the GitHub repository.

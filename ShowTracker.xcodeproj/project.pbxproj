@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -169,10 +169,6 @@
 		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		9F1701AE2D59242D00A8AED7 /* Sort */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sort; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		9FB3E7B72C7192D40088A993 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -330,7 +326,6 @@
 		9F023C032CC8329300BD441B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				9F851A2C2C7194E400F919D0 /* Constants.swift */,
 				9F851A242C7194BA00F919D0 /* NetworkManager.swift */,
 			);
 			path = Network;
@@ -342,6 +337,13 @@
 				9F07A01D2CBDAF47001C32A8 /* KeychainManager 2.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		9F2021482DDA62FD00D625D0 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		9F4C15132C71B6A3005C385A /* Frameworks */ = {
@@ -459,9 +461,10 @@
 		9FB3E7BC2C7192D40088A993 /* ShowTracker */ = {
 			isa = PBXGroup;
 			children = (
-				9F1701AE2D59242D00A8AED7 /* Sort */,
+				9F2021482DDA62FD00D625D0 /* Screenshots */,
 				9FB3E7BD2C7192D40088A993 /* ShowTrackerApp.swift */,
 				9FD804E32C72850500A939DB /* MainView.swift */,
+				9F851A2C2C7194E400F919D0 /* Constants.swift */,
 				9F023BF32CC817F000BD441B /* Features */,
 				9F023C022CC8328E00BD441B /* Core */,
 				9FA9208A2CA4A27600F5D60E /* Info.plist */,
@@ -526,9 +529,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				9F1701AE2D59242D00A8AED7 /* Sort */,
 			);
 			name = ShowTracker;
 			packageProductDependencies = (
