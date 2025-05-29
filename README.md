@@ -2,6 +2,8 @@
 
 A sleek SwiftUI app to browse, search, and view your favorite TV shows using The Movie Database (TMDB) API. Built with a clean MVVM architecture, real-time search, carousel UI, and dual authentication support via Firebase and TMDB.
 
+[Watch the demo on YouTube](https://www.youtube.com/watch?v=vBMCJf4moko)
+
 ---
 
 ## ✨ Features
