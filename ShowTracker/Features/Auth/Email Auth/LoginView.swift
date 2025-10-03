@@ -16,7 +16,7 @@ private enum FocusableField: Hashable {
 
 struct LoginView: View {
   @EnvironmentObject var viewModel: AuthenticationViewModel
-  @Environment(\.colorScheme) var colorScheme
+
   @Environment(\.dismiss) var dismiss
 
   @FocusState private var focus: FocusableField?
