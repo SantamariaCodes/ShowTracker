@@ -45,6 +45,8 @@ struct MainView: View {
             let identifier = newAuthMethod == .firebase ? (Auth.auth().currentUser?.email ?? "default") : "default"
                        localFavoriteService.updateUserID(identifier)
         }
+        .preferredColorScheme(.dark)
+        
     }
 }
 

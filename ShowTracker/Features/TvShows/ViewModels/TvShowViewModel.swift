@@ -112,7 +112,7 @@ class TvShowViewModel: ObservableObject {
         guard let tvShows = genreTvShows[genre], let genres = genres else {
             return tvShowsBySubGenre
         }
-        let excludedGenres = ["War & Politics", "Sci-Fi & Fantasy", "Kids", "Documentary", "Mystery"]
+        let excludedGenres = ["War & Politics", "Sci-Fi & Fantasy", "Kids", "Documentary", "Mystery","News","Soap"]
         let filteredGenres = genres.filter { !excludedGenres.contains($0.name) }
         
         for genre in filteredGenres {

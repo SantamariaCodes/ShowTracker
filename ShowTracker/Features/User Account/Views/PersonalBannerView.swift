@@ -12,15 +12,15 @@ struct PersonalBannerView: View {
         VStack(spacing: 8) {
             Text("© 2025 ShowTracker")
                 .font(.footnote)
-                .foregroundColor(.gray.opacity(0.7))
+                .foregroundColor(.gray.opacity(0.9))
             
             Text("Built by Diego Santamaria")
                 .font(.footnote)
-                .foregroundColor(.gray.opacity(0.5))
+                .foregroundColor(.gray.opacity(0.9))
             
             Text("This product uses the TMDB API but is not endorsed or certified by TMDB.")
                 .font(.caption2)
-                .foregroundColor(.gray.opacity(0.5))
+                .foregroundColor(.gray.opacity(0.9))
                 .multilineTextAlignment(.center)
 
             Link("Powered by TMDB", destination: URL(string: "https://www.themoviedb.org/")!)

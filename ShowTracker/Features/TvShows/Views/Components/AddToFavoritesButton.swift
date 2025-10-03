@@ -18,12 +18,21 @@ struct AddToFavoritesButton: View {
         let convertedShow = convertToFavorite(tvShowDetail: tvShow)
         
         if localFavoriteService.checkIfFavorite(convertedShow) {
-            Text("Already in favorites")
-                .foregroundColor(.gray)
-                .padding()
-                .frame(maxWidth: 200)
-                .background(Color(.systemGray6))
-                .cornerRadius(25)
+            Button(action: {
+                localFavoriteService.remove(convertedShow)
+            }) {
+                Text("Remove from Favorites")
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: 200)
+                    .padding()
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(30)
+                    .shadow(color: Color.red.opacity(0.4), radius: 5, x: 0, y: 4)
+            }
+            .padding(.bottom, 20)
+            
+            
         } else {
             Button(action: {
                 localFavoriteService.add(convertedShow)

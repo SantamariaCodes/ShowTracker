@@ -55,6 +55,8 @@ struct UserFavoritesView: View {
                 }
             }
         }
+        Spacer()
+        PersonalBannerView()
     }
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
         let convertFavoriteTvModelToTvShow = favorites.map { favorite in
