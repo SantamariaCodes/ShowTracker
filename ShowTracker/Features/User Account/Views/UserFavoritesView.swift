@@ -35,6 +35,8 @@ struct UserFavoritesView: View {
     private func renderUI() -> some View {
         if viewModel.favorites.isEmpty {
             Text("It appears you are not logged in or you don’t have favorites yet!")
+            Spacer()
+            PersonalBannerView()
                 .onAppear {
                     viewModel.updateAccountIDandSessionID()
                     viewModel.getFavorites(page: 1)
@@ -54,9 +56,10 @@ struct UserFavoritesView: View {
                     )
                 }
             }
+      
+            
         }
-        Spacer()
-        PersonalBannerView()
+     
     }
     private func convertFavoritesToTvShows(favorites: [FavoritesModel.TVShow]) -> [TvShow] {
         let convertFavoriteTvModelToTvShow = favorites.map { favorite in

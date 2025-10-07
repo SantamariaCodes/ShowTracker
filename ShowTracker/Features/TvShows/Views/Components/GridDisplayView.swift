@@ -26,6 +26,8 @@ struct GridDisplayView: View {
                 }
             }
         }
+        Spacer()
+        PersonalBannerView()
         
     }
 }

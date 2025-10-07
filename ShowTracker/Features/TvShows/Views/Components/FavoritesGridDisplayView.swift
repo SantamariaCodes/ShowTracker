@@ -26,7 +26,9 @@ struct FavoritesGridDisplayView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
+            PersonalBannerView()
         }
+      
     }
 }
 
