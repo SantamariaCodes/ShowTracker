@@ -11,7 +11,6 @@ import FirebaseAuth
 enum AuthMethod {
     case none
     case tmdb
-    case firebase
 }
 
 final class AuthManager: ObservableObject {
@@ -21,16 +20,7 @@ final class AuthManager: ObservableObject {
     @Published var authMethod: AuthMethod = .none
     
     
-    private init() {
-        // Check for current user at start, set authMethod to .firebase, and ignore the returned listener handle to dismiss warnings.
-        _ = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            if let _ = user {
-                self?.authMethod = .firebase
-                self?.isLoggedIn = true
-            }
-        }
 
-      }
     
     func loginWithTMDB() {
         authMethod = .tmdb
@@ -38,7 +28,6 @@ final class AuthManager: ObservableObject {
     }
     
     func loginWithFirebase() {
-        authMethod = .firebase
         isLoggedIn = true
     }
     

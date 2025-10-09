@@ -27,7 +27,6 @@ struct AuthView: View {
                     emailLoginViews()
                     tmdbLoginButton()
                 }
-                else if authManager.authMethod == .firebase { emailLoginViews() }
                 else if authManager.authMethod == .tmdb {  tmdbLoginButton() }
                 
             }

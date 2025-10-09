@@ -22,7 +22,7 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            UserFavoritesView(viewModel: UserFavoritesViewModel.make(localFavoriteService: localFavoriteService))
+            UserFavoritesView(viewModel: UserFavoritesViewModel.make())
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")
@@ -42,8 +42,7 @@ struct MainView: View {
             }
         }
         .onChange(of: authManager.authMethod) {_, newAuthMethod in
-            let identifier = newAuthMethod == .firebase ? (Auth.auth().currentUser?.email ?? "default") : "default"
-                       localFavoriteService.updateUserID(identifier)
+                       localFavoriteService.updateUserID("default")
         }
         .preferredColorScheme(.dark)
         

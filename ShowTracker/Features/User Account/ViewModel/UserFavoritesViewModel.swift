@@ -16,23 +16,19 @@ class UserFavoritesViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var accountID: String?
     @Published var sessionID: String?
-    @Published var FirebaseTrue: Bool?
     
     private var authManager: AuthManager
     private var cancellables = Set<AnyCancellable>()
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountService
-    private let localFavoriteService: LocalFavoriteService
     
     
     
     @MainActor
     init(userAccountService: UserAccountService,
-         authManager: AuthManager = AuthManager.shared,
-         localFavoriteService: LocalFavoriteService) {
+         authManager: AuthManager = AuthManager.shared) {
         self.userAccountService = userAccountService
         self.authManager = authManager
-        self.localFavoriteService = localFavoriteService
         
         authManager.$authMethod
             .sink { [weak self] newAuthMethod in
@@ -41,20 +37,10 @@ class UserFavoritesViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-        
-        localFavoriteService.$favorites
-            .sink { [weak self] newFavorites in
-                guard let self = self else { return }
-                if self.authManager.authMethod == .firebase {
-                    self.favorites = newFavorites
-                }
-            }
-            .store(in: &cancellables)
     }
     
     @MainActor func getFavorites(page: Int) {
         if authManager.authMethod == .tmdb {
-            FirebaseTrue = false
             userAccountService.getFavorites(accountID: self.accountID ?? "N/A",
                                             sessionID: self.sessionID ?? "N/A",
                                             page: page) { [weak self] (result: Result<FavoritesModel, Error>) in
@@ -68,9 +54,6 @@ class UserFavoritesViewModel: ObservableObject {
                     }
                 }
             }
-        } else if authManager.authMethod == .firebase {
-            FirebaseTrue = true
-            self.favorites = self.localFavoriteService.favorites
         }
     }
     
@@ -88,12 +71,11 @@ class UserFavoritesViewModel: ObservableObject {
 
 @MainActor
 extension UserFavoritesViewModel {
-    static func make(localFavoriteService: LocalFavoriteService) -> UserFavoritesViewModel {
+    static func make() -> UserFavoritesViewModel {
         let userFavoritesNetworkManager = NetworkManager<UserAccountTarget>()
         let userAccountService  = UserAccountService(networkManager: userFavoritesNetworkManager)
         return UserFavoritesViewModel(userAccountService: userAccountService,
-                                      authManager: AuthManager.shared,
-                                      localFavoriteService: localFavoriteService)
+                                      authManager: AuthManager.shared)
     }
 }
 

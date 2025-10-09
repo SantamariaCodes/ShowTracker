@@ -35,21 +35,6 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
                 if let unauthenticated = unauthenticated {
                     unauthenticated
                 }
-
-                Button(action: {
-                    viewModel.reset()
-                    presentingLoginScreen.toggle()
-                }) {
-                    Text("Log in with Email")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.cyan)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                        .shadow(color: Color.cyan.opacity(0.4), radius: 5, x: 0, y: 4)
-                }
-
             }
             .padding()
             .sheet(isPresented: $presentingLoginScreen) {

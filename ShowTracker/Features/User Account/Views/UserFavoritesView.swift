@@ -42,19 +42,13 @@ struct UserFavoritesView: View {
                     viewModel.getFavorites(page: 1)
                 }
         } else {
-            // @Binding when using Firebase to ensure UI responsiveness. Plain array from view model when using TMDB.
             NavigationStack {
-                if viewModel.FirebaseTrue == true {
-                    FavoritesGridDisplayView(
-                        title: "Favorites",
-                        tvShows: $favoriteShows
-                    )
-                } else {
+
                     FavoritesGridDisplayView(
                         title: "Favorites",
                         tvShows: convertFavoritesToTvShows(favorites: viewModel.favorites)
                     )
-                }
+
             }
       
             
