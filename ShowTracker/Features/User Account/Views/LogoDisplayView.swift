@@ -30,8 +30,7 @@ struct LogoDisplayView: View {
             .ignoresSafeArea()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    let identifier = authManager.authMethod == .firebase ? (Auth.auth().currentUser?.email ?? "default") : "default"
-                    localFavoriteService.updateUserID(identifier)
+                    localFavoriteService.updateUserID("default")
 
                     withAnimation {
                         isActive = true

@@ -38,7 +38,6 @@ struct ShowDetailView: View {
                          
                     }
                     
-                    
                     Group {
                         Text(tvShowDetail.name)
                             .font(.headline)
@@ -47,14 +46,6 @@ struct ShowDetailView: View {
                     }
                     .padding(.horizontal)
                     
-                    if AuthManager.shared.authMethod == .firebase {
-                        if let tvShowDetailExist = viewModel.tvShowDetail {
-                            AddToFavoritesButton(tvShow: tvShowDetailExist)
-                                .frame(maxWidth: .infinity)
-                                .padding(.top, 20)
-                             
-                        }
-                    }
                 }
             }
             else if let errorMessage = viewModel.errorMessage {
