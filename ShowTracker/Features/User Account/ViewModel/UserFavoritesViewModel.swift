@@ -50,7 +50,6 @@ class UserFavoritesViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-
     }
     
     @MainActor func getFavorites(page: Int) {
