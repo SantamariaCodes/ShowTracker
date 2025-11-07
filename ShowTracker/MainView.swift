@@ -22,7 +22,7 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            UserFavoritesView(viewModel: UserFavoritesViewModel.make())
+            UserFavoritesView()
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")

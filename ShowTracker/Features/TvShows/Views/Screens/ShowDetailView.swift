@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ShowDetailView: View {
     @ObservedObject var viewModel: TvShowDetailViewModel
-    @StateObject private var favoritesViewModel = UserFavoritesViewModel.make()
     @State private var isFavorite: Bool = false
     @State private var showFeedback: Bool = false
-  
+    @EnvironmentObject var favoritesViewModel: UserFavoritesViewModel
 
     var body: some View {
         ScrollView {
@@ -65,10 +64,8 @@ struct ShowDetailView: View {
             favoritesViewModel.updateAccountIDandSessionID()
             favoritesViewModel.getFavorites(page: 1)
         }
-        .onReceive(favoritesViewModel.$favorites) { favorites in
-            if let id = viewModel.tvShowDetail?.id {
-                isFavorite = favorites.contains { $0.id == id }
-            }
+        .onReceive(favoritesViewModel.$favorites) { _ in
+            isFavorite = favoritesViewModel.isFavorite(viewModel.tvShowDetail?.id ?? 0)
         }
     }
 
@@ -82,7 +79,6 @@ struct ShowDetailView: View {
                     mediaId: tvShow.id,
                     currentlyFavorite: isFavorite
                 )
-                isFavorite.toggle()
                 showFeedback = true
             } label: {
                 Label(
@@ -106,5 +102,6 @@ struct ShowDetailView: View {
             let service = TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())
             let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
             ShowDetailView(viewModel: viewModel)
-        }}
+        }
+    }
 }

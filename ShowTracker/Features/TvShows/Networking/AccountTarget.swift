@@ -16,7 +16,7 @@ enum AccountTarget {
 extension AccountTarget: TargetType {
     
     var baseURL: URL {
-        return URL(string: Constants.API.baseUrl)! 
+        return URL(string: Constants.API.baseUrl) ?? URL(string: "https://fallback.url")!
     }
     
     var path: String {

@@ -11,8 +11,7 @@ import Combine
 
 @MainActor
 class UserFavoritesViewModel: ObservableObject {
-    
-    // MARK: - Published state
+
     @Published var favorites: [FavoritesModel.TVShow] = []
     @Published var errorMessage: String?
     @Published var successMessage: String?
@@ -20,7 +19,6 @@ class UserFavoritesViewModel: ObservableObject {
     @Published var sessionID: String?
     @Published var isLoading = false
     
-
     private let authManager: AuthManager
     private let keychainManager = KeychainManager()
     private let userAccountService: UserAccountService
@@ -35,7 +33,7 @@ class UserFavoritesViewModel: ObservableObject {
         self.userAccountService = userAccountService
         self.accountService = accountService
         self.authManager = authManager
-        
+
         authManager.$authMethod
             .sink { [weak self] newAuthMethod in
                 if newAuthMethod == .none {
@@ -44,66 +42,88 @@ class UserFavoritesViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func getFavorites(page: Int) {
         guard let accountID = accountID, let sessionID = sessionID else {
             errorMessage = "Missing credentials"
             return
         }
-        
+
         isLoading = true
         userAccountService.getFavorites(accountID: accountID, sessionID: sessionID, page: page) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.isLoading = false
-                
+
                 switch result {
                 case .success(let favoritesModel):
-                    self.favorites = favoritesModel.results
+                    self.favorites = favoritesModel.results.map { $0 }
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
+                    print("❌ Error fetching favorites:", error)
                 }
             }
         }
     }
-    
+
     func toggleFavorite(mediaType: String, mediaId: Int, currentlyFavorite: Bool) {
-        isLoading = true
-        
+        if currentlyFavorite {
+            favorites.removeAll { $0.id == mediaId }
+        } else {
+            let newFavorite = FavoritesModel.TVShow(
+                id: mediaId,
+                name: "",
+                overview: "",
+                firstAirDate: "",
+                voteAverage: 0.0,
+                posterPath: nil,
+                backdropPath: nil
+            )
+
+
+            favorites.append(newFavorite)
+        }
+
+        favorites = favorites.map { $0 }
+
         let request = ModifyFavoriteRequest(
             mediaType: mediaType,
             mediaId: mediaId,
             favorite: !currentlyFavorite
         )
-        
+
+        isLoading = true
         accountService.modifyFavorite(request: request) { [weak self] result in
             guard let self = self else { return }
-            self.isLoading = false
-            
-            switch result {
-            case .success(let response):
-                self.successMessage = response.statusMessage
-                print("✅ Favorite updated:", response.statusMessage)
-                
-                // Refresh local favorites if needed
-                self.getFavorites(page: 1)
-                
-            case .failure(let error):
-                self.errorMessage = error.localizedDescription
-                print("❌ Error modifying favorite:", error)
+            DispatchQueue.main.async {
+                self.isLoading = false
+
+                switch result {
+                case .success(let response):
+                    self.successMessage = response.statusMessage
+                    print("✅ Favorite updated:", response.statusMessage)
+                    self.getFavorites(page: 1)
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                    print("❌ Error modifying favorite:", error)
+                }
             }
         }
     }
-    
+
     func updateAccountIDandSessionID() {
-        self.accountID = keychainManager.getAccountID()
-        self.sessionID = keychainManager.getSessionID()
+        accountID = keychainManager.getAccountID()
+        sessionID = keychainManager.getSessionID()
     }
-    
+
     func userLoggedOut() {
-        self.accountID = nil
-        self.sessionID = nil
-        self.favorites = []
+        accountID = nil
+        sessionID = nil
+        favorites = []
+    }
+
+    func isFavorite(_ id: Int) -> Bool {
+        favorites.contains { $0.id == id }
     }
 }
 

@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct UserFavoritesView: View {
-    @StateObject var viewModel: UserFavoritesViewModel
     @State private var favoriteShows: [TvShow] = []
-
+    @EnvironmentObject var viewModel: UserFavoritesViewModel
+  
     var body: some View {
-        VStack {
-            Text("Favorites")
-                .font(.headline)
-                .foregroundColor(.cyan)
-
-            renderUI()
-        }
-        .padding()
-        .onAppear {
-            viewModel.updateAccountIDandSessionID()
-            if let _ = viewModel.accountID {
-                viewModel.getFavorites(page: 1)
+        NavigationStack{
+            VStack {
+                Text("Favorites")
+                    .font(.headline)
+                    .foregroundColor(.cyan)
+                
+                renderUI()
             }
-        }
-        .onReceive(viewModel.$favorites) { favorites in
-            favoriteShows = convertFavoritesToTvShows(favorites: favorites)
+            .padding()
+            .onAppear {
+                viewModel.updateAccountIDandSessionID()
+                if let _ = viewModel.accountID {
+                    viewModel.getFavorites(page: 1)
+                }
+            }
+            .onReceive(viewModel.$favorites) { favorites in
+                favoriteShows = convertFavoritesToTvShows(favorites: favorites)
+            }
         }
     }
 
@@ -51,13 +53,13 @@ struct UserFavoritesView: View {
             }
             .padding(.top, 40)
         } else {
-            NavigationStack {
+   
                 FavoritesGridDisplayView(
                     title: "Favorites",
                     tvShows: favoriteShows
                 )
-                .navigationTitle("Your Favorites")
-            }
+             
+            
         }
     }
 

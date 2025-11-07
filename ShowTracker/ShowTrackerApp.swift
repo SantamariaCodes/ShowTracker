@@ -24,6 +24,8 @@ struct ShowTrackerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var authManager = AuthManager.shared
     @StateObject private var localFavoriteService = LocalFavoriteService()
+    @StateObject private var favoritesViewModel = UserFavoritesViewModel.make()
+
 
 
     
@@ -32,6 +34,8 @@ struct ShowTrackerApp: App {
                 LogoDisplayView()
                 .environmentObject(authManager)
                 .environmentObject(localFavoriteService)
+                .environmentObject(favoritesViewModel)
+
             }
         }
     }
