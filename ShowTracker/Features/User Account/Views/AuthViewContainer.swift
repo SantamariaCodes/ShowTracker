@@ -13,10 +13,6 @@ struct AuthViewContainer: View {
     var body: some View {
         AuthView()
             .onOpenURL { url in handleOpenURL(url) }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                viewModel.updateSessionID()
-                viewModel.isLoggedIn = viewModel.sessionID != nil
-            }
         
     }
 

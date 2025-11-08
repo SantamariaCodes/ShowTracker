@@ -9,9 +9,12 @@ import SwiftUI
 
 struct ShowDetailView: View {
     @ObservedObject var viewModel: TvShowDetailViewModel
-    @State private var isFavorite: Bool = false
-    @State private var showFeedback: Bool = false
     @EnvironmentObject var favoritesViewModel: UserFavoritesViewModel
+    @State private var showFeedback: Bool = false
+
+    private var isFavorite: Bool {
+        favoritesViewModel.isFavorite(viewModel.tvShowDetail?.id ?? 0)
+    }
 
     var body: some View {
         ScrollView {
@@ -19,7 +22,6 @@ struct ShowDetailView: View {
                 ProgressView()
             } else if let tvShowDetail = viewModel.tvShowDetail {
                 VStack(alignment: .leading, spacing: 0) {
-
                     if let posterURL = tvShowDetail.posterURL {
                         AsyncImage(url: posterURL) { image in
                             image
@@ -32,10 +34,6 @@ struct ShowDetailView: View {
                         } placeholder: {
                             ProgressView()
                         }
-                    } else {
-                        Color.gray
-                            .frame(width: 130, height: 150)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
 
                     ShowDetailRowView(tvShow: tvShowDetail)
@@ -51,7 +49,6 @@ struct ShowDetailView: View {
                     .padding(.horizontal)
 
                     favoriteButton(for: tvShowDetail)
-
                     Spacer()
                 }
             } else if let errorMessage = viewModel.errorMessage {
@@ -63,9 +60,6 @@ struct ShowDetailView: View {
             viewModel.fetchTvShowDetails()
             favoritesViewModel.updateAccountIDandSessionID()
             favoritesViewModel.getFavorites(page: 1)
-        }
-        .onReceive(favoritesViewModel.$favorites) { _ in
-            isFavorite = favoritesViewModel.isFavorite(viewModel.tvShowDetail?.id ?? 0)
         }
     }
 
@@ -95,13 +89,5 @@ struct ShowDetailView: View {
             Spacer()
         }
         .padding(.vertical)
-    }
-    
-    struct ShowDetailView_Previews: PreviewProvider {
-        static var previews: some View {
-            let service = TvShowDetailsService(networkManager: NetworkManager<TvShowTarget>())
-            let viewModel = TvShowDetailViewModel(tvShowId: 1399, tvShowDetailsService: service)
-            ShowDetailView(viewModel: viewModel)
-        }
     }
 }
