@@ -11,11 +11,10 @@ struct ShowDetailView: View {
     @ObservedObject var viewModel: TvShowDetailViewModel
     @EnvironmentObject var favoritesViewModel: UserFavoritesViewModel
     @State private var showFeedback: Bool = false
-
     private var isFavorite: Bool {
         favoritesViewModel.isFavorite(viewModel.tvShowDetail?.id ?? 0)
     }
-
+    
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
@@ -35,7 +34,7 @@ struct ShowDetailView: View {
                             ProgressView()
                         }
                     }
-
+                    
                     ShowDetailRowView(tvShow: tvShowDetail)
                         .padding(.bottom, 8)
 
@@ -47,7 +46,6 @@ struct ShowDetailView: View {
                             .font(.body)
                     }
                     .padding(.horizontal)
-
                     favoriteButton(for: tvShowDetail)
                     Spacer()
                 }
@@ -62,32 +60,44 @@ struct ShowDetailView: View {
             favoritesViewModel.getFavorites(page: 1)
         }
     }
-
+    
     @ViewBuilder
     private func favoriteButton(for tvShow: TvShowDetail) -> some View {
-        HStack {
-            Spacer()
-            Button {
-                favoritesViewModel.toggleFavorite(
-                    mediaType: "tv",
-                    mediaId: tvShow.id,
-                    currentlyFavorite: isFavorite
-                )
-                showFeedback = true
-            } label: {
-                Label(
-                    isFavorite ? "Remove Favorite" : "Add to Favorites",
-                    systemImage: isFavorite ? "heart.fill" : "heart"
-                )
-                .foregroundColor(.red)
-                .padding()
+        if favoritesViewModel.isLoggedIn  {
+            HStack {
+                Spacer()
+                Button {
+                    favoritesViewModel.toggleFavorite(
+                        mediaType: "tv",
+                        mediaId: tvShow.id,
+                        currentlyFavorite: isFavorite
+                    )
+                    showFeedback = true
+                } label: {
+                    Label(
+                        isFavorite ? "Remove Favorite" : "Add to Favorites",
+                        systemImage: isFavorite ? "heart.fill" : "heart"
+                    )
+                    .foregroundColor(.red)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.black.opacity(0.2))
+                    )
+                }
+                Spacer()
+            }
+            .padding(.vertical)
+            
+        } else {
+            Label("Sign in from your Profile to add favorites.", systemImage: "info.circle.fill")
+                .foregroundColor(.cyan)
+                .padding(6)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.black.opacity(0.2))
+                        .fill(Color.cyan.opacity(0.15))
                 )
-            }
-            Spacer()
+                .padding()
         }
-        .padding(.vertical)
     }
 }

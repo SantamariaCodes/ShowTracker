@@ -25,6 +25,10 @@ class UserFavoritesViewModel: ObservableObject {
     private let accountService: AccountService
     private var cancellables = Set<AnyCancellable>()
     
+    var isLoggedIn: Bool {
+        sessionID != nil
+    }
+    
     init(
         userAccountService: UserAccountService,
         accountService: AccountService = AccountService(networkManager: NetworkManager<AccountTarget>()),
