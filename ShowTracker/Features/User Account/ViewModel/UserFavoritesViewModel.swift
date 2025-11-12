@@ -71,49 +71,26 @@ class UserFavoritesViewModel: ObservableObject {
     }
 
     func toggleFavorite(mediaType: String, mediaId: Int, currentlyFavorite: Bool) {
-        if currentlyFavorite {
-            favorites.removeAll { $0.id == mediaId }
-        } else {
-            let newFavorite = FavoritesModel.TVShow(
-                id: mediaId,
-                name: "",
-                overview: "",
-                firstAirDate: "",
-                voteAverage: 0.0,
-                posterPath: nil,
-                backdropPath: nil
-            )
-
-
-            favorites.append(newFavorite)
-        }
-
-        favorites = favorites.map { $0 }
-
         let request = ModifyFavoriteRequest(
             mediaType: mediaType,
             mediaId: mediaId,
             favorite: !currentlyFavorite
         )
-
         isLoading = true
         accountService.modifyFavorite(request: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.isLoading = false
-
                 switch result {
-                case .success(let response):
-                    self.successMessage = response.statusMessage
-                    print("✅ Favorite updated:", response.statusMessage)
+                case .success:
                     self.getFavorites(page: 1)
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
-                    print("❌ Error modifying favorite:", error)
                 }
             }
         }
     }
+
 
     func updateAccountIDandSessionID() {
         accountID = keychainManager.getAccountID()

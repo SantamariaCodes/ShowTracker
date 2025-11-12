@@ -10,7 +10,6 @@ import SwiftUI
 struct ShowDetailView: View {
     @ObservedObject var viewModel: TvShowDetailViewModel
     @EnvironmentObject var favoritesViewModel: UserFavoritesViewModel
-    @State private var showFeedback: Bool = false
     private var isFavorite: Bool {
         favoritesViewModel.isFavorite(viewModel.tvShowDetail?.id ?? 0)
     }
@@ -72,7 +71,6 @@ struct ShowDetailView: View {
                         mediaId: tvShow.id,
                         currentlyFavorite: isFavorite
                     )
-                    showFeedback = true
                 } label: {
                     Label(
                         isFavorite ? "Remove Favorite" : "Add to Favorites",
