@@ -36,7 +36,7 @@ private func tvShowBanner(tvShow: TvShow) -> some View {
     VStack {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
+                .fill(Color.gray)
                 .frame(width: 120, height: 130)
             
                 .shadow(color: .black, radius: 3)
