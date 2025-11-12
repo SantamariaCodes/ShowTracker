@@ -35,31 +35,20 @@ struct UserFavoritesView: View {
 
     @ViewBuilder
     private func renderUI() -> some View {
-        if viewModel.isLoading {
+        if viewModel.favorites.isEmpty {
+            Text("It appears you are not logged in or don’t have favorites yet!")
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        else if viewModel.isLoading {
             ProgressView("Loading favorites...")
                 .tint(.cyan)
                 .padding()
-        } else if viewModel.favorites.isEmpty {
-            VStack(spacing: 16) {
-                Text("It appears you are not logged in or don’t have favorites yet!")
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-
-                PersonalBannerView()
-                    .onAppear {
-                        viewModel.updateAccountIDandSessionID()
-                        viewModel.getFavorites(page: 1)
-                    }
-            }
-            .padding(.top, 40)
         } else {
-   
                 FavoritesGridDisplayView(
                     title: "Favorites",
                     tvShows: favoriteShows
                 )
-             
-            
         }
     }
 

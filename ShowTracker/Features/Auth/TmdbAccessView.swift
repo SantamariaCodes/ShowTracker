@@ -32,7 +32,6 @@ struct TmdbAccessView: View {
         }) {
             Text("Authenticate with TMDB")
                 .fontWeight(.semibold)
-                .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.cyan)
                 .foregroundColor(.white)
