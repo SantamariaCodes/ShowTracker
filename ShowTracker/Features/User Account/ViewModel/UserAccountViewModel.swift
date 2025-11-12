@@ -22,8 +22,14 @@ class UserAccountViewModel: ObservableObject {
     init(userAccountService: UserAccountService, authenticationService: AuthenticationService) {
         self.userAccountService = userAccountService
         self.authenticationService = authenticationService
+        self.sessionID = keychainManager.getSessionID()
         self.isLoggedIn = sessionID != nil
+
+        if self.isLoggedIn {
+            AuthManager.shared.loginWithTMDB()
+        }
     }
+
 
     func logout() {
         keychainManager.deleteSessionID()

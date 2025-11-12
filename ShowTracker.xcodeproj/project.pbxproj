@@ -75,6 +75,9 @@
 		9FD804E42C72850500A939DB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E32C72850500A939DB /* MainView.swift */; };
 		9FD804E62C72853200A939DB /* GridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E52C72853200A939DB /* GridDisplayView.swift */; };
 		9FD804E82C72856200A939DB /* DashboardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD804E72C72856200A939DB /* DashboardRowView.swift */; };
+		9FDA641F2E985EA900D551EE /* AccountTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDA641E2E985EA900D551EE /* AccountTarget.swift */; };
+		9FDA64212E98607500D551EE /* AccountResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDA64202E98606B00D551EE /* AccountResponses.swift */; };
+		9FDA64232E988F6B00D551EE /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDA64222E988F6B00D551EE /* AccountService.swift */; };
 		9FE9DAD52D5F9E0600429003 /* FavoritesGridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */; };
 		9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -165,6 +168,9 @@
 		9FD804E32C72850500A939DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9FD804E52C72853200A939DB /* GridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplayView.swift; sourceTree = "<group>"; };
 		9FD804E72C72856200A939DB /* DashboardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRowView.swift; sourceTree = "<group>"; };
+		9FDA641E2E985EA900D551EE /* AccountTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTarget.swift; sourceTree = "<group>"; };
+		9FDA64202E98606B00D551EE /* AccountResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponses.swift; sourceTree = "<group>"; };
+		9FDA64222E988F6B00D551EE /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		9FE9DAD42D5F9E0600429003 /* FavoritesGridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGridDisplayView.swift; sourceTree = "<group>"; };
 		9FF846022CC68F0700071CC2 /* UserFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +280,7 @@
 			children = (
 				9F851A222C7194B100F919D0 /* TvShowDetailModel.swift */,
 				9F851A202C7194A800F919D0 /* TvShowsResponse.swift */,
+				9FDA64202E98606B00D551EE /* AccountResponses.swift */,
 				9F96C15B2C7BBA4B009E1A85 /* Genres.swift */,
 			);
 			path = Models;
@@ -371,6 +378,8 @@
 				9F851A2A2C7194D500F919D0 /* Movie&ShowDetailsService.swift */,
 				9F851A282C7194CB00F919D0 /* TvShowService.swift */,
 				9F96C1612C7BC252009E1A85 /* GenreService.swift */,
+				9FDA641E2E985EA900D551EE /* AccountTarget.swift */,
+				9FDA64222E988F6B00D551EE /* AccountService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -676,12 +685,14 @@
 				9FC4DC672D4283B9002B7679 /* SignupView.swift in Sources */,
 				9F4FF2E22C7F4C54008B00EE /* ShowDetailRowView.swift in Sources */,
 				9F78B8722CAC395D006F5147 /* UserAccountService.swift in Sources */,
+				9FDA641F2E985EA900D551EE /* AccountTarget.swift in Sources */,
 				9F07A01E2CBDAF47001C32A8 /* KeychainManager 2.swift in Sources */,
 				9F2FD1F52DB1CB2C00880E1D /* AuthViewContainer.swift in Sources */,
 				9FF846032CC68F0700071CC2 /* UserFavoritesViewModel.swift in Sources */,
 				9F78B8772CAC89A6006F5147 /* UserAccountViewModel.swift in Sources */,
 				9F96C15C2C7BBA4B009E1A85 /* Genres.swift in Sources */,
 				9FBFFCE22D53B48B00992BEA /* TmdbAccessView.swift in Sources */,
+				9FDA64232E988F6B00D551EE /* AccountService.swift in Sources */,
 				9FC4DC612D428306002B7679 /* AuthenticationView.swift in Sources */,
 				9FD804E22C7284CE00A939DB /* CarouselContentView.swift in Sources */,
 				9FA920872CA48AE900F5D60E /* AuthViewModel.swift in Sources */,
@@ -706,6 +717,7 @@
 				9F851A2B2C7194D500F919D0 /* Movie&ShowDetailsService.swift in Sources */,
 				9F851A2F2C71950F00F919D0 /* TvShowDetailsViewModel.swift in Sources */,
 				9FC4DC692D4283D0002B7679 /* UserProfileView.swift in Sources */,
+				9FDA64212E98607500D551EE /* AccountResponses.swift in Sources */,
 				9F78B8792CAC8CF2006F5147 /* UserAccountView.swift in Sources */,
 				9F193E912DD55B88008027F9 /* SubGenreRowView.swift in Sources */,
 				9F193E922DD55B88008027F9 /* LocalFavoriteService.swift in Sources */,
